@@ -84,7 +84,7 @@ function poemCard(poem) {
 }
 
 function layout({ title, description, active = "", type = "website", content }) {
-  const pageTitle = title === "Anh Lee" ? "Anh Lee — Thơ" : `${title} — Anh Lee`;
+  const pageTitle = title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`;
   return `<!doctype html>
 <html lang="vi">
 <head>
@@ -108,7 +108,7 @@ function layout({ title, description, active = "", type = "website", content }) 
   <a class="skip-link" href="#noi-dung">Đi đến nội dung</a>
   <header class="site-header">
     <div class="shell header-inner">
-      <a class="wordmark" href="${url("/")}" aria-label="Anh Lee — Trang chủ">Anh Lee<span>.</span></a>
+      <a class="wordmark" href="${url("/")}" aria-label="Nguyên Anh — Trang chủ">Nguyên Anh<span>.</span></a>
       <nav aria-label="Điều hướng chính">
         <a href="${url("/")}"${active === "home" ? ' aria-current="page"' : ""}>Trang chủ</a>
         <a href="${url("/tho/")}"${active === "poems" ? ' aria-current="page"' : ""}>Thơ</a>
@@ -122,7 +122,7 @@ function layout({ title, description, active = "", type = "website", content }) 
   </header>
   <main id="noi-dung">${content}</main>
   <footer class="site-footer">
-    <div class="shell"><span>Anh Lee</span><span>Thơ, và những khoảng lặng.</span></div>
+    <div class="shell"><span>Nguyên Anh</span><span>Thơ, và những khoảng lặng.</span></div>
   </footer>
 </body>
 </html>`;
@@ -152,7 +152,7 @@ async function build() {
   const selected = featured.length ? featured : poems.slice(0, 3);
 
   const home = layout({
-    title: "Anh Lee",
+    title: "Nguyên Anh",
     description: "Những bài thơ về ký ức, thiên nhiên và những khoảng lặng trong đời sống.",
     active: "home",
     content: `<section class="hero shell">
@@ -174,7 +174,7 @@ async function build() {
 
   const poemsPage = layout({
     title: "Thơ",
-    description: "Tất cả bài thơ của Anh Lee, sắp xếp từ mới nhất.",
+    description: "Tất cả bài thơ của Nguyên Anh, sắp xếp từ mới nhất.",
     active: "poems",
     content: `<header class="page-heading shell">
       <p class="eyebrow">Tuyển tập</p>
@@ -214,7 +214,7 @@ async function build() {
 
   const aboutPage = layout({
     title: "Giới thiệu",
-    description: "Đôi lời về Anh Lee và góc nhỏ dành cho thơ.",
+    description: "Đôi lời về Nguyên Anh và góc nhỏ dành cho thơ.",
     active: "about",
     content: `<article class="about shell">
       <header>

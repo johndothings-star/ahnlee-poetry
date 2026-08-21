@@ -1,4 +1,4 @@
-# Anh Lee — Website thơ
+# Nguyên Anh — Website thơ
 
 Website tĩnh tối giản cho thơ cá nhân. Nội dung được viết bằng Markdown, build thành HTML thuần và tự động deploy lên GitHub Pages khi push lên nhánh `main`.
 
