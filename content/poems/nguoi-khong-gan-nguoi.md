@@ -1,9 +1,10 @@
 ---
-title: "Người không gần người"
+title: "NGƯỜI KHÔNG GẦN NGƯỜI!?"
 date: "2020-04-02"
-excerpt: "Trong cuộc sống hối hả con người gặp nhau hàng ngày, nhưng có nhiều lúc gần nhau mà như xa cách."
-featured: true
+excerpt: "Bình thời người sát bên người"
+featured: false
 ---
+
 Bình thời người sát bên người
 Mà như xa cách, buông lời khen chê
 Bên nhau vườn sát tường kề
@@ -36,4 +37,3 @@ Ai ơi còn một đường lên
 Tìm về chân ngã, bản nguyên cuộc đời
 Chân Thiện Nhẫn khắp nơi nơi
 Người người tỉnh thức, lời lời ca vang.
-

@@ -1,0 +1,11 @@
+---
+title: "NHẮN NGƯỜI “CẦM ĐẦU THIÊN HẠ“"
+date: "2020-04-27"
+excerpt: "Hỡi những ai đang “cầm đầu thiên hạ“"
+featured: false
+---
+
+Hỡi những ai đang "cầm đầu thiên hạ"
+Hãy học cách làm cho đẹp lòng người
+Được người khen, tiền mới vô đầy túi
+Nhược bằng chê, thất nghiệp chứ chẳng chơi.

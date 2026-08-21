@@ -1,9 +1,10 @@
 ---
-title: "Tình yêu của tôi!"
+title: "TÌNH YÊU CỦA TÔI"
 date: "2020-02-14"
-excerpt: "Tình yêu đâu chỉ là giữa con người với con người, tôi còn yêu cả những lời chua cay."
-featured: true
+excerpt: "Tôi yêu cảnh bình minh tươi sáng"
+featured: false
 ---
+
 Tôi yêu cảnh bình minh tươi sáng
 Yêu hoàng hôn ngã bóng cây già
 Yêu núi đồi sông biển bao la
@@ -25,4 +26,3 @@ Gửi đến muôn nơi, đến mỗi cuộc đời
 Đến đất trời, đến chim muông hoa cỏ
 
 Chân Thiện Nhẫn - tình yêu tôi trong đó!
-

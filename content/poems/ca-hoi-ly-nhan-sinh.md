@@ -1,0 +1,26 @@
+---
+title: "CÁ HỒI, LÝ NHÂN SINH!"
+date: "2020-01-18"
+excerpt: "Nơi đầu nguồn con suối"
+featured: false
+---
+
+Nơi đầu nguồn con suối
+Giữa bạt ngàn núi mây
+Cá Hồi theo giấc mộng
+Xuôi về biển vui vầy
+
+Lớn khôn rồi chợt hiểu
+Nơi con suối ngày xưa
+Nơi ngọn nguồn cuộc sống
+Đang mong ngóng từng giờ
+
+Ngược dòng bao ghềnh thác
+Trải muôn vạn hiểm nguy
+Dẫu vào nơi miệng gấu
+Quyết về kịp "sinh kỳ" *
+
+Biển bao đời chứng kiến
+Cá Hồi đến rồi đi
+Ngẫm chuyện đời của cá
+Ta có nghĩ suy gì?

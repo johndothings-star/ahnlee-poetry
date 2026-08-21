@@ -1,9 +1,10 @@
 ---
-title: "Tặng người... chút lặng!"
+title: "TẶNG NGƯỜI... CHÚT LẶNG!"
 date: "2019-05-21"
-excerpt: "Xin tặng người một chút lặng, để ngẫm đời thấy sức nặng thảnh thơi."
+excerpt: "Lặng mắt nhìn thấy khoảng trời xanh thẳm"
 featured: true
 ---
+
 Lặng mắt nhìn thấy khoảng trời xanh thẳm
 Lặng tai nghe trong gió tiếng thì thầm
 Lặng ngửi hương thơm ngát quyện vào thân
@@ -18,4 +19,3 @@ Lặng thời gian thấy vòng xoay nhân thế
 Lặng mặt hồ phẳng lặng tấm gương soi
 Lặng tâm ta chạm mốc nghĩa cuộc đời
 Lặng một chút... ta tặng người... chút lặng.
-
