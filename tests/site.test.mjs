@@ -21,14 +21,14 @@ test("tạo đủ các trang chính", async () => {
 });
 
 test("tạo trang đọc cho từng bài Markdown", async () => {
-  const poem = await page(path.join("tho", "mua-tren-mai-cu"));
-  assert.match(poem, /Mưa trên mái cũ/);
-  assert.match(poem, /Mưa về gõ nhẹ mái hiên<br>/);
+  const poem = await page(path.join("tho", "mo-hien-nha-hoa-no"));
+  assert.match(poem, /Mơ hiên nhà hoa nở!/);
+  assert.match(poem, /Tôi đứng yên mà Trái Đất cứ quay<br>/);
   assert.match(poem, /property="og:type" content="article"/);
 });
 
 test("mọi trang đều có điều khiển giao diện", async () => {
-  const poem = await page(path.join("tho", "vet-nang"));
+  const poem = await page(path.join("tho", "tinh-yeu-cua-toi"));
   assert.match(poem, /class="theme-toggle"/);
   assert.match(poem, /assets\/theme\.js/);
 });
