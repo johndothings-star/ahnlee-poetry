@@ -170,3 +170,162 @@ nav a[aria-current="page"]::after { content: ""; position: absolute; left: 50%; 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+/* ===== TYPOGRAPHY TUNING - AHN LEE POETRY ===== */
+
+/* Tên tác giả / logo đầu trang */
+.wordmark {
+  font-size: 1.45rem;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+/* ===== TRANG DANH SÁCH THƠ ===== */
+
+/* Mỗi hàng thơ gọn lại một chút */
+.archive-item {
+  grid-template-columns: 64px 1fr auto;
+  gap: 22px;
+  min-height: 132px;
+  padding-block: 24px;
+}
+
+/* Số thứ tự: lớn hơn để cân với tiêu đề */
+.archive-item__number {
+  align-self: start;
+  padding-top: 5px;
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Tiêu đề thơ trong danh sách: bớt bự */
+.archive-item h2 {
+  margin: 0 0 9px;
+  font-size: clamp(1.45rem, 2.25vw, 1.95rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+/* Lời giới thiệu bài thơ */
+.archive-item p {
+  max-width: 650px;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* Ngày trong danh sách: đừng bé quá */
+.archive-item time {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  letter-spacing: 0.045em;
+}
+
+/* ===== TRANG ĐỌC TỪNG BÀI THƠ ===== */
+
+.poem-reader {
+  grid-template-columns: minmax(230px, 300px) minmax(320px, 1fr);
+  gap: clamp(48px, 6vw, 78px);
+  padding-block: 88px 125px;
+}
+
+/* Tiêu đề bài thơ */
+.poem-reader h1 {
+  max-width: 10em;
+  margin-bottom: 20px;
+  font-size: clamp(2.35rem, 4vw, 3.55rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+/* Chữ "NGÀY SÁNG TÁC" */
+.poem-date span {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+}
+
+/* Ngày tháng cụ thể */
+.poem-date time {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+}
+
+/* Nội dung thơ */
+.poem-body {
+  max-width: 660px;
+  padding-top: 38px;
+  font-size: clamp(1.15rem, 1.5vw, 1.30rem);
+  line-height: 1.84;
+}
+
+/* Khoảng cách giữa các khổ thơ */
+.poem-body p {
+  margin-bottom: 1.65em;
+}
+
+
+/* ===== ĐIỆN THOẠI ===== */
+
+@media (max-width: 760px) {
+
+  .wordmark {
+    font-size: 1.35rem;
+  }
+
+  .archive-item {
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    min-height: auto;
+    padding-block: 22px;
+  }
+
+  .archive-item__number {
+    padding-top: 3px;
+    font-size: 0.90rem;
+  }
+
+  .archive-item h2 {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+
+  .archive-item p {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .archive-item time {
+    font-size: 0.75rem;
+  }
+
+  .poem-reader {
+    padding-block: 64px 96px;
+  }
+
+  .poem-reader h1 {
+    max-width: 12em;
+    margin-bottom: 18px;
+    font-size: clamp(2.15rem, 9vw, 2.85rem);
+    line-height: 1.08;
+  }
+
+  .poem-date span {
+    font-size: 0.68rem;
+  }
+
+  .poem-date time {
+    font-size: 0.82rem;
+  }
+
+  .poem-body {
+    max-width: 34em;
+    padding-top: 34px;
+    font-size: clamp(1.08rem, 4.6vw, 1.22rem);
+    line-height: 1.82;
+  }
+
+  .poem-body p {
+    margin-bottom: 1.55em;
+  }
+}
