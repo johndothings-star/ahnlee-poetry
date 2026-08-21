@@ -1,6 +1,6 @@
 # Nguyên Anh — Website thơ
 
-Website tĩnh tối giản cho thơ cá nhân. Nội dung được viết bằng Markdown, build thành HTML thuần và tự động deploy lên GitHub Pages khi push lên nhánh `main`.
+Website tĩnh tối giản cho thơ cá nhân. Phiên bản v2 được viết bằng Markdown, build thành HTML thuần và tự động deploy lên GitHub Pages khi push lên nhánh `main`.
 
 ## Thêm một bài thơ mới
 
@@ -20,7 +20,7 @@ Dòng thơ thứ hai
 Khổ thơ tiếp theo
 ```
 
-`featured: true` đưa bài lên Trang chủ. Để xem trên máy, chạy `npm run dev`. Trước khi đăng, chạy `npm run build` và `npm test`.
+`featured: true` đưa bài lên Trang chủ. Tìm kiếm, bộ lọc năm và nút chọn ngẫu nhiên tự cập nhật từ các file Markdown; năm được lấy từ trường `date`. Để xem trên máy, chạy `npm run dev`. Trước khi đăng, chạy `npm run build` và `npm test`.
 
 ## Deploy
 

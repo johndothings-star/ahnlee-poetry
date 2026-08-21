@@ -76,14 +76,14 @@ function formatDate(date) {
 
 function poemCard(poem) {
   return `<article class="poem-card">
-    <p class="poem-card__date">${escapeHtml(formatDate(poem.date))}</p>
+    <time class="poem-card__date" datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
     <h3><a href="${url(`/tho/${poem.slug}/`)}">${escapeHtml(poem.title)}</a></h3>
     <p>${escapeHtml(poem.excerpt)}</p>
     <a class="text-link" href="${url(`/tho/${poem.slug}/`)}" aria-label="Đọc bài ${escapeHtml(poem.title)}">Đọc bài thơ <span aria-hidden="true">→</span></a>
   </article>`;
 }
 
-function layout({ title, description, active = "", type = "website", content }) {
+function layout({ title, description, active = "", type = "website", publishedTime = "", scripts = [], content }) {
   const pageTitle = title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`;
   return `<!doctype html>
 <html lang="vi">
@@ -93,9 +93,11 @@ function layout({ title, description, active = "", type = "website", content }) 
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="color-scheme" content="light dark">
   <meta property="og:locale" content="vi_VN">
+  <meta property="og:site_name" content="Nguyên Anh — Thơ">
   <meta property="og:type" content="${type}">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(description)}">
+  ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml(publishedTime)}">` : ""}
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
@@ -103,6 +105,7 @@ function layout({ title, description, active = "", type = "website", content }) 
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="stylesheet" href="${url("/assets/styles.css")}">
   <script src="${url("/assets/theme.js")}" defer></script>
+  ${scripts.map((script) => `<script type="module" src="${url(script)}"></script>`).join("\n  ")}
 </head>
 <body>
   <a class="skip-link" href="#noi-dung">Đi đến nội dung</a>
@@ -146,10 +149,12 @@ async function build() {
   await mkdir(path.join(output, "assets"), { recursive: true });
   await cp(path.join(root, "src", "styles.css"), path.join(output, "assets", "styles.css"));
   await cp(path.join(root, "src", "theme.js"), path.join(output, "assets", "theme.js"));
+  await cp(path.join(root, "src", "archive.js"), path.join(output, "assets", "archive.js"));
 
   const poems = await readPoems();
   const featured = poems.filter((poem) => poem.featured).slice(0, 3);
   const selected = featured.length ? featured : poems.slice(0, 3);
+  const years = [...new Set(poems.map((poem) => poem.date.slice(0, 4)))].sort((a, b) => b.localeCompare(a));
 
   const home = layout({
     title: "Nguyên Anh",
@@ -163,7 +168,7 @@ async function build() {
     </section>
     <section class="featured shell" aria-labelledby="poems-heading">
       <div class="section-heading">
-        <div><p class="eyebrow">Bài thơ mới</p><h2 id="poems-heading">Những câu chữ gần đây</h2></div>
+        <div><p class="eyebrow">Thơ gần đây</p><h2 id="poems-heading">Những bài thơ mới nhất</h2></div>
         <a class="text-link desktop-link" href="${url("/tho/")}">Xem tất cả <span aria-hidden="true">→</span></a>
       </div>
       <div class="poem-grid">${selected.map(poemCard).join("")}</div>
@@ -176,20 +181,39 @@ async function build() {
     title: "Thơ",
     description: "Tất cả bài thơ của Nguyên Anh, sắp xếp từ mới nhất.",
     active: "poems",
+    scripts: ["/assets/archive.js"],
     content: `<header class="page-heading shell">
       <p class="eyebrow">Tuyển tập</p>
       <h1>Thơ</h1>
       <p>Những bài thơ được xếp theo ngày viết, từ mới nhất đến cũ hơn.</p>
     </header>
     <section class="archive shell" aria-label="Danh sách bài thơ">
-      ${poems.map((poem, index) => `<article class="archive-item">
-        <span class="archive-item__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
-        <div>
-          <h2><a href="${url(`/tho/${poem.slug}/`)}">${escapeHtml(poem.title)}</a></h2>
-          <p>${escapeHtml(poem.excerpt)}</p>
-        </div>
-        <time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
-      </article>`).join("")}
+      <div class="archive-tools">
+        <label class="archive-field archive-field--search" for="poem-search">
+          <span>Tìm theo tên</span>
+          <input id="poem-search" type="search" placeholder="Nhập tên bài thơ…" autocomplete="off" aria-controls="poem-list">
+        </label>
+        <label class="archive-field" for="year-filter">
+          <span>Năm sáng tác</span>
+          <select id="year-filter" aria-controls="poem-list">
+            <option value="">Tất cả các năm</option>
+            ${years.map((year) => `<option value="${escapeHtml(year)}">${escapeHtml(year)}</option>`).join("")}
+          </select>
+        </label>
+        <button class="random-poem" id="random-poem" type="button"${poems.length ? "" : " disabled"}>Một bài ngẫu nhiên <span aria-hidden="true">→</span></button>
+      </div>
+      <p class="archive-summary" id="archive-summary" aria-live="polite">${poems.length} bài thơ</p>
+      <div class="archive-list" id="poem-list">
+        ${poems.map((poem, index) => `<article class="archive-item" data-poem-item data-title="${escapeHtml(poem.title)}" data-year="${escapeHtml(poem.date.slice(0, 4))}" data-url="${url(`/tho/${poem.slug}/`)}">
+          <span class="archive-item__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h2><a href="${url(`/tho/${poem.slug}/`)}">${escapeHtml(poem.title)}</a></h2>
+            <p>${escapeHtml(poem.excerpt)}</p>
+          </div>
+          <time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
+        </article>`).join("")}
+      </div>
+      <p class="archive-empty" id="archive-empty"${poems.length ? " hidden" : ""}>Không tìm thấy bài thơ phù hợp. Thử một từ khóa khác hoặc xem tất cả các năm nhé.</p>
     </section>`,
   });
   await writePage("/tho/", poemsPage);
@@ -200,11 +224,12 @@ async function build() {
       description: poem.excerpt,
       active: "poems",
       type: "article",
+      publishedTime: poem.date,
       content: `<article class="poem-reader shell">
         <header class="poem-reader__header">
           <a class="back-link" href="${url("/tho/")}"><span aria-hidden="true">←</span> Tất cả bài thơ</a>
           <h1>${escapeHtml(poem.title)}</h1>
-          <time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
+          <p class="poem-date"><span>Sáng tác</span><time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time></p>
         </header>
         <div class="poem-body">${renderPoemBody(poem.body)}</div>
       </article>`,
