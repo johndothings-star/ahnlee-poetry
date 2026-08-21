@@ -1,0 +1,11 @@
+# Kết quả build
+dist/
+
+# Gói và cache cục bộ
+node_modules/
+.pnpm-store/
+
+# Tệp hệ điều hành và log
+.DS_Store
+Thumbs.db
+*.log
