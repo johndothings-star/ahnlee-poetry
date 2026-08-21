@@ -1,7 +1,7 @@
 ---
 title: "THĂM VƯỜN"
 date: "2018-03-24"
-excerpt: "Ra vườn thăm trái bí non"
+excerpt: "Một vòng thăm vườn với bí non, hoa lan, hồng, cúc và mận đào cũng đủ làm tâm hồn người quê thêm thư thả."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "HÈ SANG"
 date: "2019-05-08"
-excerpt: "Tháng tư nhường chỗ tháng năm"
+excerpt: "Tháng tư khép lại, tháng năm bước tới; một khoảnh khắc chuyển mùa ngắn mà đầy ánh sáng."
 featured: false
 ---
 

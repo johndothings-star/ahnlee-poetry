@@ -1,7 +1,7 @@
 ---
 title: "GIỮA ĐỒI XANH"
 date: "2019-10-27"
-excerpt: "Vẳng nghe tiếng gió gọi ngàn"
+excerpt: "Giữa đồi xanh, tiếng gió, tiếng chim và tiếng dế hòa vào nhau, mở ra một khoảng lòng thanh thản."
 featured: false
 ---
 

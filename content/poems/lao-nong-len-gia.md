@@ -1,7 +1,7 @@
 ---
 title: "LÃO NÔNG LÊN GIÁ"
 date: "2020-04-02"
-excerpt: "Bình thường nhất sĩ nhì nông"
+excerpt: "Trong lúc đời sống đảo lộn, vườn rau, con cá và cái cuốc của người nông dân bỗng hiện ra như một cái gốc vững vàng."
 featured: false
 ---
 

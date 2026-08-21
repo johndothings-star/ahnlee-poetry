@@ -1,7 +1,7 @@
 ---
 title: "TÌM CÕI RIÊNG TA"
 date: "2008-01-01"
-excerpt: "Ta đi tìm cõi riêng ta"
+excerpt: "Đi tìm một cõi riêng qua tiếng mẹ, giấc mơ và lời dạy, cuối cùng người thơ nhận ra điều mình muốn trở về."
 featured: false
 ---
 

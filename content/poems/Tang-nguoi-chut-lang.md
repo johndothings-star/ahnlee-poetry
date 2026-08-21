@@ -1,7 +1,7 @@
 ---
 title: "TẶNG NGƯỜI... CHÚT LẶNG!"
 date: "2019-05-21"
-excerpt: "Lặng mắt nhìn thấy khoảng trời xanh thẳm"
+excerpt: "Tặng nhau một khoảng lặng để nghe, nhìn và soi lại mình giữa những tiếng động không dứt của cuộc đời."
 featured: true
 ---
 

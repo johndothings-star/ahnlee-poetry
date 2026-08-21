@@ -1,7 +1,7 @@
 ---
 title: "TUỘT DỐC!?"
 date: "2010-01-01"
-excerpt: "Khi lòng mây nặng trĩu u buồn"
+excerpt: "Giông gió, lũ lụt và đất lở được nhìn như tiếng cảnh báo lớn về một sự trượt dốc sâu hơn trong đời sống con người."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "HOA QUÊ!"
 date: "2019-02-12"
-excerpt: "Sáng ra vườn ngắm hoa quê"
+excerpt: "Hoa quê chẳng cần rực rỡ hay thơm ngát; chỉ cần nở trong khu vườn bình dị cũng đủ làm lòng người say."
 featured: false
 ---
 

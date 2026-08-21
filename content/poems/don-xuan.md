@@ -1,7 +1,7 @@
 ---
 title: "ĐÓN XUÂN"
 date: "2018-03-05"
-excerpt: "Xuân về hoa nở rộ"
+excerpt: "Bốn câu thơ nhỏ đón xuân bằng nắng, hoa, lộc biếc và một chút say cùng hương gió."
 featured: false
 ---
 

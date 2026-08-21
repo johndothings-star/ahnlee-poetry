@@ -1,7 +1,7 @@
 ---
 title: "SƯƠNG NÚI"
 date: "2021-03-28"
-excerpt: "Lên rừng ngắm phố, phố mù sương"
+excerpt: "Sương phủ rừng và phố, người đi vẫn rảo bước tìm đường về nơi cũ còn người xưa ngóng đợi."
 featured: false
 ---
 

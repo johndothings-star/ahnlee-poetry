@@ -1,7 +1,7 @@
 ---
 title: "NHÀ XƯA CÒN ĐÓ!"
 date: "2019-05-31"
-excerpt: "Từ khi thấy cõi riêng ta"
+excerpt: "Đường trở về nhà xưa có thể gập ghềnh, nhưng chính vì nhà vẫn còn đó nên người đi vẫn có một hướng để bước."
 featured: false
 ---
 

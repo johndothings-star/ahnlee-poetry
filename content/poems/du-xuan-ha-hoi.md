@@ -1,7 +1,7 @@
 ---
 title: "DU XUÂN HÀ HỘI"
 date: "2020-02-07"
-excerpt: "Du xuân giữa trưa Hà Nội"
+excerpt: "Một trưa xuân Hà Nội mờ sương, gió nhẹ mà đủ đánh thức một nỗi nhớ chơi vơi."
 featured: false
 ---
 

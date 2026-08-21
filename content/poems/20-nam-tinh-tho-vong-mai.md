@@ -1,7 +1,7 @@
 ---
 title: "20 NĂM - TÌNH THƠ VỌNG MÃI"
 date: "2018-07-18"
-excerpt: "Bạn và tôi... thuở học trò"
+excerpt: "Một lần hội ngộ kéo tuổi học trò trở lại, cùng những lá thư, rung động và nét ngơ ngác của tình thơ năm cũ."
 featured: false
 ---
 

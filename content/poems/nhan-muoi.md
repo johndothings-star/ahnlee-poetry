@@ -1,7 +1,7 @@
 ---
 title: "NHẮN MUỘI!"
 date: "2022-08-24"
-excerpt: "Có một thời nhí nhố"
+excerpt: "Một lời nhắn thân tình giữa huynh muội: dù còn nghịch ngợm, đừng quên lời thề và những người đang chờ ở quê."
 featured: false
 ---
 

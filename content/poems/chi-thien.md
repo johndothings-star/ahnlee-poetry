@@ -1,7 +1,7 @@
 ---
 title: "CHỈ THIÊN"
 date: "2019-06-24"
-excerpt: "Ớt này gọi “ớt chỉ thiên“!"
+excerpt: "Từ trái ớt nhỏ cứ hướng lên trời, bài thơ mở ra một liên tưởng về lời nguyện cũ và hướng đi của đời người."
 featured: false
 ---
 

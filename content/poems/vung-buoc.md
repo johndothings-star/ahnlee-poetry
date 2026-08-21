@@ -1,7 +1,7 @@
 ---
 title: "VỮNG BƯỚC"
 date: "2019-09-27"
-excerpt: "Thân người nặng nhẹ có làm sao"
+excerpt: "Thân thể nặng nhẹ không quan trọng bằng việc mỗi bước đi vẫn chắc và tâm vẫn giữ được sự thanh tịnh."
 featured: false
 ---
 

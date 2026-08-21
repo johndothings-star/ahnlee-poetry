@@ -1,7 +1,7 @@
 ---
 title: "NGẮM TRĂNG!"
 date: "2020-09-02"
-excerpt: "Hồng trần cuồn cuộn chảy"
+excerpt: "Ngắm một vầng trăng sáng, người thơ không chỉ nhìn trời mà còn nghe thấy những tiếng gọi vọng về từ rất xa."
 featured: false
 ---
 

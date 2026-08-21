@@ -1,7 +1,7 @@
 ---
 title: "NGỘ KHÔNG!"
 date: "2019-04-17"
-excerpt: "Ngộ Không, ai Ngộ được Không?"
+excerpt: "Một chữ Không tưởng đơn giản mà khó ngộ; bài thơ tự hỏi vì sao đã thấy đường mà lòng vẫn còn nhiều vướng mắc."
 featured: false
 ---
 

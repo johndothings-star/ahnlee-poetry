@@ -1,7 +1,7 @@
 ---
 title: "SẮT SON"
 date: "2024-02-01"
-excerpt: "Những bước chân không mỏi"
+excerpt: "Đường còn dài nhưng bước chân không mỏi; điều đáng giữ nhất là một tấm lòng trước sau không đổi."
 featured: false
 ---
 

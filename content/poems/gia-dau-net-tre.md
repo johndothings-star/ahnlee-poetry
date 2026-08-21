@@ -1,7 +1,7 @@
 ---
 title: "GIÀ ĐẦU NẾT TRẺ"
 date: "2018-09-07"
-excerpt: "Ngoan đồng, ngoan đồng, lão ngoan đồng"
+excerpt: "Tuổi đã nhiều mà lòng vẫn thích đùa, một nét ngoan đồng giữ cho những ngày thường bớt nặng."
 featured: false
 ---
 

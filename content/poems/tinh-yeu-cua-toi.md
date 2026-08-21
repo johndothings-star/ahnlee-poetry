@@ -1,7 +1,7 @@
 ---
 title: "TÌNH YÊU CỦA TÔI"
 date: "2020-02-14"
-excerpt: "Tôi yêu cảnh bình minh tươi sáng"
+excerpt: "Tình yêu không chỉ dành cho một người; nó trải rộng từ bình minh, cây cỏ, quá khứ đến những điều bình thường quanh ta."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CHÂN TRẦN MUÔN NẺO"
 date: "2020-03-26"
-excerpt: "Chân trần muôn nẻo phiêu diêu"
+excerpt: "Một hành trình chân trần qua núi, sông, bể dâu và duyên xưa, để cuối cùng tìm lại dấu chân của chính mình."
 featured: true
 ---
 

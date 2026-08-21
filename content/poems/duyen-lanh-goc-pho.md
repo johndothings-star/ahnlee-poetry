@@ -1,7 +1,7 @@
 ---
 title: "DUYÊN LÀNH GÓC PHỐ"
 date: "2019-09-14"
-excerpt: "Âm thanh ấy vang lên nơi góc phố"
+excerpt: "Một góc phố, một âm thanh và một bông sen nhỏ cũng có thể trở thành chiếc cầu nối của một cuộc gặp lành."
 featured: false
 ---
 

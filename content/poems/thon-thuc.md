@@ -1,7 +1,7 @@
 ---
 title: "THỔN THỨC"
 date: "2003-01-01"
-excerpt: "Tôi lặng bước bên đời em bỡ ngỡ"
+excerpt: "Một tình cảm lặng lẽ đi qua những rung động đầu đời, cõi mộng và thực tại, để cuối cùng vẫn còn nguyên tiếng thổn thức."
 featured: false
 ---
 

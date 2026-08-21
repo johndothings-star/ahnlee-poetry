@@ -1,7 +1,7 @@
 ---
 title: "SẦU... RIÊNG!"
 date: "2019-06-11"
-excerpt: "Sầu riêng mang nỗi sầu riêng"
+excerpt: "Mượn trái sầu riêng vừa gai góc vừa nặng hương, bài thơ vui mà thấm về chuyện người yêu, kẻ ghét và cái duyên riêng."
 featured: false
 ---
 

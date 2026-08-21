@@ -1,7 +1,7 @@
 ---
 title: "NHỚ QUÊ HƯƠNG"
 date: "2021-03-29"
-excerpt: "Trên cao ngó xuống khói mù sương"
+excerpt: "Từ trên cao nhìn xuống, sương khói và đường đời cùng chập chờn, khiến nỗi nhớ quê hương càng hiện rõ."
 featured: false
 ---
 

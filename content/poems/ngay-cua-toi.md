@@ -1,7 +1,7 @@
 ---
 title: "NGÀY CỦA TÔI"
 date: "2024-03-07"
-excerpt: "Những nỗi buồn không còn tồn tại"
+excerpt: "Một ngày riêng để nhìn lại những năm tháng đã đi qua, những cuộc tìm kiếm còn dang dở và bước chân vẫn chưa muốn dừng."
 featured: false
 ---
 

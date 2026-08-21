@@ -1,7 +1,7 @@
 ---
 title: "GÓC THƯỞNG TRÀ"
 date: "2020-05-23"
-excerpt: "Một góc thưởng trà thật thanh tao"
+excerpt: "Một góc trà nhỏ đủ để tri âm gặp gỡ, chuyện trò và ngắm đêm dài bằng một tâm thế thong dong."
 featured: false
 ---
 

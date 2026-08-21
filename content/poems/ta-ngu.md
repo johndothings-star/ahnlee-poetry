@@ -1,7 +1,7 @@
 ---
 title: "TA NGỦ!"
 date: "2024-08-01"
-excerpt: "Đặt tấm thân lên nệm ấm, nền nhà"
+excerpt: "Một lời tự nhắc giản dị: biết đủ thì ngay cả khi đặt lưng xuống nơi nào, giấc ngủ cũng có thể nhẹ nhàng."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "MỎ THAN QUẶNG VÀNG"
 date: "2019-06-01"
-excerpt: "Quặng vàng lẫn giữa mỏ than"
+excerpt: "Than và vàng cùng đi qua lửa, nhưng mỗi thứ nhận một kết quả khác; bài thơ mượn luyện kim để nói về thử thách và đổi thay."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "VƯỜN QUÊ"
 date: "2022-06-05"
-excerpt: "Vườn nhà dù nắng vẫn đầy hoa"
+excerpt: "Dẫu nắng, khu vườn vẫn đầy hoa; giữa sắc lá bình dị, người thơ tìm thấy một chỗ để trở về là chính mình."
 featured: false
 ---
 

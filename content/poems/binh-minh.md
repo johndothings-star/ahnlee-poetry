@@ -1,7 +1,7 @@
 ---
 title: "BÌNH MINH"
 date: "2010-01-01"
-excerpt: "Bờ đê đón bình minh"
+excerpt: "Một sớm bờ đê phủ sương, nơi ký ức tình thơ non trẻ theo nắng mới mà trở về."
 featured: false
 ---
 

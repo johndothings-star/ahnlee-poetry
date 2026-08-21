@@ -1,7 +1,7 @@
 ---
 title: "LÃO NÍT"
 date: "2019-01-01"
-excerpt: "Người ta lớn tuổi, trưởng thành"
+excerpt: "Lớn tuổi không đồng nghĩa phải thôi ngô nghê; đôi khi chính chút trẻ nít làm cuộc sống bớt nghiêm trọng."
 featured: false
 ---
 

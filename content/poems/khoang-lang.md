@@ -1,7 +1,7 @@
 ---
 title: "KHOẢNG LẶNG!"
 date: "1998-01-01"
-excerpt: "Khoảng lặng của tôi"
+excerpt: "Một miền im lặng chứa đầy thương nhớ, nơi tình đầu chưa nói thành lời vẫn âm thầm sống trong câu thơ."
 featured: false
 ---
 

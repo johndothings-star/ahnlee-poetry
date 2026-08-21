@@ -1,7 +1,7 @@
 ---
 title: "HỎI XA GẦN"
 date: "2016-10-15"
-excerpt: "Mưa tuôn ào ạt, nước thêm dâng"
+excerpt: "Trước mưa lớn và sức mạnh của thiên nhiên, một câu hỏi bật lên về giới hạn của con người trước trời đất."
 featured: false
 ---
 

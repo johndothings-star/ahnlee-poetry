@@ -1,7 +1,7 @@
 ---
 title: "TÂM AN"
 date: "2017-11-16"
-excerpt: "Che đôi mắt thấy muôn trùng cảnh đẹp"
+excerpt: "Giữa bão cuồng, tâm an không đến từ việc trốn khỏi thế giới mà từ cách ta nhìn, nghe và nói với đời."
 featured: false
 ---
 

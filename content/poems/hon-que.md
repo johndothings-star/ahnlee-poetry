@@ -1,7 +1,7 @@
 ---
 title: "HỒN QUÊ"
 date: "2011-03-01"
-excerpt: "Ánh chiều rơi... xa mờ sương tối"
+excerpt: "Con đường, bờ đê, sáo diều và trò trẻ nhỏ trở về trong ký ức, như những mảnh hồn quê đang dần phai giữa thời gian."
 featured: false
 ---
 

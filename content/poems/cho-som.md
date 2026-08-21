@@ -1,7 +1,7 @@
 ---
 title: "CHỢ SỚM"
 date: "2010-01-01"
-excerpt: "Màn đêm buông rèm đi ngủ sớm"
+excerpt: "Trong màn sương sớm còn dày, bóng mẹ khuất dần về phía chợ, để lại một khoảng quê vừa gần vừa xa."
 featured: false
 ---
 

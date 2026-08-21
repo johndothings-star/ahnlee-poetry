@@ -1,7 +1,7 @@
 ---
 title: "KHÚC CHÚC XUÂN"
 date: "2020-03-13"
-excerpt: "“Nụ tầm xuân nở ra xanh biếc“"
+excerpt: "Một lời chúc xuân ngắn gọn gửi theo nụ tầm xuân, mong người đi xa tìm được bến yêu thương lâu bền."
 featured: false
 ---
 

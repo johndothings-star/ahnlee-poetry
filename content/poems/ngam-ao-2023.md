@@ -1,7 +1,7 @@
 ---
 title: "NGẮM AO"
 date: "2023-09-02"
-excerpt: "Ngoài kia vội vã bụi trần"
+excerpt: "Ngoài kia bụi trần vội vã, còn bên ao nhỏ chỉ có mây, cỏ và một giấc nghỉ đủ để quên đi nợ nần."
 featured: false
 ---
 

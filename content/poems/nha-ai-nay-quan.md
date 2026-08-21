@@ -1,7 +1,7 @@
 ---
 title: "NHÀ AI NẤY QUẢN"
 date: "2021-01-01"
-excerpt: "Đi chung một đoạn đường"
+excerpt: "Có lúc những người từng đi chung phải rẽ lối, mỗi người trở về chăm phần việc và thế giới riêng của mình."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "MƠ HIÊN NHÀ HOA NỞ!?"
 date: "2020-04-01"
-excerpt: "Tôi đứng yên mà Trái Đất cứ quay"
+excerpt: "Giữa vòng quay ngày đêm không ngừng, đôi khi ước mong chỉ là một sớm mai bình dị: hiên nhà có hoa nở."
 featured: false
 ---
 

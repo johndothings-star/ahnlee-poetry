@@ -1,7 +1,7 @@
 ---
 title: "TÌM NHAU ĐỂ NHỚ!"
 date: "2023-01-08"
-excerpt: "Ngẫm đời một thoáng hương say"
+excerpt: "Giữa thế gian vô thường, hai người như vẫn tìm nhau qua nhiều nẻo chỉ để nhớ lại một bến thương từng hẹn."
 featured: false
 ---
 

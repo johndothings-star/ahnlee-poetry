@@ -1,7 +1,7 @@
 ---
 title: "TẠI SAO!?"
 date: "2010-01-01"
-excerpt: "Trong đôi mắt thơ dại"
+excerpt: "Từ góc nhìn một đứa trẻ, những câu hỏi 'Tại sao?' lặp lại trước cảnh chia lìa và bạo lực trở nên day dứt hơn mọi lời giải thích."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "TRÀ ĐỘC ẨM"
 date: "2021-05-28"
-excerpt: "Một cây, một củ, một bàn trà"
+excerpt: "Một mình bên cây, củ và bàn trà nhỏ, người thơ tìm thấy sự đủ đầy trong một góc quê rất ít người."
 featured: false
 ---
 

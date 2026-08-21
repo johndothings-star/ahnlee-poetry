@@ -1,7 +1,7 @@
 ---
 title: "KHÚC CA NGOAN ĐỒNG"
 date: "2017-09-10"
-excerpt: "Niềm vui khi tuổi đã già"
+excerpt: "Tuổi bảy mươi cũng có thể mang tiếng cười của đôi mươi, nếu trong lòng vẫn còn một cánh hoa trẻ thơ."
 featured: false
 ---
 

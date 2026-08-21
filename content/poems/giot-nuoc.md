@@ -1,7 +1,7 @@
 ---
 title: "GIỌT NƯỚC"
 date: "2011-08-01"
-excerpt: "Giọt nước tinh khôi rơi vào lòng đất"
+excerpt: "Từ lòng đất ra suối, xuống biển rồi hóa hơi trở về, giọt nước mang theo một vòng đời đầy yêu thương và nhớ nguồn."
 featured: false
 ---
 

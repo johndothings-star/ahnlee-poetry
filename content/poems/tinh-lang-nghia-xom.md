@@ -1,7 +1,7 @@
 ---
 title: "TÌNH LÀNG NGHĨA XÓM"
 date: "2022-05-30"
-excerpt: "Quê tôi thắm nghĩa xóm làng"
+excerpt: "Rau quả mùa về chia nhau một phần, bài thơ giữ lại nét quê nơi láng giềng sống bằng tình nghĩa hơn sang hèn."
 featured: false
 ---
 

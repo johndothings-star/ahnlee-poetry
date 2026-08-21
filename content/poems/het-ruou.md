@@ -1,7 +1,7 @@
 ---
 title: "HẾT RƯỢU"
 date: "2019-03-07"
-excerpt: "Ngày xưa cũng lắm rượu chè"
+excerpt: "Một chút dí dỏm về những cuộc vui sau khi rượu thuốc đã lui xa, còn lại bạn bè, nước ngọt và tiếng cười."
 featured: false
 ---
 

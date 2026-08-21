@@ -1,7 +1,7 @@
 ---
 title: "BÃO LÒNG!?"
 date: "2018-12-03"
-excerpt: "Trời quang mây tạnh vẳng tiếng giông"
+excerpt: "Có những ngày trời đã yên mà trong lòng vẫn còn giông; chỉ khi lặng nhìn, ta mới thấy mùa xuân đang đến."
 featured: false
 ---
 

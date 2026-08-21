@@ -1,7 +1,7 @@
 ---
 title: "TÌNH MUÔN VẠN NẺO!"
 date: "2018-06-06"
-excerpt: "Nhân gian muôn vạn nẻo tình"
+excerpt: "Từ những nẻo tình của nhân gian, bài thơ hướng đến một trạng thái nhẹ hơn khi tình riêng dần chuyển thành lòng từ bi."
 featured: false
 ---
 

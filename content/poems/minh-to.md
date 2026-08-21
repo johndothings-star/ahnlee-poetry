@@ -1,7 +1,7 @@
 ---
 title: "MINH TỎ"
 date: "2017-09-28"
-excerpt: "Cơ duyên vạn cổ đợi"
+excerpt: "Một bài thơ ngắn như tín hiệu từ xa: cơ duyên, hồi ức và vầng dương cùng tụ lại trong phút minh tỏ."
 featured: false
 ---
 

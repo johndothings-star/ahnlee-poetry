@@ -1,7 +1,7 @@
 ---
 title: "ĐỨNG THẲNG"
 date: "2018-11-30"
-excerpt: "Chỉ cần một chút dựa mình"
+excerpt: "Chỉ cần một điểm tựa nhỏ, thân cây tưởng đã hao mòn vẫn có thể đứng thẳng giữa gió sương."
 featured: false
 ---
 

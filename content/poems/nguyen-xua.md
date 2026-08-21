@@ -1,7 +1,7 @@
 ---
 title: "NGUYỆN XƯA"
 date: "2017-10-02"
-excerpt: "Ta ngồi đó mắt dưỡng thần kết ấn"
+excerpt: "Một phút kết ấn tĩnh lặng đưa người thơ về lời thề ngàn xưa và lý do mình đã bước vào cõi mê này."
 featured: false
 ---
 

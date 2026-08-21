@@ -1,7 +1,7 @@
 ---
 title: "KHÔ KHẮC MỘC"
 date: "2019-07-29"
-excerpt: "Gốc cổ thụ già"
+excerpt: "Từ một gốc gỗ khắc tượng trong quán nhỏ, người thơ bắt gặp một mối duyên cũ giữa những hình hài tĩnh lặng."
 featured: false
 ---
 

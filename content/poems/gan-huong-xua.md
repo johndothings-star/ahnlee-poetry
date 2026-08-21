@@ -1,7 +1,7 @@
 ---
 title: "GẦN HƯƠNG XƯA"
 date: "2022-09-30"
-excerpt: "Nhân sinh một thoáng mơ màng"
+excerpt: "Giữa cuộc sống ngược xuôi, chỉ cần chậm lại một chút, ký ức về quê xưa đã có thể trở nên gần hơn."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "PHÁ HOẠI... !?"
 date: "2018-10-22"
-excerpt: "Chuyện ở trong nhà nói ra ngoài ngỏ"
+excerpt: "Một lời cảnh tỉnh về lời nói chưa rõ đầu đuôi: chuyện nhỏ qua miệng người có thể thành chuyện lớn và gây tổn hại."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "MƠ - TỈNH - TỈNH MƠ!"
 date: "2021-09-14"
-excerpt: "Tĩnh tâm một chút để lắng nghe"
+excerpt: "Giữa mơ và tỉnh, người thơ lắng nghe tiếng gió, tiếng Đạo và một lời gọi từ nơi rất sâu trong tâm."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "NHẮN NGƯỜI “CẦM ĐẦU THIÊN HẠ“"
 date: "2020-04-27"
-excerpt: "Hỡi những ai đang “cầm đầu thiên hạ“"
+excerpt: "Một câu thơ châm biếm ngắn về quyền lực, tiền bạc và cái giá của việc chỉ chăm chăm làm vừa lòng người khác."
 featured: false
 ---
 

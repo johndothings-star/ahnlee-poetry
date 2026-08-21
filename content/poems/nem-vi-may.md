@@ -1,7 +1,7 @@
 ---
 title: "NẾM VỊ MÂY"
 date: "2025-07-20"
-excerpt: "Lên đây nếm thử vị mây"
+excerpt: "Lên cao giữa trời xanh và rừng thông, người thơ muốn nếm thử vị mây để xem những ngày khô khan đã hóa nhẹ chưa."
 featured: false
 ---
 

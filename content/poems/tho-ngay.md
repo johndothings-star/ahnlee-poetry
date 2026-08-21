@@ -1,7 +1,7 @@
 ---
 title: "THƠ NGÂY"
 date: "2019-07-06"
-excerpt: "Hôm nay tôi đi nhậu"
+excerpt: "Một cuộc nhậu không rượu bia nhưng vẫn đủ vui, bởi đôi khi bạn bè tụ lại là tuổi thơ tự nhiên quay về."
 featured: false
 ---
 

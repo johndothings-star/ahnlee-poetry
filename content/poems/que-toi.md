@@ -1,7 +1,7 @@
 ---
 title: "QUÊ TÔI"
 date: "2024-07-23"
-excerpt: "Quê tôi một mảnh yên bình"
+excerpt: "Một mảnh quê yên bình với núi, sông và ký ức tuổi thơ vẫn theo người đi xa như một chốn để tìm về."
 featured: false
 ---
 

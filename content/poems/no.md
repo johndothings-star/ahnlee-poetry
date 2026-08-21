@@ -1,7 +1,7 @@
 ---
 title: "NỢ!"
 date: "2011-03-01"
-excerpt: "Tôi đi vay mượn cuộc đời"
+excerpt: "Đời người như một cuộc vay mượn: thân thể, cảm xúc, giấc mơ và cả những nợ duyên cuối cùng đều cần một ngày trả lại."
 featured: false
 ---
 

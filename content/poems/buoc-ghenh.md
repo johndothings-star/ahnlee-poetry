@@ -1,7 +1,7 @@
 ---
 title: "BƯỚC GHỀNH"
 date: "2020-01-02"
-excerpt: "Xa khơi mờ bóng quê hương"
+excerpt: "Đường dài gập ghềnh, người đi vẫn lần bước qua sương khói để hướng về một bến quê không quên lời hẹn."
 featured: false
 ---
 

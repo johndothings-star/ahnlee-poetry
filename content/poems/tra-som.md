@@ -1,7 +1,7 @@
 ---
 title: "TRÀ SỚM"
 date: "2022-11-05"
-excerpt: "Tinh mơ thưởng thức trà thơm"
+excerpt: "Tinh mơ, trà thơm và hoa nở trong vườn quê tạo nên một khoảng bình yên đủ làm lòng nhẹ tênh."
 featured: false
 ---
 

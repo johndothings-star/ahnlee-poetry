@@ -1,7 +1,7 @@
 ---
 title: "TRUNG THU"
 date: "2017-10-07"
-excerpt: "Tháng chín mùa về giữa trời thu"
+excerpt: "Một vầng trăng từ khuyết thành tròn dẫn hồn thi nhân dạo bước giữa tiết thu và non cao."
 featured: false
 ---
 

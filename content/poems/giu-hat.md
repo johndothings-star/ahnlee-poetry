@@ -1,7 +1,7 @@
 ---
 title: "GIỮ HẠT!"
 date: "2021-09-05"
-excerpt: "Ai ơi ăn một trái cây"
+excerpt: "Ăn một trái cây, nhớ giữ lại hạt; một lời nhắc nhỏ về tiếp nối, gieo mầm và để lại điều xanh cho ngày sau."
 featured: false
 ---
 

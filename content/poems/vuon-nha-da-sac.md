@@ -1,7 +1,7 @@
 ---
 title: "VƯỜN NHÀ ĐA SẮC"
 date: "2020-02-26"
-excerpt: "Vườn nhà hoa nở đa màu sắc"
+excerpt: "Một khu vườn nhỏ đầy màu hoa, ong bướm và hương thơm đủ gom cả niềm vui vào một khoảng thôn quê."
 featured: false
 ---
 

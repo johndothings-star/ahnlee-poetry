@@ -1,7 +1,7 @@
 ---
 title: "HOA NIÊN"
 date: "2019-07-07"
-excerpt: "Hoa niên cái tuổi chẳng phải già"
+excerpt: "Một cuộc gặp bạn bè khiến tuổi tác lùi lại phía sau, nhường chỗ cho tiếng cười và những câu chuyện thời trẻ."
 featured: false
 ---
 

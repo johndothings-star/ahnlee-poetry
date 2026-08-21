@@ -1,7 +1,7 @@
 ---
 title: "NGÕ NHỎ!"
 date: "2022-11-12"
-excerpt: "Ngõ nhỏ nhà tôi chẳng xôn xao"
+excerpt: "Một ngõ nhỏ yên ả đón bình minh, đủ mây trời hoa cỏ để hồn thơ tự nhiên lao xao."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "HỒNG ÂN ĐẤT TIÊN RỒNG"
 date: "2018-05-11"
-excerpt: "Song lân ẩn núi hộ non sông"
+excerpt: "Một khúc thơ mang âm hưởng trống hội, gửi lời chúc và niềm tự hào đến đất quê cùng đoàn nghệ thuật Hồng Ân."
 featured: false
 ---
 

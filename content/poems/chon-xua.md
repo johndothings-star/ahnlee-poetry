@@ -1,7 +1,7 @@
 ---
 title: "CHỐN XƯA"
 date: "2009-01-01"
-excerpt: "Hồng hoang tự thuở ngàn xưa"
+excerpt: "Một lời nhớ về chốn xưa và hành trình hoàn nguyên, qua bao kiếp luân hồi giữa cõi trần nhiều mê lạc."
 featured: false
 ---
 

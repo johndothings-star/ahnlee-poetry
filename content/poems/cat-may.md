@@ -1,7 +1,7 @@
 ---
 title: "CẮT MÂY"
 date: "2017-06-19"
-excerpt: "Lên trời cắt một đám mây"
+excerpt: "Một chút nghịch ngợm của hồn thơ: cắt mây làm tàu bay, rồi bay đi tìm xem giữa trời cao còn ai lạc bước."
 featured: false
 ---
 

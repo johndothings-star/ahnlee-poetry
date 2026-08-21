@@ -1,7 +1,7 @@
 ---
 title: "NƠI ĐÂY QUÁN TRỌ!"
 date: "2022-08-24"
-excerpt: "Vẳng xa tiếng nước nỉ non"
+excerpt: "Cõi đời hiện lên như một quán trọ tạm, nơi người lữ khách dừng chân rồi lại nhớ đường về chốn cũ."
 featured: false
 ---
 

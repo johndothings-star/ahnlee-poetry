@@ -1,7 +1,7 @@
 ---
 title: "MẶT TRỜI LÊN"
 date: "2020-07-24"
-excerpt: "Màn đêm, trăng khuyết ngắm mây trời"
+excerpt: "Sau màn đêm và trăng khuyết, một vầng dương lên đủ làm muôn cảnh động sáng bừng trong khoảnh khắc tĩnh tâm."
 featured: false
 ---
 

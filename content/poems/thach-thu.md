@@ -1,7 +1,7 @@
 ---
 title: "THẠCH THÚ"
 date: "2019-07-14"
-excerpt: "Đá kia tạo tác thành voi"
+excerpt: "Những tượng đá đứng qua mưa nắng như đang lặng lẽ đợi một ngày gặp gỡ và lên đường."
 featured: false
 ---
 

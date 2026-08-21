@@ -1,7 +1,7 @@
 ---
 title: "BỮA TIỆC CỦA HẠNH PHÚC"
 date: "2018-05-14"
-excerpt: "Bánh xèo, bánh đúc, mắm tôm"
+excerpt: "Hạnh phúc đôi khi chỉ là một bữa quê giản dị, đông người, nhiều tiếng cười và chan chứa lòng biết ơn."
 featured: false
 ---
 

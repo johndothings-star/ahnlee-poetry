@@ -1,7 +1,7 @@
 ---
 title: "EM BÉ MIỀN CAO"
 date: "2023-08-24"
-excerpt: "Giữa núi rừng yên ả"
+excerpt: "Bốn câu thơ nhìn vào tuổi thơ nơi miền núi, nơi sự hồn nhiên đứng cạnh những nhọc nhằn đến quá sớm."
 featured: false
 ---
 

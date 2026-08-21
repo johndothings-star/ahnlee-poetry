@@ -1,7 +1,7 @@
 ---
 title: "PHÚC DUYÊN: SEN CHÂN THIỆN NHẪN"
 date: "2020-05-16"
-excerpt: "Tâm thiện lành giữa dòng đời ô trọc"
+excerpt: "Hình ảnh hoa sen từ bùn đất trở thành lời chúc về sự thanh sạch, bình an và một mối duyên thiện lành."
 featured: false
 ---
 

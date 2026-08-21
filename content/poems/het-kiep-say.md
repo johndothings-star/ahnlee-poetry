@@ -1,7 +1,7 @@
 ---
 title: "HẾT KIẾP SAY"
 date: "2018-03-07"
-excerpt: "Mùa xuân năm ấy cũng hôm này"
+excerpt: "Một ngày chợt tỉnh khỏi giấc mê dài, nhớ lại lời nguyện ban sơ và tiếp tục bước về phía cố hương."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CHÉN ĐẤT - BÌNH TRÀ"
 date: "2017-07-04"
-excerpt: "Tinh mơ kể chuyện chén trà"
+excerpt: "Giữa bao món quý đẹp mắt, một chén đất đơn sơ nhắc người thưởng trà nhớ lại điều làm nên vị thật."
 featured: false
 ---
 

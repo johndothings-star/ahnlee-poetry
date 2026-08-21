@@ -1,7 +1,7 @@
 ---
 title: "BẢN TÍNH NGOAN ĐỒNG"
 date: "2019-08-27"
-excerpt: "Đầu đen đã điểm hoa sương"
+excerpt: "Tuổi có thể thêm, tóc có thể bạc, nhưng một chút trẻ thơ trong lòng vẫn khiến cuộc đời nhẹ tênh."
 featured: false
 ---
 

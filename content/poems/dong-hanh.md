@@ -1,7 +1,7 @@
 ---
 title: "ĐỒNG HÀNH"
 date: "2013-02-28"
-excerpt: "Trên con đường đang đi,"
+excerpt: "Từ một cuộc gặp trên đường, hai người chọn đi cùng nhau, gộp hai thệ nguyện thành một nhịp bước về đích."
 featured: false
 ---
 

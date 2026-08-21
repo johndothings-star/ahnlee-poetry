@@ -1,7 +1,7 @@
 ---
 title: "NHÀ TRÊN NÚI"
 date: "2019-10-14"
-excerpt: "Con đường nhỏ đi tới ngôi nhà nhỏ"
+excerpt: "Một con đường nhỏ dẫn tới ngôi nhà khuất trong cây xanh, nơi tiếng cười xa xa gợi cảm giác về những điều đang hồi sinh."
 featured: false
 ---
 

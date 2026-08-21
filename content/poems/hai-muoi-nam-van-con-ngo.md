@@ -1,7 +1,7 @@
 ---
 title: "HAI MƯƠI NĂM VẪN CÒN NGƠ!"
 date: "2018-07-16"
-excerpt: "Hai mươi năm một chặng đường"
+excerpt: "Hai mươi năm sau ngày rời trường, chỉ một cuộc gặp cũng đủ khiến những trái tim từng ngơ ngác lại vui như thuở cũ."
 featured: false
 ---
 

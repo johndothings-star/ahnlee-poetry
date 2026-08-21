@@ -1,7 +1,7 @@
 ---
 title: "ĐỀ THI CỦA THẦY!"
 date: "2018-12-03"
-excerpt: "Em hôm nay đi học"
+excerpt: "Cuộc đời như một đề thi ghép hình: nhiều mảnh rời rạc, khó hiểu, nhưng càng lặng nhìn càng thấy dần mối liên hệ."
 featured: false
 ---
 

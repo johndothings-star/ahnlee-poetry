@@ -1,7 +1,7 @@
 ---
 title: "SA KÊ"
 date: "2019-07-26"
-excerpt: "Ẩn mình nơi chốn thâm u"
+excerpt: "Một cây sa kê nơi chốn thâm u trở thành hình ảnh của sự chờ đợi, bén duyên và một cuộc gặp đến đúng lúc."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "BIỂN GỌI"
 date: "2016-05-21"
-excerpt: "Người ơi Biển thấy cô đơn"
+excerpt: "Biển vẫn xanh, vẫn dạt dào sóng, chỉ chờ con người trở lại ôm lấy một khoảng trời từng thân thuộc."
 featured: false
 ---
 

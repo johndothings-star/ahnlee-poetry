@@ -1,7 +1,7 @@
 ---
 title: "THẮP SÁNG ƯỚC MƠ XANH"
 date: "2011-01-01"
-excerpt: "Tuổi học trò ôm ấp những ước mơ"
+excerpt: "Một khúc thơ dành cho nghề dạy học, nơi mỗi gian khó đều có ý nghĩa khi nhìn thấy những mầm xanh lớn lên."
 featured: false
 ---
 

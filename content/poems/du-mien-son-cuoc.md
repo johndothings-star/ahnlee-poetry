@@ -1,7 +1,7 @@
 ---
 title: "DU MIỀN SƠN CƯỚC"
 date: "2022-12-11"
-excerpt: "Sương mờ ôm đỉnh núi"
+excerpt: "Sương ôm núi, gió vờn lá, nước reo đèo cao; giữa thiên nhiên ấy, chân trần nhẹ bước và lòng cũng nhẹ theo."
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "DỪNG CHÂN ĐỂ NHỚ!"
 date: "2022-12-15"
-excerpt: "Người người tìm chốn lao xao"
+excerpt: "Giữa bao nơi xôn xao, người thơ chọn dừng lại ở non cao để nhớ người, nhớ duyên và nhớ một chốn xa xưa."
 featured: false
 ---
 

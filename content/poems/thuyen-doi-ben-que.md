@@ -1,7 +1,7 @@
 ---
 title: "THUYỀN ĐỢI BẾN QUÊ"
 date: "2019-12-06"
-excerpt: "Thuyền nan đậu bến sông quê"
+excerpt: "Chiếc thuyền nan bên bến quê lặng lẽ chờ người đi xa qua bao sương gió tìm được đường trở lại."
 featured: false
 ---
 

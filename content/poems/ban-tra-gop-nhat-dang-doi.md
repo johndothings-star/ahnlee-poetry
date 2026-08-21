@@ -1,7 +1,7 @@
 ---
 title: "BÀN TRÀ GÓP NHẶT DÂNG ĐỜI"
 date: "2020-03-03"
-excerpt: "Bàn trà góp nhặt muôn nơi"
+excerpt: "Từ chiếc bình, cái ly đến hương trà và món quê, những mảnh đời góp nhặt bỗng thành một bàn trà đầy nghĩa tình."
 featured: false
 ---
 
