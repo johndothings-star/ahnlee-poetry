@@ -84,9 +84,10 @@ function poemCard(poem) {
   </article>`;
 }
 
-function layout({ title, description, active = "", type = "website", publishedTime = "", scripts = [], content }) {
+function layout({ title, description, active = "", type = "website", publishedTime = "", canonicalPath = "", scripts = [], content }) {
   const pageTitle = title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`;
-  const socialImage = type === "article" ? "" : `${siteOrigin}${url("/assets/og-preview.png")}`;
+  const socialImage = `${siteOrigin}${url("/assets/og-preview.png")}`;
+  const canonicalUrl = canonicalPath ? `${siteOrigin}${url(canonicalPath)}` : "";
   return `<!doctype html>
 <html lang="vi">
 <head>
@@ -99,6 +100,7 @@ function layout({ title, description, active = "", type = "website", publishedTi
   <meta property="og:type" content="${type}">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(description)}">
+  ${canonicalUrl ? `<meta property="og:url" content="${escapeHtml(canonicalUrl)}">` : ""}
   ${socialImage ? `<meta property="og:image" content="${socialImage}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -110,6 +112,7 @@ function layout({ title, description, active = "", type = "website", publishedTi
   ${socialImage ? `<meta name="twitter:image" content="${socialImage}">
   <meta name="twitter:image:alt" content="Nguyên Anh — Thơ, và những khoảng lặng.">` : ""}
   <title>${escapeHtml(pageTitle)}</title>
+  ${canonicalUrl ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">` : ""}
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="icon" type="image/png" sizes="64x64" href="${url("/assets/favicon.png")}">
   <link rel="stylesheet" href="${url("/assets/styles.css")}">
@@ -159,6 +162,7 @@ async function build() {
   await cp(path.join(root, "src", "styles.css"), path.join(output, "assets", "styles.css"));
   await cp(path.join(root, "src", "theme.js"), path.join(output, "assets", "theme.js"));
   await cp(path.join(root, "src", "archive.js"), path.join(output, "assets", "archive.js"));
+  await cp(path.join(root, "src", "poem.js"), path.join(output, "assets", "poem.js"));
   await cp(path.join(root, "src", "assets", "nguyen-anh-seal.png"), path.join(output, "assets", "nguyen-anh-seal.png"));
   await cp(path.join(root, "src", "assets", "favicon.png"), path.join(output, "assets", "favicon.png"));
   await cp(path.join(root, "src", "assets", "og-preview.png"), path.join(output, "assets", "og-preview.png"));
@@ -233,13 +237,21 @@ async function build() {
   });
   await writePage("/tho/", poemsPage);
 
-  for (const poem of poems) {
+  for (const [index, poem] of poems.entries()) {
+    const previousPoem = poems[index - 1];
+    const nextPoem = poems[index + 1];
+    const poemNavigation = previousPoem || nextPoem ? `<nav class="poem-navigation" aria-label="Điều hướng giữa các bài thơ">
+          ${previousPoem ? `<a class="poem-navigation__previous" rel="prev" href="${url(`/tho/${previousPoem.slug}/`)}" aria-label="Nẻo trước: ${escapeHtml(previousPoem.title)}"><span aria-hidden="true">←</span> Nẻo trước</a>` : ""}
+          ${nextPoem ? `<a class="poem-navigation__next" rel="next" href="${url(`/tho/${nextPoem.slug}/`)}" aria-label="Nẻo sau: ${escapeHtml(nextPoem.title)}">Nẻo sau <span aria-hidden="true">→</span></a>` : ""}
+        </nav>` : "";
     const poemPage = layout({
       title: poem.title,
       description: poem.excerpt,
       active: "poems",
       type: "article",
       publishedTime: poem.date,
+      canonicalPath: `/tho/${poem.slug}/`,
+      scripts: ["/assets/poem.js"],
       content: `<article class="poem-reader shell">
         <header class="poem-reader__header">
           <a class="back-link" href="${url("/tho/")}"><span aria-hidden="true">←</span> Tất cả bài thơ</a>
@@ -249,6 +261,10 @@ async function build() {
         <div class="poem-body">${renderPoemBody(poem.body)}
           <div class="seal-row"><img class="author-seal poem-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt=""></div>
         </div>
+        <footer class="poem-ending">
+          <button class="poem-share" type="button" data-share-poem data-share-title="${escapeHtml(`${poem.title} — Nguyên Anh`)}" aria-live="polite">Gửi bài thơ ni cho ai đó <span aria-hidden="true">→</span></button>
+          ${poemNavigation}
+        </footer>
       </article>`,
     });
     await writePage(`/tho/${poem.slug}/`, poemPage);

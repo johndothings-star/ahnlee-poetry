@@ -571,6 +571,56 @@ nav a[aria-current="page"]::after {
 
 .poem-seal { width: 56px; }
 
+.poem-ending {
+  max-width: 620px;
+  margin-top: 24px;
+}
+
+.poem-share {
+  min-height: 36px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+
+.poem-share:hover { color: var(--ink); }
+
+.poem-navigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.poem-navigation a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .065em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.poem-navigation a:hover { color: var(--accent); }
+
+.poem-navigation__next {
+  grid-column: 2;
+  justify-self: end;
+  text-align: right;
+}
+
 
 /* ABOUT
    Compact, book-jacket feel. */
@@ -873,6 +923,21 @@ nav a[aria-current="page"]::after {
   }
 
   .poem-seal { width: 49px; }
+
+  .poem-ending { margin-top: 20px; }
+
+  .poem-share { min-height: 40px; }
+
+  .poem-navigation {
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+
+  .poem-navigation a {
+    min-height: 40px;
+    font-size: .68rem;
+  }
 
   .about {
     width: min(100% - 30px, 620px);
