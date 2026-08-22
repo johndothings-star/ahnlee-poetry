@@ -2,7 +2,7 @@
 title: "NGƯỜI KHÔNG GẦN NGƯỜI!?"
 date: "2020-04-02"
 excerpt: "Có những khoảng cách chẳng đo bằng bước chân; bài thơ nhìn lại cái gần, cái xa giữa người với người trong đời sống."
-featured: false
+featured: true
 ---
 
 Bình thời người sát bên người
