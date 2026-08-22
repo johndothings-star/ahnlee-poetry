@@ -233,7 +233,7 @@ async function build() {
           <p class="poem-date"><span>Sáng tác</span><time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time></p>
         </header>
         <div class="poem-body">${renderPoemBody(poem.body)}
-          <img class="author-seal poem-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt="">
+          <div class="seal-row"><img class="author-seal poem-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt=""></div>
         </div>
       </article>`,
     });
@@ -252,7 +252,7 @@ async function build() {
       <div class="about__copy">
         <p>Đây là góc nhỏ để mình cất giữ những bài thơ — những điều đã nhìn thấy, đã đi qua, hoặc chỉ vừa kịp chạm vào trong một khoảnh khắc.</p>
         <p>Thơ ở đây được viết chậm, đọc chậm, và dành cho bất kỳ ai cần một khoảng lặng giữa những ngày nhiều tiếng động.</p>
-        <img class="author-seal about-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt="Dấu triện Nguyên Anh">
+        <div class="seal-row"><img class="author-seal about-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt="Dấu triện Nguyên Anh"></div>
       </div>
     </article>`,
   });

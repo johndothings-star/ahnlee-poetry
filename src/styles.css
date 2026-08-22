@@ -514,6 +514,7 @@ nav a[aria-current="page"]::after {
 }
 
 .poem-body {
+  width: fit-content;
   max-width: 620px;
   padding-top: 17px;
   font: 400 clamp(1.125rem, 1.45vw, 1.22rem)/1.74 var(--serif);
@@ -530,7 +531,13 @@ nav a[aria-current="page"]::after {
 .author-seal {
   display: block;
   height: auto;
-  margin-top: 32px;
+}
+
+.seal-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28px;
 }
 
 .poem-seal { width: 56px; }
@@ -842,21 +849,5 @@ nav a[aria-current="page"]::after {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
-  }
-}
-/* Dấu triện - desktop */
-.poem-seal,
-.about-seal {
-  display: block;
-  margin-top: 28px;
-  margin-left: auto;
-  margin-right: 70px;
-}
-
-/* Dấu triện - điện thoại */
-@media (max-width: 760px) {
-  .poem-seal,
-  .about-seal {
-    margin-right: 8px;
   }
 }
