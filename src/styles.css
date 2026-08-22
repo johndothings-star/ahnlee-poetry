@@ -187,6 +187,7 @@ nav a[aria-current="page"]::after {
   letter-spacing: .065em;
   text-decoration: none;
   text-transform: uppercase;
+  transition: color .15s ease;
 }
 
 .primary-link {
@@ -198,6 +199,13 @@ nav a[aria-current="page"]::after {
 .text-link { color: var(--muted); }
 
 .text-link:hover { color: var(--accent); }
+
+.primary-link span,
+.text-link span,
+.surprise-link span {
+  display: inline-block;
+  transition: transform .15s ease;
+}
 
 
 /* HOME — deliberately compact */
@@ -227,6 +235,18 @@ nav a[aria-current="page"]::after {
   margin: 22px 0 22px;
   color: var(--muted);
   font: 400 1.05rem/1.65 var(--serif);
+}
+
+.hero__surprise {
+  margin: 17px 0 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.surprise-link {
+  color: var(--accent);
+  font-weight: 650;
+  text-decoration: none;
 }
 
 .featured {
@@ -280,7 +300,10 @@ nav a[aria-current="page"]::after {
   letter-spacing: -.015em;
 }
 
-.poem-card h3 a { text-decoration: none; }
+.poem-card h3 a {
+  text-decoration: none;
+  transition: color .15s ease;
+}
 .poem-card h3 a:hover { color: var(--accent); }
 
 .poem-card > p:not(.poem-card__date) {
@@ -415,6 +438,7 @@ nav a[aria-current="page"]::after {
   color: var(--accent);
   font: 600 .87rem/1.4 var(--sans);
   letter-spacing: .03em;
+  transition: color .15s ease;
 }
 
 .archive-item h2 {
@@ -423,7 +447,10 @@ nav a[aria-current="page"]::after {
   letter-spacing: -.012em;
 }
 
-.archive-item h2 a { text-decoration: none; }
+.archive-item h2 a {
+  text-decoration: none;
+  transition: color .15s ease;
+}
 .archive-item h2 a:hover { color: var(--accent); }
 
 .archive-item p {
@@ -603,6 +630,31 @@ nav a[aria-current="page"]::after {
   margin: 0 0 20px;
   color: var(--muted);
   font: 400 1rem/1.6 var(--serif);
+}
+
+.not-found__links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+
+@media (hover: hover) {
+  .poem-card:hover h3 a,
+  .archive-item:hover h2 a {
+    color: var(--accent);
+  }
+
+  .archive-item:hover .archive-item__number {
+    color: var(--ink);
+  }
+
+  .primary-link:hover span,
+  .text-link:hover span,
+  .surprise-link:hover span {
+    transform: translateX(2px);
+  }
 }
 
 

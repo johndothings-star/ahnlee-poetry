@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "dist");
 const poemsDirectory = path.join(root, "content", "poems");
 const basePath = normalizeBasePath(process.env.BASE_PATH || "");
+const siteOrigin = "https://johndothings-star.github.io";
 
 function normalizeBasePath(value) {
   if (!value || value === "/") return "";
@@ -85,6 +86,7 @@ function poemCard(poem) {
 
 function layout({ title, description, active = "", type = "website", publishedTime = "", scripts = [], content }) {
   const pageTitle = title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`;
+  const socialImage = type === "article" ? "" : `${siteOrigin}${url("/assets/og-preview.png")}`;
   return `<!doctype html>
 <html lang="vi">
 <head>
@@ -97,12 +99,19 @@ function layout({ title, description, active = "", type = "website", publishedTi
   <meta property="og:type" content="${type}">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(description)}">
+  ${socialImage ? `<meta property="og:image" content="${socialImage}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nguyên Anh — Thơ, và những khoảng lặng.">` : ""}
   ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml(publishedTime)}">` : ""}
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="${socialImage ? "summary_large_image" : "summary"}">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
+  ${socialImage ? `<meta name="twitter:image" content="${socialImage}">
+  <meta name="twitter:image:alt" content="Nguyên Anh — Thơ, và những khoảng lặng.">` : ""}
   <title>${escapeHtml(pageTitle)}</title>
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="icon" type="image/png" sizes="64x64" href="${url("/assets/favicon.png")}">
   <link rel="stylesheet" href="${url("/assets/styles.css")}">
   <script src="${url("/assets/theme.js")}" defer></script>
   ${scripts.map((script) => `<script type="module" src="${url(script)}"></script>`).join("\n  ")}
@@ -151,21 +160,26 @@ async function build() {
   await cp(path.join(root, "src", "theme.js"), path.join(output, "assets", "theme.js"));
   await cp(path.join(root, "src", "archive.js"), path.join(output, "assets", "archive.js"));
   await cp(path.join(root, "src", "assets", "nguyen-anh-seal.png"), path.join(output, "assets", "nguyen-anh-seal.png"));
+  await cp(path.join(root, "src", "assets", "favicon.png"), path.join(output, "assets", "favicon.png"));
+  await cp(path.join(root, "src", "assets", "og-preview.png"), path.join(output, "assets", "og-preview.png"));
 
   const poems = await readPoems();
   const featured = poems.filter((poem) => poem.featured).slice(0, 3);
   const selected = featured.length ? featured : poems.slice(0, 3);
   const years = [...new Set(poems.map((poem) => poem.date.slice(0, 4)))].sort((a, b) => b.localeCompare(a));
+  const poemUrls = poems.map((poem) => url(`/tho/${poem.slug}/`));
 
   const home = layout({
     title: "Nguyên Anh",
     description: "Những bài thơ về ký ức, thiên nhiên và những khoảng lặng trong đời sống.",
     active: "home",
+    scripts: ["/assets/archive.js"],
     content: `<section class="hero shell">
       <p class="eyebrow">Một góc nhỏ dành cho thơ</p>
       <h1>Có những điều<br>chỉ thơ mới <em>nói được.</em></h1>
       <p class="hero__intro">Những ghi chép bằng câu chữ về ký ức, thiên nhiên và những khoảng lặng trong đời sống.</p>
       <a class="primary-link" href="${url("/tho/")}">Đọc tất cả bài thơ <span aria-hidden="true">→</span></a>
+      <p class="hero__surprise">Hôm ni đọc chi? <a class="surprise-link" href="${poemUrls[0] || url("/tho/")}" data-random-poem-link data-poem-urls="${escapeHtml(JSON.stringify(poemUrls))}">Một bài bất chợt <span aria-hidden="true">→</span></a></p>
     </section>
     <section class="featured shell" aria-labelledby="poems-heading">
       <div class="section-heading">
@@ -263,9 +277,12 @@ async function build() {
     description: "Trang bạn tìm không tồn tại.",
     content: `<section class="not-found shell">
       <p class="eyebrow">404</p>
-      <h1>Trang này đã đi đâu mất.</h1>
-      <p>Có lẽ đường dẫn đã thay đổi, hoặc trang chưa từng tồn tại.</p>
-      <a class="primary-link" href="${url("/")}">Về trang chủ <span aria-hidden="true">→</span></a>
+      <h1>Bài thơ ni chắc đi lạc mất rồi…</h1>
+      <p>Mình về lại một nơi quen nhé, biết đâu có câu thơ đang đợi.</p>
+      <div class="not-found__links">
+        <a class="primary-link" href="${url("/")}">Về trang chủ <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="${url("/tho/")}">Đến trang thơ <span aria-hidden="true">→</span></a>
+      </div>
     </section>`,
   });
   await writeFile(path.join(output, "404.html"), notFoundPage);

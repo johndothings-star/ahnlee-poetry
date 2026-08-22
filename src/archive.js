@@ -52,4 +52,25 @@ function setupArchive() {
   });
 }
 
-if (typeof document !== "undefined") setupArchive();
+function setupRandomPoemLinks() {
+  for (const link of document.querySelectorAll("[data-random-poem-link]")) {
+    let urls = [];
+    try {
+      urls = JSON.parse(link.dataset.poemUrls || "[]");
+    } catch {
+      urls = [];
+    }
+
+    link.addEventListener("click", (event) => {
+      const index = chooseRandomIndex(urls.length);
+      if (index < 0) return;
+      event.preventDefault();
+      window.location.assign(urls[index]);
+    });
+  }
+}
+
+if (typeof document !== "undefined") {
+  setupArchive();
+  setupRandomPoemLinks();
+}
