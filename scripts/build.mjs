@@ -199,7 +199,7 @@ async function build() {
     scripts: ["/assets/archive.js"],
     content: `<header class="page-heading shell">
       <p class="eyebrow">TUYỂN TẬP THƠ</p>
-      <h1>CHÂN TRẦN MUÔN NẺO</h1>
+      <h1>CHÂN TRẦN<br class="page-heading__mobile-break"> <span class="page-heading__keep">MUÔN NẺO</span></h1>
       <p>Chân trần đi qua muôn nẻo, những điều đã gặp, đã thấy, đã thương và đã ngẫm được giữ lại thành thơ, để cùng người đọc ngẫm thêm.</p>
     </header>
     <section class="archive shell" aria-label="Danh sách bài thơ">

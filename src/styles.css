@@ -328,6 +328,8 @@ nav a[aria-current="page"]::after {
   letter-spacing: -.025em;
 }
 
+.page-heading__mobile-break { display: none; }
+
 .page-heading > p:last-child {
   max-width: 530px;
   margin: 0;
@@ -746,8 +748,9 @@ nav a[aria-current="page"]::after {
   }
 
   .hero h1 {
-    font-size: clamp(2.4rem, 10vw, 3rem);
+    font-size: clamp(2.25rem, 9.2vw, 2.45rem);
     line-height: 1.08;
+    white-space: nowrap;
   }
 
   .hero__intro {
@@ -777,6 +780,10 @@ nav a[aria-current="page"]::after {
   .page-heading h1 {
     font-size: 2.4rem;
   }
+
+  .page-heading__mobile-break { display: inline; }
+
+  .page-heading__keep { white-space: nowrap; }
 
   .page-heading > p:last-child {
     font-size: .94rem;
