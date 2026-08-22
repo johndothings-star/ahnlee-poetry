@@ -836,12 +836,6 @@ nav a[aria-current="page"]::after {
 
 
 /* REDUCED MOTION */
-
-img[src*="nguyen-anh-seal"] {
-  display: block;
-  margin-left: auto;
-  margin-right: 0;
-}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -849,4 +843,17 @@ img[src*="nguyen-anh-seal"] {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
+}
+/* Căn phải dấu triện Nguyên Anh */
+.poem-reader :has(> img[src*="nguyen-anh-seal"]),
+.about :has(> img[src*="nguyen-anh-seal"]) {
+  width: 100%;
+  text-align: right;
+}
+
+.poem-reader img[src*="nguyen-anh-seal"],
+.about img[src*="nguyen-anh-seal"] {
+  display: inline-block !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
 }
