@@ -150,6 +150,7 @@ async function build() {
   await cp(path.join(root, "src", "styles.css"), path.join(output, "assets", "styles.css"));
   await cp(path.join(root, "src", "theme.js"), path.join(output, "assets", "theme.js"));
   await cp(path.join(root, "src", "archive.js"), path.join(output, "assets", "archive.js"));
+  await cp(path.join(root, "src", "assets", "nguyen-anh-seal.png"), path.join(output, "assets", "nguyen-anh-seal.png"));
 
   const poems = await readPoems();
   const featured = poems.filter((poem) => poem.featured).slice(0, 3);
@@ -231,7 +232,9 @@ async function build() {
           <h1>${escapeHtml(poem.title)}</h1>
           <p class="poem-date"><span>Sáng tác</span><time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time></p>
         </header>
-        <div class="poem-body">${renderPoemBody(poem.body)}</div>
+        <div class="poem-body">${renderPoemBody(poem.body)}
+          <img class="author-seal poem-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt="">
+        </div>
       </article>`,
     });
     await writePage(`/tho/${poem.slug}/`, poemPage);
@@ -249,6 +252,7 @@ async function build() {
       <div class="about__copy">
         <p>Đây là góc nhỏ để mình cất giữ những bài thơ — những điều đã nhìn thấy, đã đi qua, hoặc chỉ vừa kịp chạm vào trong một khoảnh khắc.</p>
         <p>Thơ ở đây được viết chậm, đọc chậm, và dành cho bất kỳ ai cần một khoảng lặng giữa những ngày nhiều tiếng động.</p>
+        <img class="author-seal about-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt="Dấu triện Nguyên Anh">
       </div>
     </article>`,
   });
