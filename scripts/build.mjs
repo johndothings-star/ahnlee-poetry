@@ -177,7 +177,7 @@ async function build() {
     content: `<section class="hero shell">
       <p class="eyebrow">Một góc nhỏ dành cho thơ</p>
       <h1>Có những điều<br>chỉ thơ mới <em>nói được.</em></h1>
-      <p class="hero__intro">Những ghi chép bằng câu chữ về ký ức, thiên nhiên và những khoảng lặng trong đời sống.</p>
+      <p class="hero__intro">Tôi đi nhặt chữ gieo vần,<br>qua muôn ngàn chốn cũng gần thành thơ.</p>
       <a class="primary-link" href="${url("/tho/")}">Đọc tất cả bài thơ <span aria-hidden="true">→</span></a>
       <p class="hero__surprise">Hôm ni đọc chi? <a class="surprise-link" href="${poemUrls[0] || url("/tho/")}" data-random-poem-link data-poem-urls="${escapeHtml(JSON.stringify(poemUrls))}">Một bài bất chợt <span aria-hidden="true">→</span></a></p>
     </section>
@@ -198,9 +198,9 @@ async function build() {
     active: "poems",
     scripts: ["/assets/archive.js"],
     content: `<header class="page-heading shell">
-      <p class="eyebrow">Tuyển tập</p>
-      <h1>Thơ</h1>
-      <p>Những bài thơ được xếp theo ngày viết, từ mới nhất đến cũ hơn.</p>
+      <p class="eyebrow">TUYỂN TẬP THƠ</p>
+      <h1>CHÂN TRẦN MUÔN NẺO</h1>
+      <p>Chân trần đi qua muôn nẻo, những điều đã gặp, đã thấy, đã thương và đã ngẫm được giữ lại thành thơ, để cùng người đọc ngẫm thêm.</p>
     </header>
     <section class="archive shell" aria-label="Danh sách bài thơ">
       <div class="archive-tools">
