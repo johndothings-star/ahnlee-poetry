@@ -168,7 +168,7 @@ async function build() {
     </section>
     <section class="featured shell" aria-labelledby="poems-heading">
       <div class="section-heading">
-        <div><p class="eyebrow">Thơ gần đây</p><h2 id="poems-heading">Những bài thơ mới nhất</h2></div>
+        <div><p class="eyebrow">Thơ chọn đọc</p><h2 id="poems-heading">Một vài bài thơ</h2></div>
         <a class="text-link desktop-link" href="${url("/tho/")}">Xem tất cả <span aria-hidden="true">→</span></a>
       </div>
       <div class="poem-grid">${selected.map(poemCard).join("")}</div>
