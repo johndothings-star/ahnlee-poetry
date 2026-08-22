@@ -844,17 +844,19 @@ nav a[aria-current="page"]::after {
     transition-duration: .01ms !important;
   }
 }
-/* Vị trí dấu triện Nguyên Anh */
-.poem-seal {
-  display: block;
-  margin-top: 28px;
-  margin-left: auto;
-  margin-right: 10%;
-}
-
+/* Dấu triện - desktop */
+.poem-seal,
 .about-seal {
   display: block;
   margin-top: 28px;
   margin-left: auto;
-  margin-right: 10%;
+  margin-right: 70px;
+}
+
+/* Dấu triện - điện thoại */
+@media (max-width: 760px) {
+  .poem-seal,
+  .about-seal {
+    margin-right: 8px;
+  }
 }
