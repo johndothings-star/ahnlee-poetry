@@ -837,6 +837,11 @@ nav a[aria-current="page"]::after {
 
 /* REDUCED MOTION */
 
+img[src*="nguyen-anh-seal"] {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
