@@ -6,6 +6,8 @@ featured: false
 path: "neo-thanh-nhan"
 secondary_path: "neo-tinh"
 themes: ["trà","khách","bằng hữu","vườn nhà"]
+image: "/assets/poems/tra-khach/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ TRÀ KHÁCH"
 ---
 
 Khách đến đông vui, sáng cửa nhà

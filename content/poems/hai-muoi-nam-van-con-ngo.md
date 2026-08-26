@@ -6,6 +6,9 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-que"
 themes: ["học trò","tình đầu","hội khóa","vui đùa"]
+image: "/assets/poems/hai-muoi-nam-van-con-ngo/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HAI MƯƠI NĂM VẪN CÒN NGƠ!"
+gallery: ["/assets/poems/hai-muoi-nam-van-con-ngo/01.jpg"]
 ---
 
 Hai mươi năm một chặng đường

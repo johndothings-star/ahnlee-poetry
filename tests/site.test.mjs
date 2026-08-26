@@ -57,19 +57,29 @@ test("tạo các trang chính và giữ nguyên công cụ khám phá thơ", asy
   assert.match(footprints, /assets\/footprints\.js/);
 });
 
-test("frontmatter hỗ trợ Nẻo, themes và bài có hoặc không có ảnh", () => {
+test("frontmatter và renderer hỗ trợ bài không ảnh, một ảnh hoặc nhiều ảnh", () => {
   const common = `title: "Bài kiểm tra"\ndate: "2026-08-26"\nexcerpt: "Kiểm tra cấu trúc."\npath: "neo-que"\nsecondary_path: "neo-tam"\nthemes:\n  - "quê hương"\n  - "ký ức"`;
-  const withImage = parseFrontmatter(`---\n${common}\nimage: "/assets/poems/anh-that.jpg"\nimage_alt: "Một khoảnh khắc thật"\nimage_caption: "Bên đường"\n---\nMột câu thơ`, "with-image.md");
+  const withImage = parseFrontmatter(`---\n${common}\nimage: "/assets/poems/bai-kiem-tra/cover.jpg"\nimage_alt: "Một khoảnh khắc thật"\ngallery:\n  - "/assets/poems/bai-kiem-tra/01.jpg"\n  - "/assets/poems/bai-kiem-tra/02.jpg"\n---\nMột câu thơ`, "with-image.md");
   const withoutImage = parseFrontmatter(`---\n${common}\n---\nMột câu thơ`, "without-image.md");
   assert.deepEqual(withImage.metadata.themes, ["quê hương", "ký ức"]);
+  assert.deepEqual(withImage.metadata.gallery, ["/assets/poems/bai-kiem-tra/01.jpg", "/assets/poems/bai-kiem-tra/02.jpg"]);
   assert.equal(withImage.metadata.image_alt, "Một khoảnh khắc thật");
   assert.equal(withoutImage.metadata.image, undefined);
-  const imageMarkup = renderPoemFigure(withImage.metadata, { resolveUrl: (value) => `/base${value}`, escape: escapeHtml });
-  assert.match(imageMarkup, /<figure class="poem-figure">/);
-  assert.match(imageMarkup, /src="\/base\/assets\/poems\/anh-that\.jpg"/);
+  const imageMarkup = renderPoemFigure({
+    ...withImage.metadata,
+    image_dimensions: { width: 1600, height: 900 },
+    gallery_dimensions: [{ width: 900, height: 1600 }, { width: 1200, height: 1200 }],
+  }, { resolveUrl: (value) => `/base${value}`, escape: escapeHtml });
+  assert.match(imageMarkup, /<section class="poem-images"/);
+  assert.match(imageMarkup, /<div class="poem-gallery">/);
+  assert.match(imageMarkup, /src="\/base\/assets\/poems\/bai-kiem-tra\/cover\.jpg"/);
   assert.match(imageMarkup, /alt="Một khoảnh khắc thật"/);
+  assert.match(imageMarkup, /width="1600" height="900"/);
+  assert.match(imageMarkup, /width="900" height="1600"/);
+  assert.equal((imageMarkup.match(/loading="lazy"/g) || []).length, 3);
   assert.equal(renderPoemFigure(withoutImage.metadata, { resolveUrl: (value) => value, escape: escapeHtml }), "");
   assert.throws(() => parseFrontmatter(`---\n${common}\nimage: "/assets/poems/thieu-alt.jpg"\n---\nThơ`, "missing-alt.md"), /image_alt/);
+  assert.throws(() => parseFrontmatter(`---\n${common}\ngallery: ["/assets/poems/01.jpg"]\n---\nThơ`, "gallery-without-cover.md"), /image chính/);
   assert.throws(() => parseFrontmatter(`---\ntitle: "Sai Nẻo"\ndate: "2026-08-26"\nexcerpt: "Sai."\npath: "neo-khong-co"\nthemes: ["thử"]\n---\nThơ`, "invalid-path.md"), /path .* không hợp lệ/);
 });
 
@@ -86,6 +96,10 @@ test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file M
     }
     if (poem.secondary_path) assert.ok(PATH_BY_SLUG.has(poem.secondary_path), `${poem.slug}: secondary_path không hợp lệ`);
     if (poem.image) assert.ok(poem.image_alt, `${poem.slug}: ảnh thiếu alt`);
+    if (poem.gallery) {
+      assert.ok(poem.image, `${poem.slug}: gallery thiếu ảnh chính`);
+      assert.ok(poem.gallery.length > 0, `${poem.slug}: gallery rỗng`);
+    }
 
     const html = await page(path.join("tho", poem.slug));
     const title = `${poem.title} — Nguyên Anh`;
@@ -102,12 +116,20 @@ test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file M
 
     if (poem.path) assert.ok(html.includes(`href="${prefix}/neo/${PATH_BY_SLUG.get(poem.path).route}/"`), `${poem.slug}: thiếu link Nẻo chính`);
     if (poem.image) {
-      assert.match(html, /<figure class="poem-figure">/);
+      assert.match(html, /<section class="poem-images"/);
       assert.ok(html.includes(`src="${prefix}${poem.image}"`), `${poem.slug}: sai đường dẫn ảnh`);
       const imageFile = path.join(output, poem.image.replace(/^\/+/, ""));
       assert.equal((await stat(imageFile)).isFile(), true, `${poem.slug}: ảnh chưa được copy`);
+      assert.ok(html.indexOf("poem-images") > html.indexOf("poem-seal"), `${poem.slug}: ảnh phải nằm sau dấu triện`);
+      assert.ok(html.indexOf("poem-images") < html.indexOf("poem-share"), `${poem.slug}: ảnh phải nằm trước chia sẻ`);
+      assert.match(html, /class="poem-figure poem-figure--cover">\s*<img[^>]+ width="\d+" height="\d+"[^>]+loading="lazy"/);
+      for (const galleryImage of poem.gallery || []) {
+        assert.ok(html.includes(`src="${prefix}${galleryImage}"`), `${poem.slug}: thiếu ảnh gallery`);
+        const galleryFile = path.join(output, galleryImage.replace(/^\/+/, ""));
+        assert.equal((await stat(galleryFile)).isFile(), true, `${poem.slug}: ảnh gallery chưa được copy`);
+      }
     } else {
-      assert.doesNotMatch(html, /<figure class="poem-figure">/);
+      assert.doesNotMatch(html, /<section class="poem-images"/);
     }
   }
 });

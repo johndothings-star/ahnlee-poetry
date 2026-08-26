@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-que"
 themes: ["Chân-Thiện-Nhẫn","thiện duyên","nét chữ","thư pháp","hoa sen","Tết","gia đình","sum họp"]
+image: "/assets/poems/tam-trong-chu/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ TÂM TRONG CHỮ"
 ---
 
 Đặt tâm vào trong từng nét chữ

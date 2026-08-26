@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["hành giả","đường đi","thị phi","thanh nhàn"]
+image: "/assets/poems/hanh-gia/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HÀNH GIẢ"
 ---
 
 Quanh co khúc khuỷu một đường đi

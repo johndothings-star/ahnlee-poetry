@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-thanh-nhan"
 themes: ["đồi xanh","chim dế","núi non","thanh tĩnh"]
+image: "/assets/poems/giua-doi-xanh/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GIỮA ĐỒI XANH"
 ---
 
 Vẳng nghe tiếng gió gọi ngàn

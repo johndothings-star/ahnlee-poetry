@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["non cao","cố hương","tha phương","nhớ người"]
+image: "/assets/poems/dung-chan-de-nho/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ DỪNG CHÂN ĐỂ NHỚ!"
 ---
 
 Người người tìm chốn lao xao

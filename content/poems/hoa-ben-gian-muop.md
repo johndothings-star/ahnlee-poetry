@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["vườn nhà","hoa","mùa hạ","sức sống"]
+image: "/assets/poems/hoa-ben-gian-muop/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HOA BÊN GIÀN MƯỚP"
 ---
 
 Nắng hè gắt gỏng chói chang

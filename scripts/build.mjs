@@ -33,12 +33,41 @@ async function pathExists(target) {
   return access(target).then(() => true).catch(() => false);
 }
 
-async function validatePoemImage(metadata, fileName) {
-  if (!metadata.image) return;
-  const image = metadata.image.replaceAll("\\", "/");
+function jpegDimensions(buffer) {
+  if (buffer[0] !== 0xff || buffer[1] !== 0xd8) return null;
+  let offset = 2;
+  while (offset + 9 < buffer.length) {
+    if (buffer[offset] !== 0xff) {
+      offset += 1;
+      continue;
+    }
+    const marker = buffer[offset + 1];
+    if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker)) {
+      return { height: buffer.readUInt16BE(offset + 5), width: buffer.readUInt16BE(offset + 7) };
+    }
+    if (marker === 0xd8 || marker === 0xd9) {
+      offset += 2;
+      continue;
+    }
+    const length = buffer.readUInt16BE(offset + 2);
+    if (length < 2) break;
+    offset += length + 2;
+  }
+  return null;
+}
+
+function imageDimensions(buffer) {
+  if (buffer.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) {
+    return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  }
+  return jpegDimensions(buffer);
+}
+
+async function validatePoemImage(imageValue, fileName, fieldName) {
+  const image = imageValue.replaceAll("\\", "/");
   const prefix = "/assets/poems/";
   if (!image.startsWith(prefix)) {
-    throw new Error(`${fileName}: image phải nằm trong ${prefix}.`);
+    throw new Error(`${fileName}: ${fieldName} phải nằm trong ${prefix}.`);
   }
 
   const relativeImage = image.slice(prefix.length);
@@ -47,6 +76,14 @@ async function validatePoemImage(metadata, fileName) {
   if (!source.startsWith(safeRoot) || !await pathExists(source)) {
     throw new Error(`${fileName}: không tìm thấy ảnh ${image}.`);
   }
+  return imageDimensions(await readFile(source));
+}
+
+async function validatePoemImages(metadata, fileName) {
+  if (!metadata.image) return {};
+  const imageDimensions = await validatePoemImage(metadata.image, fileName, "image");
+  const galleryDimensions = await Promise.all((metadata.gallery || []).map((image) => validatePoemImage(image, fileName, "gallery")));
+  return { image_dimensions: imageDimensions, gallery_dimensions: galleryDimensions };
 }
 
 async function readPoems() {
@@ -54,9 +91,10 @@ async function readPoems() {
   const poems = await Promise.all(files.map(async (file) => {
     const source = await readFile(path.join(poemsDirectory, file), "utf8");
     const { metadata, body } = parseFrontmatter(source, file);
-    await validatePoemImage(metadata, file);
+    const imageMetadata = await validatePoemImages(metadata, file);
     return {
       ...metadata,
+      ...imageMetadata,
       body,
       slug: file.replace(/\.md$/, ""),
       featured: metadata.featured === "true",
@@ -406,10 +444,10 @@ async function build() {
           <p class="poem-date"><span>Sáng tác</span><time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time></p>
           ${poemPathLinks(poem)}
         </header>
-        ${renderPoemFigure(poem, { resolveUrl: url, escape: escapeHtml })}
         <div class="poem-body">${renderPoemBody(poem.body)}
           <div class="seal-row"><img class="author-seal poem-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt=""></div>
         </div>
+        ${renderPoemFigure(poem, { resolveUrl: url, escape: escapeHtml })}
         <footer class="poem-ending">
           <button class="poem-share" type="button" data-share-poem data-share-title="${escapeHtml(`${poem.title} — Nguyên Anh`)}" aria-live="polite">Gửi bài thơ ni cho ai đó <span aria-hidden="true">→</span></button>
           ${footstepNavigation}

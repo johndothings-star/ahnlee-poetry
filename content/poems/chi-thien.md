@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-que"
 themes: ["ước nguyện","quê cũ","chỉ thiên","trở về"]
+image: "/assets/poems/chi-thien/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHỈ THIÊN"
 ---
 
 Ớt này gọi "ớt chỉ thiên"!

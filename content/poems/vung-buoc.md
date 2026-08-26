@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["vững bước","thanh tịnh","tự trọng","hành trình"]
+image: "/assets/poems/vung-buoc/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ VỮNG BƯỚC"
 ---
 
 Thân người nặng nhẹ có làm sao

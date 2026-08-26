@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tinh"
 themes: ["ngôi nhà","núi","tiếng cười","hồi sinh"]
+image: "/assets/poems/nha-tren-nui/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NHÀ TRÊN NÚI"
 ---
 
 Con đường nhỏ đi tới ngôi nhà nhỏ

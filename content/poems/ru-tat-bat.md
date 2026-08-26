@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["làng quê","tuổi thơ","bình yên","nghỉ ngơi"]
+image: "/assets/poems/ru-tat-bat/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ RU TẤT BẬT!"
 ---
 
 Ta lại về nơi thanh bình ta ở

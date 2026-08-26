@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["tuổi thơ","trò chơi dân gian","làng quê","ký ức"]
+image: "/assets/poems/hon-que/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HỒN QUÊ"
 ---
 
 Ánh chiều rơi... xa mờ sương tối

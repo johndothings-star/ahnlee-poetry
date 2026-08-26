@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["nghị lực","bước đi","khiêm nhường","kiên định"]
+image: "/assets/poems/doi-chan-nho-be/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ ĐÔI CHÂN NHỎ BÉ"
 ---
 
 Đôi chân này nhỏ bé

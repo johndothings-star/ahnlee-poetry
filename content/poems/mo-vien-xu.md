@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tinh"
 themes: ["phiêu du","viễn xứ","sông nước","lữ khách","nhớ thương","mộng","bến thuyền"]
+image: "/assets/poems/mo-vien-xu/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ MƠ VIỄN XỨ"
 ---
 
 Sông nước mây trời lãng đãng

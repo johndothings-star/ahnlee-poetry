@@ -6,6 +6,8 @@ featured: false
 path: "neo-thanh-nhan"
 secondary_path: "neo-tinh"
 themes: ["trà","tri ân","bằng hữu","góp nhặt"]
+image: "/assets/poems/ban-tra-gop-nhat-dang-doi/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ BÀN TRÀ GÓP NHẶT DÂNG ĐỜI"
 ---
 
 Bàn trà góp nhặt muôn nơi

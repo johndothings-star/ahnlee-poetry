@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-thanh-nhan"
 themes: ["giày vải","sông núi","đồng hành","hành trình"]
+image: "/assets/poems/giay-vai/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GIÀY VẢI"
 ---
 
 Thân thương đôi giày vải

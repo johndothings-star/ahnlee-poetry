@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["đường về","gian khó","quê hương","thệ ước"]
+image: "/assets/poems/buoc-ghenh/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ BƯỚC GHỀNH"
 ---
 
 Xa khơi mờ bóng quê hương

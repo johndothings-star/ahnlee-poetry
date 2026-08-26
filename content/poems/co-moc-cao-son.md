@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["núi Nhạn","cổ thụ","duyên xưa","hội ngộ"]
+image: "/assets/poems/co-moc-cao-son/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CỔ MỘC CAO SƠN"
 ---
 
 Dãi dầu sương gió chốn cao sơn

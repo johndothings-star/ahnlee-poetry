@@ -105,6 +105,12 @@ export function parseFrontmatter(source, fileName = "Bài thơ") {
   if (metadata.image && !metadata.image_alt) {
     throw new Error(`${fileName}: có image thì phải có image_alt.`);
   }
+  if (metadata.gallery !== undefined && (!Array.isArray(metadata.gallery) || metadata.gallery.length === 0)) {
+    throw new Error(`${fileName}: gallery phải có ít nhất một ảnh.`);
+  }
+  if (metadata.gallery && !metadata.image) {
+    throw new Error(`${fileName}: có gallery thì phải có image chính.`);
+  }
 
   return { metadata, body: match[2].trim() };
 }
@@ -134,8 +140,15 @@ export function chooseNextFootstep(poem, poems) {
 
 export function renderPoemFigure(poem, { resolveUrl, escape }) {
   if (!poem.image) return "";
-  return `<figure class="poem-figure">
-    <img src="${resolveUrl(poem.image)}" alt="${escape(poem.image_alt)}" loading="lazy" decoding="async">
-    ${poem.image_caption ? `<figcaption>${escape(poem.image_caption)}</figcaption>` : ""}
-  </figure>`;
+  const dimensions = (value) => value ? ` width="${value.width}" height="${value.height}"` : "";
+  const gallery = poem.gallery || [];
+  return `<section class="poem-images" aria-label="Ảnh trải nghiệm gắn với bài thơ">
+    <figure class="poem-figure poem-figure--cover">
+      <img src="${resolveUrl(poem.image)}" alt="${escape(poem.image_alt)}"${dimensions(poem.image_dimensions)} loading="lazy" decoding="async">
+      ${poem.image_caption ? `<figcaption>${escape(poem.image_caption)}</figcaption>` : ""}
+    </figure>
+    ${gallery.length ? `<div class="poem-gallery">
+      ${gallery.map((image, index) => `<figure class="poem-figure"><img src="${resolveUrl(image)}" alt="${escape(`${poem.image_alt} — ảnh ${index + 2}`)}"${dimensions(poem.gallery_dimensions?.[index])} loading="lazy" decoding="async"></figure>`).join("\n      ")}
+    </div>` : ""}
+  </section>`;
 }

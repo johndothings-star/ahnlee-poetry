@@ -6,6 +6,9 @@ featured: true
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["hành trình","duyên xưa","trở về","hoàn nguyên"]
+image: "/assets/poems/chan-tran-muon-neo/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHÂN TRẦN MUÔN NẺO"
+gallery: ["/assets/poems/chan-tran-muon-neo/01.jpg","/assets/poems/chan-tran-muon-neo/02.jpg","/assets/poems/chan-tran-muon-neo/03.jpg","/assets/poems/chan-tran-muon-neo/04.jpg"]
 ---
 
 Chân trần muôn nẻo phiêu diêu

@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tinh"
 themes: ["xe nhỏ","hành trình","gặp người","kết duyên"]
+image: "/assets/poems/bon-bon/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ BON BON!"
 ---
 
 Thân người nhỏ ngồi trên con xe nhỏ

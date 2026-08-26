@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-tinh"
 themes: ["Chân-Thiện-Nhẫn","hoa sen","thiện lành","kết duyên"]
+image: "/assets/poems/phuc-duyen-sen-chan-thien-nhan/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ PHÚC DUYÊN: SEN CHÂN THIỆN NHẪN"
 ---
 
 Tâm thiện lành giữa dòng đời ô trọc

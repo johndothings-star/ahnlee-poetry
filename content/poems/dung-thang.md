@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-doi"
 themes: ["nghị lực","vượt khó","tự đứng lên","kiên định"]
+image: "/assets/poems/dung-thang/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ ĐỨNG THẲNG"
 ---
 
 Chỉ cần một chút dựa mình

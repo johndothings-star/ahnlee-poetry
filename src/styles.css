@@ -857,9 +857,13 @@ nav a[aria-current="page"]::after {
   text-decoration: none;
 }
 
-.poem-figure {
+.poem-images {
   max-width: 620px;
-  margin: 30px 0 4px;
+  margin-top: 34px;
+}
+
+.poem-figure {
+  margin: 0;
 }
 
 .poem-figure img {
@@ -875,6 +879,21 @@ nav a[aria-current="page"]::after {
   margin-top: 8px;
   color: var(--muted);
   font: 400 .78rem/1.5 var(--serif);
+}
+
+.poem-gallery {
+  columns: 2;
+  column-gap: 16px;
+  margin-top: 16px;
+}
+
+.poem-gallery .poem-figure {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.poem-gallery .poem-figure img {
+  max-height: min(64vh, 620px);
 }
 
 .poem-body {
@@ -1345,9 +1364,16 @@ nav a[aria-current="page"]::after {
     font-size: .64rem;
   }
 
-  .poem-figure {
-    margin-top: 26px;
+  .poem-images {
+    margin-top: 30px;
   }
+
+  .poem-gallery {
+    columns: 1;
+    margin-top: 14px;
+  }
+
+  .poem-gallery .poem-figure { margin-bottom: 14px; }
 
   .poem-body {
     padding-top: 16px;

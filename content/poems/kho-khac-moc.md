@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["Pleiku","tượng gỗ","Phật","duyên xưa"]
+image: "/assets/poems/kho-khac-moc/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ KHÔ KHẮC MỘC"
 ---
 
 Gốc cổ thụ già

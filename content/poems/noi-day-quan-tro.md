@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["quán trọ","tha hương","tĩnh tọa","cõi tiên"]
+image: "/assets/poems/noi-day-quan-tro/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NƠI ĐÂY QUÁN TRỌ!"
 ---
 
 Vẳng xa tiếng nước nỉ non

@@ -29,16 +29,25 @@ Tìm kiếm, bộ lọc năm, bài ngẫu nhiên, các trang Nẻo và dòng th�
 
 ## Thêm ảnh trải nghiệm cho một bài
 
-1. Đặt ảnh gốc vào `src/assets/poems/`, ví dụ `src/assets/poems/ngo-nho.jpg`.
-2. Thêm vào frontmatter của bài:
+Mỗi bài có một thư mục ảnh riêng. Ví dụ với bài `ngo-nho.md`, đặt ảnh chính tại `src/assets/poems/ngo-nho/cover.jpg`; ảnh bổ sung có thể là `01.jpg`, `02.jpg`.
+
+Thêm vào frontmatter của bài:
 
 ```md
-image: "/assets/poems/ngo-nho.jpg"
+image: "/assets/poems/ngo-nho/cover.jpg"
 image_alt: "Ngõ nhỏ quê nhà vào buổi sáng"
-image_caption: ""
+gallery: ["/assets/poems/ngo-nho/01.jpg", "/assets/poems/ngo-nho/02.jpg"]
 ```
 
-`image_alt` là bắt buộc khi có `image`; `image_caption` có thể bỏ. Nếu bài không khai báo ảnh, bố cục đọc thơ giữ nguyên và không hiện placeholder.
+`image_alt` là bắt buộc khi có `image`; `gallery` có thể bỏ. Nếu bài không khai báo ảnh, bố cục đọc thơ giữ nguyên và không hiện placeholder.
+
+Để nhập hàng loạt ảnh đã đặt tên theo dạng `<poem-slug>-image.jpg` hoặc `<poem-slug>-image1.jpg`, `<poem-slug>-image2.jpg`, chạy:
+
+```sh
+npm run import:poem-images -- "D:\duong-dan\toi\thu-muc-anh"
+```
+
+Script chỉ copy những tên khớp chắc chắn, tự tạo `cover`/gallery và báo lại các file chưa ghép; thư mục nguồn không bị thay đổi.
 
 ## Các trang hành trình
 

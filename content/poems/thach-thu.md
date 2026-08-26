@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["Huế","tượng đá","duyên","chờ đợi"]
+image: "/assets/poems/thach-thu/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ THẠCH THÚ"
 ---
 
 Đá kia tạo tác thành voi

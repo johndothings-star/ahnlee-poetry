@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-doi"
 themes: ["Đạo","tỉnh mơ","vô thường","lắng nghe"]
+image: "/assets/poems/mo-tinh-tinh-mo/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ MƠ - TỈNH - TỈNH MƠ!"
 ---
 
 Tĩnh tâm một chút để lắng nghe
