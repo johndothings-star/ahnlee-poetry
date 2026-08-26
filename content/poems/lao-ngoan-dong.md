@@ -3,6 +3,9 @@ title: "LÃO NGOAN ĐỒNG"
 date: "2018-09-06"
 excerpt: "Một chân dung vui của tuổi già trẻ tính, khi danh lợi nhẹ đi và niềm vui đời thường lại trở nên gần gũi."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-tam"
+themes: ["ngoan đồng","buông danh lợi","thảnh thơi","trẻ thơ"]
 ---
 
 Tuổi nhiều nhưng tính trẻ thơ

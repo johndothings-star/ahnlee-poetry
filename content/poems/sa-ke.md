@@ -3,6 +3,9 @@ title: "SA KÊ"
 date: "2019-07-26"
 excerpt: "Một cây sa kê nơi chốn thâm u trở thành hình ảnh của sự chờ đợi, bén duyên và một cuộc gặp đến đúng lúc."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-tam"
+themes: ["Huế","cây cổ","duyên xưa","gặp gỡ"]
 ---
 
 Ẩn mình nơi chốn thâm u

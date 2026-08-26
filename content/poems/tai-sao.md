@@ -3,6 +3,9 @@ title: "TẠI SAO!?"
 date: "2010-01-01"
 excerpt: "Từ góc nhìn một đứa trẻ, những câu hỏi 'Tại sao?' lặp lại trước cảnh chia lìa và bạo lực trở nên day dứt hơn mọi lời giải thích."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["bức hại","Pháp Luân Công","công lý","trẻ em"]
 ---
 
 Trong đôi mắt thơ dại

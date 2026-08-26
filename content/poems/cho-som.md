@@ -3,6 +3,9 @@ title: "CHỢ SỚM"
 date: "2010-01-01"
 excerpt: "Trong màn sương sớm còn dày, bóng mẹ khuất dần về phía chợ, để lại một khoảng quê vừa gần vừa xa."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tinh"
+themes: ["mẹ","chợ quê","sương sớm","ký ức"]
 ---
 
 Màn đêm buông rèm đi ngủ sớm

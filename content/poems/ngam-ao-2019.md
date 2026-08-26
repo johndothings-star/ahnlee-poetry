@@ -3,6 +3,9 @@ title: "NGẮM AO"
 date: "2019-10-08"
 excerpt: "Một ao cá bán nguyệt dưới nắng vàng mở ra một khoảng nhìn thư thái, nơi cảnh vật và lòng người cùng rộng ra."
 featured: false
+path: "neo-que"
+secondary_path: "neo-thanh-nhan"
+themes: ["ao cá","nắng","cây","thư thái"]
 ---
 
 Ao cá biến hình bán nguyệt

@@ -3,6 +3,9 @@ title: "CỔ MỘC CAO SƠN"
 date: "2019-07-30"
 excerpt: "Cây cổ thụ giữa cao sơn đứng qua ngàn sương gió, như vẫn đợi một cuộc hội ngộ cũ giữa mây trời."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-tam"
+themes: ["núi Nhạn","cổ thụ","duyên xưa","hội ngộ"]
 ---
 
 Dãi dầu sương gió chốn cao sơn

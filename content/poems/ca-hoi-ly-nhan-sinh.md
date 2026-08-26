@@ -3,6 +3,9 @@ title: "CÁ HỒI, LÝ NHÂN SINH!"
 date: "2020-01-18"
 excerpt: "Từ hành trình cá hồi ngược thác tìm về nguồn cội, bài thơ gợi một câu hỏi nhẹ mà sâu về đường về của mỗi đời người."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["nhân sinh","nguồn cội","trở về","nghị lực"]
 ---
 
 Nơi đầu nguồn con suối

@@ -3,6 +3,9 @@ title: "GIỮ HẠT!"
 date: "2021-09-05"
 excerpt: "Ăn một trái cây, nhớ giữ lại hạt; một lời nhắc nhỏ về tiếp nối, gieo mầm và để lại điều xanh cho ngày sau."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-que"
+themes: ["hạt giống","thế hệ sau","tiếp nối","trách nhiệm"]
 ---
 
 Ai ơi ăn một trái cây

@@ -3,6 +3,9 @@ title: "TÌNH YÊU CỦA TÔI"
 date: "2020-02-14"
 excerpt: "Tình yêu không chỉ dành cho một người; nó trải rộng từ bình minh, cây cỏ, quá khứ đến những điều bình thường quanh ta."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-tam"
+themes: ["tình yêu","vạn vật","Chân-Thiện-Nhẫn","lòng từ ái"]
 ---
 
 Tôi yêu cảnh bình minh tươi sáng

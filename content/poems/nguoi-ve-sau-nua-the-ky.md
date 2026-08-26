@@ -3,6 +3,9 @@ title: "NGƯỜI VỀ SAU NỬA THẾ KỶ!"
 date: "2025-10-26"
 excerpt: "Người đi từ tuổi thanh xuân, rồi nằm lại chiến trường hơn 50 năm sương gió, bỗng nghẹn ngào khi người thân biết được tin người."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tinh"
+themes: ["gia đình","người lính","chiến tranh","ký ức","cội nguồn","trở về","tưởng niệm"]
 ---
 
 Nửa đời mưa gió bay qua

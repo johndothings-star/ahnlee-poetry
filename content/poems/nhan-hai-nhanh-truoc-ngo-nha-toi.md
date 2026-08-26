@@ -3,6 +3,9 @@ title: "NHÃN HAI NHÀNH TRƯỚC NGÕ NHÀ TÔI"
 date: "2020-02-21"
 excerpt: "Từ cây nhãn hai nhành trước ngõ, một câu chuyện gia đình mở ra qua tuổi thơ, chiến tranh, mất mát và ký ức truyền đời."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tinh"
+themes: ["gia đình","ký ức","chiến tranh","chữ hiếu"]
 ---
 
 Nghe ba kể: năm ba mười hai tuổi

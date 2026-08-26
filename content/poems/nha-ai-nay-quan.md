@@ -3,6 +3,9 @@ title: "NHÀ AI NẤY QUẢN"
 date: "2021-01-01"
 excerpt: "Có lúc những người từng đi chung phải rẽ lối, mỗi người trở về chăm phần việc và thế giới riêng của mình."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tinh"
+themes: ["chia ngả","giới","trách nhiệm","đường đời"]
 ---
 
 Đi chung một đoạn đường

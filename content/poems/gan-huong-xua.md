@@ -3,6 +3,9 @@ title: "GẦN HƯƠNG XƯA"
 date: "2022-09-30"
 excerpt: "Giữa cuộc sống ngược xuôi, chỉ cần chậm lại một chút, ký ức về quê xưa đã có thể trở nên gần hơn."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["tha phương","cố hương","tỉnh mộng","thảnh thơi"]
 ---
 
 Nhân sinh một thoáng mơ màng

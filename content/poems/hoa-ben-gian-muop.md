@@ -3,6 +3,9 @@ title: "HOA BÊN GIÀN MƯỚP"
 date: "2019-06-25"
 excerpt: "Giữa nắng hạ khô khan, một bông hoa bên giàn mướp vẫn đủ sức làm khu vườn bừng lên vẻ thanh tao."
 featured: false
+path: "neo-que"
+secondary_path: "neo-thanh-nhan"
+themes: ["vườn nhà","hoa","mùa hạ","sức sống"]
 ---
 
 Nắng hè gắt gỏng chói chang

@@ -3,6 +3,9 @@ title: "NHÀ XƯA CÒN ĐÓ!"
 date: "2019-05-31"
 excerpt: "Đường trở về nhà xưa có thể gập ghềnh, nhưng chính vì nhà vẫn còn đó nên người đi vẫn có một hướng để bước."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-que"
+themes: ["nhà xưa","đường về","gian khó","kiên định"]
 ---
 
 Từ khi thấy cõi riêng ta

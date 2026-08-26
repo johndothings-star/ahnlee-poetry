@@ -3,6 +3,9 @@ title: "DẤU VẾT THỜI GIAN!"
 date: "2024-08-06"
 excerpt: "Một ngôi nhà cũ giữ trong từng bức tường dấu tay, mồ hôi và cả một quãng đời của mẹ cha."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tinh"
+themes: ["mái nhà","cha mẹ","cơ hàn","ký ức"]
 ---
 
 Nhà tôi in dấu thời gian

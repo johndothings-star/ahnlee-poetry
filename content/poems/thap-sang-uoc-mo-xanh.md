@@ -3,6 +3,9 @@ title: "THẮP SÁNG ƯỚC MƠ XANH"
 date: "2011-01-01"
 excerpt: "Một khúc thơ dành cho nghề dạy học, nơi mỗi gian khó đều có ý nghĩa khi nhìn thấy những mầm xanh lớn lên."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-doi"
+themes: ["nhà giáo","học trò","ước mơ","cống hiến"]
 ---
 
 Tuổi học trò ôm ấp những ước mơ

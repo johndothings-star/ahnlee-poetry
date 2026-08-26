@@ -3,6 +3,9 @@ title: "BÁNH XE QUY LUẬT"
 date: "2018-12-01"
 excerpt: "Một lời ngẫm về những vòng sinh diệt, thịnh suy và giới hạn mà con người khó thể bước ra ngoài."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["quy luật","vô thường","xã hội","nhân sinh"]
 ---
 
 Thành Trụ Hoại Diệt của thiên không

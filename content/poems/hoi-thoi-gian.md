@@ -3,6 +3,9 @@ title: "HỎI THỜI GIAN"
 date: "2019-02-18"
 excerpt: "Năm cũ qua, năm mới tới mà chuyện đời vẫn còn mang theo; bài thơ hỏi thời gian khi nào mới cho lòng được nhẹ."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["thời gian","chuyện đời","buông","vô thường"]
 ---
 
 Năm trước bao nhiêu chuyện đã từng

@@ -3,6 +3,9 @@ title: "THƠ NGÂY"
 date: "2019-07-06"
 excerpt: "Một cuộc nhậu không rượu bia nhưng vẫn đủ vui, bởi đôi khi bạn bè tụ lại là tuổi thơ tự nhiên quay về."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-tinh"
+themes: ["bạn bè","vui đùa","nước ngọt","tuổi thơ"]
 ---
 
 Hôm nay tôi đi nhậu

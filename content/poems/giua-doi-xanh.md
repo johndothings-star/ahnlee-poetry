@@ -3,6 +3,9 @@ title: "GIỮA ĐỒI XANH"
 date: "2019-10-27"
 excerpt: "Giữa đồi xanh, tiếng gió, tiếng chim và tiếng dế hòa vào nhau, mở ra một khoảng lòng thanh thản."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-thanh-nhan"
+themes: ["đồi xanh","chim dế","núi non","thanh tĩnh"]
 ---
 
 Vẳng nghe tiếng gió gọi ngàn

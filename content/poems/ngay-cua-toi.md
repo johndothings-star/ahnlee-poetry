@@ -3,6 +3,9 @@ title: "NGÀY CỦA TÔI"
 date: "2024-03-07"
 excerpt: "Một ngày riêng để nhìn lại những năm tháng đã đi qua, những cuộc tìm kiếm còn dang dở và bước chân vẫn chưa muốn dừng."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["trải nghiệm","tìm lại mình","quá khứ","hành trình"]
 ---
 
 Những nỗi buồn không còn tồn tại

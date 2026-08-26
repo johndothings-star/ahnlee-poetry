@@ -3,6 +3,9 @@ title: "CHỐN XƯA"
 date: "2009-01-01"
 excerpt: "Một lời nhớ về chốn xưa và hành trình hoàn nguyên, qua bao kiếp luân hồi giữa cõi trần nhiều mê lạc."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["hoàn nguyên","luân hồi","Phản Bổn Qui Chân","thiện căn"]
 ---
 
 Hồng hoang tự thuở ngàn xưa

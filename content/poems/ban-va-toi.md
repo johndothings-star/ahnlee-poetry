@@ -3,6 +3,9 @@ title: "BẠN VÀ TÔI"
 date: "2019-07-18"
 excerpt: "Hai người bạn đi qua năm tháng, xa quê rồi gặp lại, vẫn nhận ra nhau trong chất giọng và ký ức tuổi học trò."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-que"
+themes: ["bạn học","tri kỷ","giọng quê","hội ngộ"]
 ---
 
 Bạn và tôi cùng chung tuổi học trò

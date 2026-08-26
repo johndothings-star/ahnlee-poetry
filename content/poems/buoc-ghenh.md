@@ -3,6 +3,9 @@ title: "BƯỚC GHỀNH"
 date: "2020-01-02"
 excerpt: "Đường dài gập ghềnh, người đi vẫn lần bước qua sương khói để hướng về một bến quê không quên lời hẹn."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["đường về","gian khó","quê hương","thệ ước"]
 ---
 
 Xa khơi mờ bóng quê hương

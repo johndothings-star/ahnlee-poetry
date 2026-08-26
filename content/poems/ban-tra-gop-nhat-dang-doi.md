@@ -3,6 +3,9 @@ title: "BÀN TRÀ GÓP NHẶT DÂNG ĐỜI"
 date: "2020-03-03"
 excerpt: "Từ chiếc bình, cái ly đến hương trà và món quê, những mảnh đời góp nhặt bỗng thành một bàn trà đầy nghĩa tình."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-tinh"
+themes: ["trà","tri ân","bằng hữu","góp nhặt"]
 ---
 
 Bàn trà góp nhặt muôn nơi

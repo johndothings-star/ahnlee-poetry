@@ -3,6 +3,9 @@ title: "THUYỀN ĐỢI BẾN QUÊ"
 date: "2019-12-06"
 excerpt: "Chiếc thuyền nan bên bến quê lặng lẽ chờ người đi xa qua bao sương gió tìm được đường trở lại."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-que"
+themes: ["bến quê","tha phương","vầng dương","trở về"]
 ---
 
 Thuyền nan đậu bến sông quê

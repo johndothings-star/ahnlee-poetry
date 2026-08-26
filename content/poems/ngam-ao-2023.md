@@ -3,6 +3,9 @@ title: "NGẮM AO"
 date: "2023-09-02"
 excerpt: "Ngoài kia bụi trần vội vã, còn bên ao nhỏ chỉ có mây, cỏ và một giấc nghỉ đủ để quên đi nợ nần."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-que"
+themes: ["ao","thảnh thơi","buông lo","vườn quê"]
 ---
 
 Ngoài kia vội vã bụi trần

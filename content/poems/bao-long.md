@@ -3,6 +3,9 @@ title: "BÃO LÒNG!?"
 date: "2018-12-03"
 excerpt: "Có những ngày trời đã yên mà trong lòng vẫn còn giông; chỉ khi lặng nhìn, ta mới thấy mùa xuân đang đến."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-doi"
+themes: ["nội tâm","cầu mong","tỉnh thức","mùa xuân"]
 ---
 
 Trời quang mây tạnh vẳng tiếng giông

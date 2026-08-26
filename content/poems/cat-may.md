@@ -3,6 +3,9 @@ title: "CẮT MÂY"
 date: "2017-06-19"
 excerpt: "Một chút nghịch ngợm của hồn thơ: cắt mây làm tàu bay, rồi bay đi tìm xem giữa trời cao còn ai lạc bước."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-tinh"
+themes: ["mây","tưởng tượng","tìm người","phiêu lãng"]
 ---
 
 Lên trời cắt một đám mây

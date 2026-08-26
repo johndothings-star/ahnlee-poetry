@@ -3,6 +3,9 @@ title: "20 NĂM - TÌNH THƠ VỌNG MÃI"
 date: "2018-07-18"
 excerpt: "Một lần hội ngộ kéo tuổi học trò trở lại, cùng những lá thư, rung động và nét ngơ ngác của tình thơ năm cũ."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-que"
+themes: ["học trò","tình đầu","hội khóa","ký ức"]
 ---
 
 Bạn và tôi... thuở học trò

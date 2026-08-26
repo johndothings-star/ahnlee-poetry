@@ -3,6 +3,9 @@ title: "XUÂN LẠI VỀ"
 date: "2021-01-27"
 excerpt: "Thu, đông rồi cũng qua; gió xuân trở lại mang theo lộc mới và hương quê trên con đường quen."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-que"
+themes: ["mùa xuân","đường quê","chuyển mùa","hương"]
 ---
 
 Thu đến, Thu đi, Đông sẽ về

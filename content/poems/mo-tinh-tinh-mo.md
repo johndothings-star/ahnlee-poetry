@@ -3,6 +3,9 @@ title: "MƠ - TỈNH - TỈNH MƠ!"
 date: "2021-09-14"
 excerpt: "Giữa mơ và tỉnh, người thơ lắng nghe tiếng gió, tiếng Đạo và một lời gọi từ nơi rất sâu trong tâm."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-doi"
+themes: ["Đạo","tỉnh mơ","vô thường","lắng nghe"]
 ---
 
 Tĩnh tâm một chút để lắng nghe

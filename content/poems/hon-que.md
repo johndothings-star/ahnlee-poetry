@@ -3,6 +3,9 @@ title: "HỒN QUÊ"
 date: "2011-03-01"
 excerpt: "Con đường, bờ đê, sáo diều và trò trẻ nhỏ trở về trong ký ức, như những mảnh hồn quê đang dần phai giữa thời gian."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tinh"
+themes: ["tuổi thơ","trò chơi dân gian","làng quê","ký ức"]
 ---
 
 Ánh chiều rơi... xa mờ sương tối

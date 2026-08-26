@@ -3,6 +3,9 @@ title: "TÌNH MUÔN VẠN NẺO!"
 date: "2018-06-06"
 excerpt: "Từ những nẻo tình của nhân gian, bài thơ hướng đến một trạng thái nhẹ hơn khi tình riêng dần chuyển thành lòng từ bi."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-tinh"
+themes: ["tình","từ bi","tu luyện","buông"]
 ---
 
 Nhân gian muôn vạn nẻo tình

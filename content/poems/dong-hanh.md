@@ -3,6 +3,9 @@ title: "ĐỒNG HÀNH"
 date: "2013-02-28"
 excerpt: "Từ một cuộc gặp trên đường, hai người chọn đi cùng nhau, gộp hai thệ nguyện thành một nhịp bước về đích."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-tinh"
+themes: ["đồng hành","thệ nguyện","duyên","về đích"]
 ---
 
 Trên con đường đang đi,

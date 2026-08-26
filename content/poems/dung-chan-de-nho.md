@@ -3,6 +3,9 @@ title: "DỪNG CHÂN ĐỂ NHỚ!"
 date: "2022-12-15"
 excerpt: "Giữa bao nơi xôn xao, người thơ chọn dừng lại ở non cao để nhớ người, nhớ duyên và nhớ một chốn xa xưa."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-tam"
+themes: ["non cao","cố hương","tha phương","nhớ người"]
 ---
 
 Người người tìm chốn lao xao

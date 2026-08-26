@@ -3,6 +3,9 @@ title: "CHÚC XUÂN"
 date: "2020-01-07"
 excerpt: "Một lời chúc đầu năm gửi theo sắc hoa và duyên gặp gỡ, nhẹ nhàng như một nhành xuân trao tay."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-tam"
+themes: ["chúc xuân","tri ân","hữu duyên","hoa sen"]
 ---
 
 Họa chữ họa lời họa cảnh xuân

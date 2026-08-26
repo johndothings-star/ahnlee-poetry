@@ -1,10 +1,12 @@
-import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, renderPoemFigure } from "./content.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "dist");
 const poemsDirectory = path.join(root, "content", "poems");
+const poemAssetsDirectory = path.join(root, "src", "assets", "poems");
 const basePath = normalizeBasePath(process.env.BASE_PATH || "");
 const siteOrigin = "https://johndothings-star.github.io";
 
@@ -27,28 +29,24 @@ function escapeHtml(value = "") {
     .replaceAll("'", "&#039;");
 }
 
-function parseFrontmatter(source, fileName) {
-  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
-  if (!match) throw new Error(`${fileName}: thiếu frontmatter.`);
+async function pathExists(target) {
+  return access(target).then(() => true).catch(() => false);
+}
 
-  const metadata = {};
-  for (const line of match[1].split(/\r?\n/)) {
-    if (!line.trim()) continue;
-    const separator = line.indexOf(":");
-    if (separator === -1) throw new Error(`${fileName}: frontmatter không hợp lệ.`);
-    const key = line.slice(0, separator).trim();
-    let value = line.slice(separator + 1).trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-      value = value.slice(1, -1);
-    }
-    metadata[key] = value;
+async function validatePoemImage(metadata, fileName) {
+  if (!metadata.image) return;
+  const image = metadata.image.replaceAll("\\", "/");
+  const prefix = "/assets/poems/";
+  if (!image.startsWith(prefix)) {
+    throw new Error(`${fileName}: image phải nằm trong ${prefix}.`);
   }
 
-  for (const key of ["title", "date", "excerpt"]) {
-    if (!metadata[key]) throw new Error(`${fileName}: thiếu trường ${key}.`);
+  const relativeImage = image.slice(prefix.length);
+  const source = path.resolve(poemAssetsDirectory, relativeImage);
+  const safeRoot = `${path.resolve(poemAssetsDirectory)}${path.sep}`;
+  if (!source.startsWith(safeRoot) || !await pathExists(source)) {
+    throw new Error(`${fileName}: không tìm thấy ảnh ${image}.`);
   }
-
-  return { metadata, body: match[2].trim() };
 }
 
 async function readPoems() {
@@ -56,11 +54,13 @@ async function readPoems() {
   const poems = await Promise.all(files.map(async (file) => {
     const source = await readFile(path.join(poemsDirectory, file), "utf8");
     const { metadata, body } = parseFrontmatter(source, file);
+    await validatePoemImage(metadata, file);
     return {
       ...metadata,
       body,
       slug: file.replace(/\.md$/, ""),
       featured: metadata.featured === "true",
+      themes: metadata.themes || [],
     };
   }));
   return poems.sort((a, b) => b.date.localeCompare(a.date));
@@ -73,6 +73,31 @@ function formatDate(date) {
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function pathUrl(pathSlug) {
+  const poemPath = PATH_BY_SLUG.get(pathSlug);
+  return poemPath ? url(`/neo/${poemPath.route}/`) : url("/neo/");
+}
+
+function poemPathLinks(poem) {
+  const primary = PATH_BY_SLUG.get(poem.path);
+  const secondary = PATH_BY_SLUG.get(poem.secondary_path);
+  if (!primary) return "";
+  return `<p class="poem-paths"><a href="${pathUrl(primary.slug)}">${escapeHtml(primary.name)}</a>${secondary ? `<span>giao với</span><a href="${pathUrl(secondary.slug)}">${escapeHtml(secondary.name)}</a>` : ""}</p>`;
+}
+
+function archiveItem(poem, index, { showSecondaryPath = false } = {}) {
+  const secondary = PATH_BY_SLUG.get(poem.secondary_path);
+  return `<article class="archive-item">
+    <span class="archive-item__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+    <div>
+      <h2><a href="${url(`/tho/${poem.slug}/`)}">${escapeHtml(poem.title)}</a></h2>
+      <p>${escapeHtml(poem.excerpt)}</p>
+      ${showSecondaryPath && secondary ? `<p class="archive-item__cross">Giao với <a href="${pathUrl(secondary.slug)}">${escapeHtml(secondary.name)}</a></p>` : ""}
+    </div>
+    <time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
+  </article>`;
 }
 
 function poemCard(poem) {
@@ -127,6 +152,7 @@ function layout({ title, description, active = "", type = "website", publishedTi
       <nav aria-label="Điều hướng chính">
         <a href="${url("/")}"${active === "home" ? ' aria-current="page"' : ""}>Trang chủ</a>
         <a href="${url("/tho/")}"${active === "poems" ? ' aria-current="page"' : ""}>Thơ</a>
+        <a href="${url("/neo/")}"${active === "journey" ? ' aria-current="page"' : ""}>Các Nẻo</a>
         <a href="${url("/gioi-thieu/")}"${active === "about" ? ' aria-current="page"' : ""}>Giới thiệu</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Chuyển giao diện sáng hoặc tối">
@@ -163,9 +189,13 @@ async function build() {
   await cp(path.join(root, "src", "theme.js"), path.join(output, "assets", "theme.js"));
   await cp(path.join(root, "src", "archive.js"), path.join(output, "assets", "archive.js"));
   await cp(path.join(root, "src", "poem.js"), path.join(output, "assets", "poem.js"));
+  await cp(path.join(root, "src", "footprints.js"), path.join(output, "assets", "footprints.js"));
   await cp(path.join(root, "src", "assets", "nguyen-anh-seal.png"), path.join(output, "assets", "nguyen-anh-seal.png"));
   await cp(path.join(root, "src", "assets", "favicon.png"), path.join(output, "assets", "favicon.png"));
   await cp(path.join(root, "src", "assets", "og-preview.png"), path.join(output, "assets", "og-preview.png"));
+  if (await pathExists(poemAssetsDirectory)) {
+    await cp(poemAssetsDirectory, path.join(output, "assets", "poems"), { recursive: true });
+  }
 
   const poems = await readPoems();
   const featured = poems.filter((poem) => poem.featured).slice(0, 3);
@@ -177,6 +207,7 @@ async function build() {
     title: "Nguyên Anh",
     description: "Những bài thơ về ký ức, thiên nhiên và những khoảng lặng trong đời sống.",
     active: "home",
+    canonicalPath: "/",
     scripts: ["/assets/archive.js"],
     content: `<section class="hero shell">
       <p class="eyebrow">Một góc nhỏ dành cho thơ</p>
@@ -191,6 +222,11 @@ async function build() {
         <a class="text-link desktop-link" href="${url("/tho/")}">Xem tất cả <span aria-hidden="true">→</span></a>
       </div>
       <div class="poem-grid">${selected.map(poemCard).join("")}</div>
+    </section>
+    <section class="journey-glimpse shell" aria-labelledby="journey-glimpse-heading">
+      <p class="eyebrow">Sáu Nẻo</p>
+      <h2 id="journey-glimpse-heading">Quê · Tình · Phiêu Du · Đời · Thanh Nhàn · Tâm</h2>
+      <a class="text-link" href="${url("/neo/")}">Bước vào các Nẻo <span aria-hidden="true">→</span></a>
     </section>`,
   });
 
@@ -200,6 +236,7 @@ async function build() {
     title: "Thơ",
     description: "Tất cả bài thơ của Nguyên Anh, sắp xếp từ mới nhất.",
     active: "poems",
+    canonicalPath: "/tho/",
     scripts: ["/assets/archive.js"],
     content: `<header class="page-heading shell">
       <p class="eyebrow">TUYỂN TẬP THƠ</p>
@@ -237,12 +274,122 @@ async function build() {
   });
   await writePage("/tho/", poemsPage);
 
-  for (const [index, poem] of poems.entries()) {
-    const previousPoem = poems[index - 1];
-    const nextPoem = poems[index + 1];
-    const poemNavigation = previousPoem || nextPoem ? `<nav class="poem-navigation" aria-label="Điều hướng giữa các bài thơ">
-          ${previousPoem ? `<a class="poem-navigation__previous" rel="prev" href="${url(`/tho/${previousPoem.slug}/`)}" aria-label="Nẻo trước: ${escapeHtml(previousPoem.title)}"><span aria-hidden="true">←</span> Nẻo trước</a>` : ""}
-          ${nextPoem ? `<a class="poem-navigation__next" rel="next" href="${url(`/tho/${nextPoem.slug}/`)}" aria-label="Nẻo sau: ${escapeHtml(nextPoem.title)}">Nẻo sau <span aria-hidden="true">→</span></a>` : ""}
+  const poemsByPath = new Map(PATHS.map((poemPath) => [poemPath.slug, poems.filter((poem) => poem.path === poemPath.slug)]));
+  const pathsPage = layout({
+    title: "Các Nẻo",
+    description: "Sáu Nẻo Quê, Tình, Phiêu Du, Đời, Thanh Nhàn và Tâm trong thơ Nguyên Anh.",
+    active: "journey",
+    canonicalPath: "/neo/",
+    content: `<header class="page-heading journey-heading shell">
+      <p class="eyebrow">Chân trần muôn nẻo</p>
+      <h1>Các Nẻo</h1>
+      <p>Quê, Tình, Phiêu Du, Đời, Thanh Nhàn và Tâm không phải sáu chặng thẳng. Mỗi Nẻo có thể trở lại ở một tầng trải nghiệm khác.</p>
+    </header>
+    <section class="paths shell" aria-label="Sáu Nẻo thơ">
+      <ol class="path-list">
+        ${PATHS.map((poemPath, index) => `<li>
+          <span class="path-list__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h2><a href="${pathUrl(poemPath.slug)}">${escapeHtml(poemPath.name)}</a></h2>
+            <p>${escapeHtml(poemPath.preface)}</p>
+            <a class="path-list__count" href="${pathUrl(poemPath.slug)}">${poemsByPath.get(poemPath.slug).length} bài thơ <span aria-hidden="true">→</span></a>
+          </div>
+        </li>`).join("")}
+      </ol>
+      <nav class="journey-links" aria-label="Những cách đi khác">
+        <a href="${url("/dong-thoi-gian/")}">Dòng thời gian <span aria-hidden="true">→</span></a>
+        <a href="${url("/dau-chan-cua-toi/")}">Dấu chân của tôi <span aria-hidden="true">→</span></a>
+      </nav>
+    </section>`,
+  });
+  await writePage("/neo/", pathsPage);
+
+  for (const poemPath of PATHS) {
+    const pathPoems = poemsByPath.get(poemPath.slug);
+    const pathPage = layout({
+      title: poemPath.name,
+      description: poemPath.preface,
+      active: "journey",
+      canonicalPath: `/neo/${poemPath.route}/`,
+      content: `<header class="page-heading path-heading shell">
+        <a class="back-link" href="${url("/neo/")}"><span aria-hidden="true">←</span> Các Nẻo</a>
+        <p class="eyebrow">Chân trần muôn nẻo</p>
+        <h1>${escapeHtml(poemPath.name)}</h1>
+        <p>${escapeHtml(poemPath.preface)}</p>
+      </header>
+      <section class="archive path-archive shell" aria-label="Các bài thuộc ${escapeHtml(poemPath.name)}">
+        <p class="archive-summary">${pathPoems.length} bài thơ</p>
+        <div class="archive-list">${pathPoems.map((poem, index) => archiveItem(poem, index, { showSecondaryPath: true })).join("")}</div>
+      </section>`,
+    });
+    await writePage(`/neo/${poemPath.route}/`, pathPage);
+  }
+
+  const poemsByYear = new Map(years.map((year) => [year, poems.filter((poem) => poem.date.startsWith(year))]));
+  const timelinePage = layout({
+    title: "Dòng thời gian",
+    description: "Dòng thời gian sáng tác, nơi sáu Nẻo trở lại qua nhiều năm thơ Nguyên Anh.",
+    active: "journey",
+    canonicalPath: "/dong-thoi-gian/",
+    content: `<header class="page-heading timeline-heading shell">
+      <p class="eyebrow">Những năm đã đi qua</p>
+      <h1>Dòng thời gian</h1>
+      <p>Sáu Nẻo cứ xuất hiện, lùi xa rồi trở lại qua nhiều năm sáng tác — một hành trình không đi theo đường thẳng.</p>
+    </header>
+    <section class="timeline shell" aria-label="Các bài thơ theo năm">
+      ${years.map((year) => `<section class="timeline-year" aria-labelledby="year-${year}">
+        <header><h2 id="year-${year}">${year}</h2><span>${poemsByYear.get(year).length} bài</span></header>
+        <ol class="timeline-list">
+          ${poemsByYear.get(year).map((poem) => {
+            const poemPath = PATH_BY_SLUG.get(poem.path);
+            return `<li>
+              <time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
+              <h3><a href="${url(`/tho/${poem.slug}/`)}">${escapeHtml(poem.title)}</a></h3>
+              ${poemPath ? `<a class="path-mark" href="${pathUrl(poemPath.slug)}">${escapeHtml(poemPath.name)}</a>` : `<span class="path-mark">Chưa phân Nẻo</span>`}
+            </li>`;
+          }).join("")}
+        </ol>
+      </section>`).join("")}
+    </section>`,
+  });
+  await writePage("/dong-thoi-gian/", timelinePage);
+
+  const footprintsPage = layout({
+    title: "Dấu chân của tôi",
+    description: "Một tấm bản đồ nhỏ về những Nẻo và bài thơ người đọc đã đi qua.",
+    active: "journey",
+    canonicalPath: "/dau-chan-cua-toi/",
+    scripts: ["/assets/footprints.js"],
+    content: `<header class="page-heading footprints-heading shell">
+      <p class="eyebrow">Một tấm bản đồ nhỏ</p>
+      <h1>Dấu chân của tôi</h1>
+      <p>Đây không phải thành tích. Chỉ là một cách nhìn lại những Nẻo và bài thơ mình đã đi qua trên trình duyệt này.</p>
+    </header>
+    <section class="footprints shell" data-footprints-page>
+      <ol class="footprint-summary" aria-label="Số dấu chân theo Nẻo">
+        ${PATHS.map((poemPath) => `<li data-footprint-summary="${poemPath.slug}"><a href="${pathUrl(poemPath.slug)}"><span>${escapeHtml(poemPath.name)}</span><strong data-footprint-count>0 dấu chân</strong></a></li>`).join("")}
+      </ol>
+      <div class="footprint-history">
+        <div class="footprint-history__heading">
+          <h2>Những bài đã đi qua</h2>
+          <button type="button" data-clear-footprints disabled>Xóa lịch sử</button>
+        </div>
+        <p class="footprints-empty" data-footprints-empty aria-live="polite">Chưa có dấu chân nào. Mỗi bài thơ bạn mở sẽ để lại một dấu nhỏ ở đây.</p>
+        <ol class="footprint-list" data-footprint-list aria-live="polite"></ol>
+      </div>
+      <noscript>Trình duyệt cần bật JavaScript để lưu dấu chân ngay trên thiết bị này.</noscript>
+    </section>`,
+  });
+  await writePage("/dau-chan-cua-toi/", footprintsPage);
+
+  for (const poem of poems) {
+    const footstep = chooseNextFootstep(poem, poems);
+    const nextPoem = footstep?.candidate;
+    const nextPath = nextPoem ? PATH_BY_SLUG.get(nextPoem.path) : null;
+    const footstepNavigation = nextPoem ? `<nav class="footstep-next" aria-label="Bài thơ gợi ý tiếp theo">
+          <p class="footstep-next__label">Bước tiếp</p>
+          <a data-next-footstep href="${url(`/tho/${nextPoem.slug}/`)}">${escapeHtml(nextPoem.title)} <span aria-hidden="true">→</span></a>
+          <p class="footstep-next__note">Theo dấu chân này${nextPath ? ` · ${escapeHtml(nextPath.name)}` : ""}</p>
         </nav>` : "";
     const poemPage = layout({
       title: poem.title,
@@ -251,19 +398,21 @@ async function build() {
       type: "article",
       publishedTime: poem.date,
       canonicalPath: `/tho/${poem.slug}/`,
-      scripts: ["/assets/poem.js"],
-      content: `<article class="poem-reader shell">
+      scripts: ["/assets/poem.js", "/assets/footprints.js"],
+      content: `<article class="poem-reader shell" data-footprint-poem data-poem-slug="${escapeHtml(poem.slug)}" data-poem-path="${escapeHtml(poem.path || "")}" data-poem-title="${escapeHtml(poem.title)}" data-poem-url="${url(`/tho/${poem.slug}/`)}" data-poem-date="${escapeHtml(poem.date)}">
         <header class="poem-reader__header">
           <a class="back-link" href="${url("/tho/")}"><span aria-hidden="true">←</span> Tất cả bài thơ</a>
           <h1>${escapeHtml(poem.title)}</h1>
           <p class="poem-date"><span>Sáng tác</span><time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time></p>
+          ${poemPathLinks(poem)}
         </header>
+        ${renderPoemFigure(poem, { resolveUrl: url, escape: escapeHtml })}
         <div class="poem-body">${renderPoemBody(poem.body)}
           <div class="seal-row"><img class="author-seal poem-seal" src="${url("/assets/nguyen-anh-seal.png")}" alt=""></div>
         </div>
         <footer class="poem-ending">
           <button class="poem-share" type="button" data-share-poem data-share-title="${escapeHtml(`${poem.title} — Nguyên Anh`)}" aria-live="polite">Gửi bài thơ ni cho ai đó <span aria-hidden="true">→</span></button>
-          ${poemNavigation}
+          ${footstepNavigation}
         </footer>
       </article>`,
     });
@@ -274,6 +423,7 @@ async function build() {
     title: "Giới thiệu",
     description: "Đôi lời về Nguyên Anh và góc nhỏ dành cho thơ.",
     active: "about",
+    canonicalPath: "/gioi-thieu/",
     content: `<article class="about shell">
       <header>
         <p class="eyebrow">Đôi lời</p>
@@ -304,7 +454,7 @@ async function build() {
   await writeFile(path.join(output, "404.html"), notFoundPage);
   await writeFile(path.join(output, ".nojekyll"), "");
 
-  console.log(`Đã tạo ${poems.length + 4} trang tĩnh từ ${poems.length} bài thơ.`);
+  console.log(`Đã tạo website tĩnh từ ${poems.length} bài thơ và ${PATHS.length} Nẻo.`);
 }
 
 await build();

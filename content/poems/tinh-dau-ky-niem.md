@@ -3,6 +3,8 @@ title: "TÌNH ĐẦU KỶ NIỆM"
 date: "2019-06-25"
 excerpt: "Tình đầu có thể vụng dại và nhiều dỗi hờn, nhưng khi đã đi qua, nó đẹp nhất khi được giữ như một kỷ niệm trong trẻo."
 featured: false
+path: "neo-tinh"
+themes: ["tình đầu","học trò","kỷ niệm","buông bi lụy"]
 ---
 
 Tình đầu như giấc mơ tiên

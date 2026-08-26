@@ -3,6 +3,9 @@ title: "THANH NHÀN"
 date: "2021-01-27"
 excerpt: "Hoa tàn rồi nở, mùa cũ rồi qua; giữa vòng đổi thay ấy, thi nhân chọn một bước đi thanh nhàn."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-que"
+themes: ["vườn quê","hoa","mùa","thoát trầm mê"]
 ---
 
 Đông đến thu đi xuân lại về

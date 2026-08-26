@@ -3,6 +3,9 @@ title: "CHÂN TRẦN DẪN LỐI"
 date: "2018-03-21"
 excerpt: "Bước chân trần đi qua bao lớp mê mờ, để đến một lúc nhận ra con đường trở về vốn đã chờ từ lâu."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["chân trần","luân chuyển","duyên xưa","đường về"]
 ---
 
 Bước chân trần muôn nẻo

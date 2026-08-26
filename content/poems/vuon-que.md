@@ -3,6 +3,9 @@ title: "VƯỜN QUÊ"
 date: "2022-06-05"
 excerpt: "Dẫu nắng, khu vườn vẫn đầy hoa; giữa sắc lá bình dị, người thơ tìm thấy một chỗ để trở về là chính mình."
 featured: false
+path: "neo-que"
+secondary_path: "neo-thanh-nhan"
+themes: ["vườn","hoa","thư thái","thôn quê"]
 ---
 
 Vườn nhà dù nắng vẫn đầy hoa

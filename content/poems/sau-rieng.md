@@ -3,6 +3,9 @@ title: "SẦU... RIÊNG!"
 date: "2019-06-11"
 excerpt: "Mượn trái sầu riêng vừa gai góc vừa nặng hương, bài thơ vui mà thấm về chuyện người yêu, kẻ ghét và cái duyên riêng."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tinh"
+themes: ["cái tôi","khen chê","duyên","ẩn dụ trái cây"]
 ---
 
 Sầu riêng mang nỗi sầu riêng

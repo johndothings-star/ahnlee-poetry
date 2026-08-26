@@ -3,6 +3,9 @@ title: "NHÀ TRÊN NÚI"
 date: "2019-10-14"
 excerpt: "Một con đường nhỏ dẫn tới ngôi nhà khuất trong cây xanh, nơi tiếng cười xa xa gợi cảm giác về những điều đang hồi sinh."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-tinh"
+themes: ["ngôi nhà","núi","tiếng cười","hồi sinh"]
 ---
 
 Con đường nhỏ đi tới ngôi nhà nhỏ

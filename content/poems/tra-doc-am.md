@@ -3,6 +3,9 @@ title: "TRÀ ĐỘC ẨM"
 date: "2021-05-28"
 excerpt: "Một mình bên cây, củ và bàn trà nhỏ, người thơ tìm thấy sự đủ đầy trong một góc quê rất ít người."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-tam"
+themes: ["trà","một mình","thôn quê","tìm mình"]
 ---
 
 Một cây, một củ, một bàn trà

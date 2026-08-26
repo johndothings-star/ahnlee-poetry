@@ -3,6 +3,9 @@ title: "SƯƠNG NÚI"
 date: "2021-03-28"
 excerpt: "Sương phủ rừng và phố, người đi vẫn rảo bước tìm đường về nơi cũ còn người xưa ngóng đợi."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-tam"
+themes: ["núi","sương","người xưa","chờ gặp"]
 ---
 
 Lên rừng ngắm phố, phố mù sương

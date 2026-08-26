@@ -3,6 +3,9 @@ title: "BIỂN GỌI"
 date: "2016-05-21"
 excerpt: "Biển vẫn xanh, vẫn dạt dào sóng, chỉ chờ con người trở lại ôm lấy một khoảng trời từng thân thuộc."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tinh"
+themes: ["biển Quảng Bình","môi trường","quê hương","lời gọi"]
 ---
 
 Người ơi Biển thấy cô đơn

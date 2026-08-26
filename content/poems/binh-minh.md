@@ -3,6 +3,9 @@ title: "BÌNH MINH"
 date: "2010-01-01"
 excerpt: "Một sớm bờ đê phủ sương, nơi ký ức tình thơ non trẻ theo nắng mới mà trở về."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-phieu-du"
+themes: ["ký ức","tình thơ","bình minh","tuổi trẻ"]
 ---
 
 Bờ đê đón bình minh

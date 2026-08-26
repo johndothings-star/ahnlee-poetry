@@ -3,6 +3,9 @@ title: "RU TẤT BẬT!"
 date: "2020-02-08"
 excerpt: "Trở về làng quê thanh bình, người thơ muốn ru những tất bật của đời ngủ yên để được sống lại chút ngây thơ cũ."
 featured: false
+path: "neo-que"
+secondary_path: "neo-thanh-nhan"
+themes: ["làng quê","tuổi thơ","bình yên","nghỉ ngơi"]
 ---
 
 Ta lại về nơi thanh bình ta ở

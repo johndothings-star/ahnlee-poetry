@@ -3,6 +3,9 @@ title: "CHÉN ĐẤT - BÌNH TRÀ"
 date: "2017-07-04"
 excerpt: "Giữa bao món quý đẹp mắt, một chén đất đơn sơ nhắc người thưởng trà nhớ lại điều làm nên vị thật."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-doi"
+themes: ["trà","giản dị","sang-hèn","giá trị thật"]
 ---
 
 Tinh mơ kể chuyện chén trà

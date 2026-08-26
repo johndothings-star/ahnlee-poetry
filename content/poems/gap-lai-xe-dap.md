@@ -3,6 +3,9 @@ title: "GẶP LẠI XE ĐẠP"
 date: "2024-08-09"
 excerpt: "Gặp lại chiếc xe đạp cũ cũng như gặp lại một người bạn lâu năm: bỡ ngỡ một chút rồi thân quen lại đầy."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-tinh"
+themes: ["xe đạp","kỷ niệm","thân thuộc","gặp lại"]
 ---
 
 Xe đạp ơi... đã gặp lại em rồi

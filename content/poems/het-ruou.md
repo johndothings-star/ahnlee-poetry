@@ -3,6 +3,9 @@ title: "HẾT RƯỢU"
 date: "2019-03-07"
 excerpt: "Một chút dí dỏm về những cuộc vui sau khi rượu thuốc đã lui xa, còn lại bạn bè, nước ngọt và tiếng cười."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-tam"
+themes: ["bạn bè","bỏ rượu thuốc","đời thường","tu dưỡng"]
 ---
 
 Ngày xưa cũng lắm rượu chè

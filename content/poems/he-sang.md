@@ -3,6 +3,8 @@ title: "HÈ SANG"
 date: "2019-05-08"
 excerpt: "Tháng tư khép lại, tháng năm bước tới; một khoảnh khắc chuyển mùa ngắn mà đầy ánh sáng."
 featured: false
+path: "neo-phieu-du"
+themes: ["mùa hạ","chuyển mùa","trăng","nắng"]
 ---
 
 Tháng tư nhường chỗ tháng năm

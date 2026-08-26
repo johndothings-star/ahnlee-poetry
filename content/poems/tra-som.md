@@ -3,6 +3,9 @@ title: "TRÀ SỚM"
 date: "2022-11-05"
 excerpt: "Tinh mơ, trà thơm và hoa nở trong vườn quê tạo nên một khoảng bình yên đủ làm lòng nhẹ tênh."
 featured: false
+path: "neo-thanh-nhan"
+secondary_path: "neo-que"
+themes: ["trà","buổi sớm","vườn quê","bình yên"]
 ---
 
 Tinh mơ thưởng thức trà thơm

@@ -3,6 +3,9 @@ title: "NỢ!"
 date: "2011-03-01"
 excerpt: "Đời người như một cuộc vay mượn: thân thể, cảm xúc, giấc mơ và cả những nợ duyên cuối cùng đều cần một ngày trả lại."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["nợ đời","sinh tử","hoàn nguyên","nhân sinh"]
 ---
 
 Tôi đi vay mượn cuộc đời

@@ -3,6 +3,9 @@ title: "ĐÊM VẮNG"
 date: "1998-01-01"
 excerpt: "Một đêm quê rất vắng, nơi sương, trăng, tiếng ếch và tiếng cuốc cùng khơi dậy nỗi lòng khó gọi thành tên."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-phieu-du"
+themes: ["cô đơn","đêm","thiên nhiên","tiếng lòng"]
 ---
 
 Đêm khuya hơi lạnh xuống dần

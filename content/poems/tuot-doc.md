@@ -3,6 +3,9 @@ title: "TUỘT DỐC!?"
 date: "2010-01-01"
 excerpt: "Giông gió, lũ lụt và đất lở được nhìn như tiếng cảnh báo lớn về một sự trượt dốc sâu hơn trong đời sống con người."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["thiên tai","đạo đức","cảnh tỉnh","con người"]
 ---
 
 Khi lòng mây nặng trĩu u buồn

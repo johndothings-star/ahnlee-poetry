@@ -3,6 +3,9 @@ title: "QUÊ TÔI NAY KHÔNG BÃO!"
 date: "2018-12-03"
 excerpt: "Sau những mùa giông gió, bài thơ nhìn quê nhà bằng một niềm tin rằng mây bụi rồi cũng tan để nhường chỗ cho nắng xuân."
 featured: false
+path: "neo-que"
+secondary_path: "neo-tam"
+themes: ["quê hương","bão","chuyển mùa","hy vọng"]
 ---
 
 Xưa kia trời nổi bão giông

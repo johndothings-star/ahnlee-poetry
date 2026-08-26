@@ -3,6 +3,9 @@ title: "PHIÊU MINH"
 date: "2025-10-15"
 excerpt: "Khi lòng không còn vướng víu, tâm hồn sẽ trở nên trong sáng."
 featured: false
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["phiêu bồng","mê lạc","thời gian","trở về","tỉnh thức","sơn thủy","minh quang"]
 ---
 
 Thả hồn - một chút phiêu bồng,

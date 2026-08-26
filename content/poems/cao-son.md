@@ -3,6 +3,9 @@ title: "CAO SƠN"
 date: "2025-10-09"
 excerpt: "Bước lên non cao mới thấy được vẻ đẹp của thiên nhiên thơ mộng."
 featured: false
+path: "neo-phieu-du"
+secondary_path: "neo-que"
+themes: ["núi cao","mây","gió","suối","thôn nữ","miền sơn cước","cảnh sắc"]
 ---
 
 Non cao phủ bóng mây vờn

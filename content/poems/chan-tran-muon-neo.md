@@ -3,6 +3,9 @@ title: "CHÂN TRẦN MUÔN NẺO"
 date: "2020-03-26"
 excerpt: "Một hành trình chân trần qua núi, sông, bể dâu và duyên xưa, để cuối cùng tìm lại dấu chân của chính mình."
 featured: true
+path: "neo-tam"
+secondary_path: "neo-phieu-du"
+themes: ["hành trình","duyên xưa","trở về","hoàn nguyên"]
 ---
 
 Chân trần muôn nẻo phiêu diêu

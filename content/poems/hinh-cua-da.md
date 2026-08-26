@@ -3,6 +3,9 @@ title: "HÌNH CỦA ĐÁ"
 date: "2019-05-30"
 excerpt: "Đá nằm im, người nhìn lại thấy đủ hình hài; cuối cùng không rõ ai đang tưởng tượng ai trong cuộc gặp thú vị ấy."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["đá","tưởng tượng","luân hồi","chờ thời"]
 ---
 
 Đá nằm im chẳng nói cười

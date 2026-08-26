@@ -3,6 +3,9 @@ title: "LẶNG LẼ NHÌN XEM!"
 date: "2018-12-03"
 excerpt: "Lặng nhìn người, nhìn đời rồi nhìn lại chính mình, bài thơ liên tiếp đặt câu hỏi về điều ta đang theo đuổi."
 featured: false
+path: "neo-doi"
+secondary_path: "neo-tam"
+themes: ["công danh","nhân sinh","tự xét","bình yên"]
 ---
 
 Lặng lẽ nhìn xem thấy điều gì

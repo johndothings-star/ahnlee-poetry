@@ -3,6 +3,9 @@ title: "20 NĂM - NGÀY TRỞ VỀ"
 date: "2018-07-11"
 excerpt: "Hai mươi năm đủ để người đổi khác, nhưng có những nghĩa tình thầy bạn vẫn nguyên vẹn khi ta trở về."
 featured: false
+path: "neo-tinh"
+secondary_path: "neo-que"
+themes: ["hội khóa","thầy trò","bạn bè","ký ức"]
 ---
 
 Hai mươi năm, một chặng đường

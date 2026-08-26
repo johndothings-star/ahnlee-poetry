@@ -3,6 +3,9 @@ title: "MƠ HIÊN NHÀ HOA NỞ!?"
 date: "2020-04-01"
 excerpt: "Giữa vòng quay ngày đêm không ngừng, đôi khi ước mong chỉ là một sớm mai bình dị: hiên nhà có hoa nở."
 featured: false
+path: "neo-que"
+secondary_path: "neo-thanh-nhan"
+themes: ["mái nhà","bình yên","hoa","giấc mơ"]
 ---
 
 Tôi đứng yên mà Trái Đất cứ quay
