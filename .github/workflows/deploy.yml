@@ -1,3 +1,4 @@
+# Static GitHub Pages deployment for the current Markdown build in dist/.
 name: Deploy to GitHub Pages
 
 on:
