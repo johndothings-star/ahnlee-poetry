@@ -1,7 +1,7 @@
 import { access, cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, parseGuestPoemFrontmatter, renderPoemFigure } from "./content.mjs";
+import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, parseGuestPoemFrontmatter, poemSocialDescription, renderPoemFigure } from "./content.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(process.env.BUILD_OUTPUT_DIRECTORY || path.join(root, "dist"));
@@ -219,9 +219,23 @@ function renderGuestNote(label, value) {
   return `<p><span>${label}</span>${escapeHtml(value).replaceAll("\n", "<br>")}</p>`;
 }
 
-function layout({ title, description, documentTitle = "", active = "", type = "website", publishedTime = "", canonicalPath = "", scripts = [], content }) {
+function layout({
+  title,
+  description,
+  documentTitle = "",
+  active = "",
+  type = "website",
+  publishedTime = "",
+  canonicalPath = "",
+  socialImagePath = "/assets/og-preview.png",
+  socialImageAlt = "Nguyên Anh — Thơ, và những khoảng lặng.",
+  socialImageWidth = 1200,
+  socialImageHeight = 630,
+  scripts = [],
+  content,
+}) {
   const pageTitle = documentTitle || (title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`);
-  const socialImage = `${siteOrigin}${url("/assets/og-preview.png")}`;
+  const socialImage = socialImagePath ? `${siteOrigin}${url(socialImagePath)}` : "";
   const canonicalUrl = canonicalPath ? `${siteOrigin}${url(canonicalPath)}` : "";
   return `<!doctype html>
 <html lang="vi">
@@ -236,16 +250,16 @@ function layout({ title, description, documentTitle = "", active = "", type = "w
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(description)}">
   ${canonicalUrl ? `<meta property="og:url" content="${escapeHtml(canonicalUrl)}">` : ""}
-  ${socialImage ? `<meta property="og:image" content="${socialImage}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Nguyên Anh — Thơ, và những khoảng lặng.">` : ""}
+  ${socialImage ? `<meta property="og:image" content="${escapeHtml(socialImage)}">
+  ${socialImageWidth ? `<meta property="og:image:width" content="${socialImageWidth}">` : ""}
+  ${socialImageHeight ? `<meta property="og:image:height" content="${socialImageHeight}">` : ""}
+  <meta property="og:image:alt" content="${escapeHtml(socialImageAlt)}">` : ""}
   ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml(publishedTime)}">` : ""}
   <meta name="twitter:card" content="${socialImage ? "summary_large_image" : "summary"}">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
-  ${socialImage ? `<meta name="twitter:image" content="${socialImage}">
-  <meta name="twitter:image:alt" content="Nguyên Anh — Thơ, và những khoảng lặng.">` : ""}
+  ${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}">
+  <meta name="twitter:image:alt" content="${escapeHtml(socialImageAlt)}">` : ""}
   <title>${escapeHtml(pageTitle)}</title>
   ${canonicalUrl ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">` : ""}
   <script>try{const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
@@ -567,6 +581,7 @@ async function build() {
     const previousPoem = footsteps?.previous;
     const nextPoem = footsteps?.candidate;
     const secondaryPath = PATH_BY_SLUG.get(poem.secondary_path);
+    const description = poemSocialDescription(poem);
     const footstepNavigation = previousPoem && nextPoem ? `<nav class="footstep-next" aria-label="Bước trước và Bước tiếp trong Nẻo chính">
           <a class="footstep-next__item" data-previous-footstep href="${url(`/tho/${previousPoem.slug}/`)}">
             <span class="footstep-next__label"><span aria-hidden="true">←</span> Bước trước</span>
@@ -580,11 +595,15 @@ async function build() {
     const secondaryNavigation = secondaryPath ? `<a class="footstep-crossroad" href="${pathUrl(secondaryPath.slug)}">Dấu chân còn có: ${escapeHtml(secondaryPath.name)} <span aria-hidden="true">→</span></a>` : "";
     const poemPage = layout({
       title: poem.title,
-      description: poem.excerpt,
+      description,
       active: "poems",
       type: "article",
       publishedTime: poem.date,
       canonicalPath: `/tho/${poem.slug}/`,
+      socialImagePath: poem.image || "/assets/og-preview.png",
+      socialImageAlt: poem.image ? poem.image_alt : "Nguyên Anh — Thơ, và những khoảng lặng.",
+      socialImageWidth: poem.image ? (poem.image_dimensions?.width || null) : 1200,
+      socialImageHeight: poem.image ? (poem.image_dimensions?.height || null) : 630,
       scripts: ["/assets/poem.js", "/assets/footprints.js"],
       content: `<article class="poem-reader shell" data-footprint-poem data-poem-slug="${escapeHtml(poem.slug)}" data-poem-path="${escapeHtml(poem.path || "")}" data-poem-title="${escapeHtml(poem.title)}" data-poem-url="${url(`/tho/${poem.slug}/`)}" data-poem-date="${escapeHtml(poem.date)}">
         <header class="poem-reader__header">

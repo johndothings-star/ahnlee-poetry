@@ -64,7 +64,7 @@ function parseInlineList(value, fileName, key) {
 
 export function parseFrontmatter(source, fileName = "Bài thơ", options = {}) {
   const {
-    requiredFields = ["title", "date", "excerpt"],
+    requiredFields = ["title", "date"],
     validateJourney = true,
   } = options;
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -134,6 +134,16 @@ export function parseGuestPoemFrontmatter(source, fileName = "Bài thơ khách")
   }
   if (!parsed.body) throw new Error(`${fileName}: nội dung bài thơ đang trống.`);
   return parsed;
+}
+
+export function poemSocialDescription(poem, maxLength = 180) {
+  if (typeof poem.excerpt === "string" && poem.excerpt.trim()) return poem.excerpt.trim();
+  const text = String(poem.body || "").replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+
+  const clipped = text.slice(0, maxLength - 1).trimEnd();
+  const wordBoundary = clipped.lastIndexOf(" ");
+  return `${wordBoundary >= 120 ? clipped.slice(0, wordBoundary) : clipped}…`;
 }
 
 export function chooseNextFootstep(poem, poems) {

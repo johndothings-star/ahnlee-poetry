@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { chooseRandomIndex, normalizeSearch, poemMatches } from "../src/archive.js";
 import { countFootprintsByPath, normalizeFootprints } from "../src/footprints.js";
-import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, parseGuestPoemFrontmatter, renderPoemFigure } from "../scripts/content.mjs";
+import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, parseGuestPoemFrontmatter, poemSocialDescription, renderPoemFigure } from "../scripts/content.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "dist");
@@ -41,8 +41,8 @@ function openingTagWithClass(html, className) {
 async function poemRecords() {
   const files = (await readdir(poemsDirectory)).filter((file) => file.endsWith(".md"));
   return Promise.all(files.map(async (file) => {
-    const { metadata } = parseFrontmatter(await readFile(path.join(poemsDirectory, file), "utf8"), file);
-    return { ...metadata, slug: file.replace(/\.md$/, "") };
+    const { metadata, body } = parseFrontmatter(await readFile(path.join(poemsDirectory, file), "utf8"), file);
+    return { ...metadata, body, slug: file.replace(/\.md$/, "") };
   }));
 }
 
@@ -119,6 +119,17 @@ test("frontmatter và renderer hỗ trợ bài không ảnh, một ảnh hoặc 
   assert.throws(() => parseFrontmatter(`---\n${common}\nimage: "/assets/poems/thieu-alt.jpg"\n---\nThơ`, "missing-alt.md"), /image_alt/);
   assert.throws(() => parseFrontmatter(`---\n${common}\ngallery: ["/assets/poems/01.jpg"]\n---\nThơ`, "gallery-without-cover.md"), /image chính/);
   assert.throws(() => parseFrontmatter(`---\ntitle: "Sai Nẻo"\ndate: "2026-08-26"\nexcerpt: "Sai."\npath: "neo-khong-co"\nthemes: ["thử"]\n---\nThơ`, "invalid-path.md"), /path .* không hợp lệ/);
+});
+
+test("mô tả social ưu tiên excerpt và fallback ngắn gọn từ thân thơ", () => {
+  assert.equal(poemSocialDescription({ excerpt: "  Một đoạn dẫn riêng.  ", body: "Không dùng câu này." }), "Một đoạn dẫn riêng.");
+  const withoutExcerpt = parseFrontmatter(`---\ntitle: "Không có excerpt"\ndate: "2026-08-27"\npath: "neo-tam"\nthemes: ["tĩnh lặng"]\n---\nMột dòng thơ mở đầu.`, "without-excerpt.md");
+  assert.equal(withoutExcerpt.metadata.excerpt, undefined);
+  assert.equal(poemSocialDescription(withoutExcerpt), "Một dòng thơ mở đầu.");
+  const fallback = poemSocialDescription({ body: `${"Một dòng thơ rất dài ".repeat(14)}khép lại.` });
+  assert.ok(fallback.length >= 120 && fallback.length <= 180);
+  assert.ok(fallback.endsWith("…"));
+  assert.doesNotMatch(fallback, /\s{2,}|\r|\n/);
 });
 
 test("frontmatter thơ khách độc lập với sáu Nẻo và hỗ trợ metadata tùy chọn", async () => {
@@ -256,10 +267,12 @@ test("build thử bài khách có ảnh và không ảnh mà không nhập vào 
 test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file Markdown hiện có", async () => {
   const records = await poemRecords();
   const archive = await page("tho");
+  let withSocialImage = 0;
+  let withDefaultSocialImage = 0;
   assert.equal((archive.match(/data-poem-item(?:\s|>)/g) || []).length, records.length);
 
   for (const poem of records) {
-    for (const key of ["title", "date", "excerpt"]) assert.ok(poem[key], `${poem.slug}: thiếu ${key}`);
+    for (const key of ["title", "date"]) assert.ok(poem[key], `${poem.slug}: thiếu ${key}`);
     if (poem.path) {
       assert.ok(PATH_BY_SLUG.has(poem.path), `${poem.slug}: path không hợp lệ`);
       assert.ok(Array.isArray(poem.themes) && poem.themes.length > 0, `${poem.slug}: thiếu themes`);
@@ -273,11 +286,23 @@ test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file M
 
     const html = await page(path.join("tho", poem.slug));
     const title = `${poem.title} — Nguyên Anh`;
+    const description = poemSocialDescription(poem);
+    const canonicalUrl = `https://johndothings-star.github.io${prefix}/tho/${poem.slug}/`;
+    const socialImage = poem.image
+      ? `https://johndothings-star.github.io${prefix}${poem.image}`
+      : `https://johndothings-star.github.io${prefix}/assets/og-preview.png`;
     assert.ok(html.includes(`<title>${escapeHtml(title)}</title>`), `${poem.slug}: title không khớp`);
-    assert.ok(html.includes(`<meta name="description" content="${escapeHtml(poem.excerpt)}">`), `${poem.slug}: description không khớp`);
+    assert.ok(html.includes(`<meta name="description" content="${escapeHtml(description)}">`), `${poem.slug}: description không khớp`);
     assert.ok(html.includes(`<meta property="og:title" content="${escapeHtml(title)}">`), `${poem.slug}: Open Graph title không khớp`);
-    assert.ok(html.includes(`<meta property="og:description" content="${escapeHtml(poem.excerpt)}">`), `${poem.slug}: Open Graph description không khớp`);
+    assert.ok(html.includes(`<meta property="og:description" content="${escapeHtml(description)}">`), `${poem.slug}: Open Graph description không khớp`);
+    assert.ok(html.includes(`<meta property="og:image" content="${escapeHtml(socialImage)}">`), `${poem.slug}: Open Graph image không khớp`);
+    assert.ok(html.includes(`<meta property="og:url" content="${canonicalUrl}">`), `${poem.slug}: Open Graph URL không khớp`);
     assert.ok(html.includes('<meta property="og:type" content="article">'), `${poem.slug}: thiếu loại article`);
+    assert.ok(html.includes(`<meta name="twitter:title" content="${escapeHtml(title)}">`), `${poem.slug}: Twitter title không khớp`);
+    assert.ok(html.includes(`<meta name="twitter:description" content="${escapeHtml(description)}">`), `${poem.slug}: Twitter description không khớp`);
+    assert.ok(html.includes(`<meta name="twitter:image" content="${escapeHtml(socialImage)}">`), `${poem.slug}: Twitter image không khớp`);
+    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'), `${poem.slug}: Twitter card không khớp`);
+    assert.ok(html.includes(`<link rel="canonical" href="${canonicalUrl}">`), `${poem.slug}: canonical không khớp`);
     assert.ok(html.includes(`<meta property="article:published_time" content="${escapeHtml(poem.date)}">`), `${poem.slug}: thiếu ngày metadata`);
     assert.ok(html.includes(`data-poem-slug="${escapeHtml(poem.slug)}"`), `${poem.slug}: thiếu dữ liệu dấu chân`);
     assert.ok(html.includes(`<time datetime="${escapeHtml(poem.date)}">`), `${poem.slug}: thiếu ngày hiển thị`);
@@ -286,6 +311,7 @@ test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file M
 
     if (poem.path) assert.ok(html.includes(`href="${prefix}/neo/${PATH_BY_SLUG.get(poem.path).route}/"`), `${poem.slug}: thiếu link Nẻo chính`);
     if (poem.image) {
+      withSocialImage += 1;
       assert.match(html, /<section class="poem-images"/);
       assert.ok(html.includes(`src="${prefix}${poem.image}"`), `${poem.slug}: sai đường dẫn ảnh`);
       const imageFile = path.join(output, poem.image.replace(/^\/+/, ""));
@@ -299,9 +325,12 @@ test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file M
         assert.equal((await stat(galleryFile)).isFile(), true, `${poem.slug}: ảnh gallery chưa được copy`);
       }
     } else {
+      withDefaultSocialImage += 1;
       assert.doesNotMatch(html, /<section class="poem-images"/);
     }
   }
+  assert.ok(withSocialImage > 0, "thiếu bài có ảnh để kiểm tra ảnh social riêng");
+  assert.ok(withDefaultSocialImage > 0, "thiếu bài không ảnh để kiểm tra social image fallback");
 });
 
 test("sáu trang Nẻo giữ đúng thứ tự, lời tựa và tự đếm bài", async () => {
