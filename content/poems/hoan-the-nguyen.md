@@ -3,7 +3,7 @@ title: "HOÀN THỆ NGUYỆN"
 date: "2012-11-09"
 excerpt: "Giữa cõi mê mờ, nhớ lại nguồn cội và thệ nguyện từ xa xưa, lấy Pháp làm thuyền, kiên định tu luyện để hoàn thành sứ mệnh và trở về bản nguyên."
 featured: false
-path: "neo-tâm"
+path: "neo-tam"
 secondary_path: ""
 themes: ["thệ nguyện","tu luyện","Chân-Thiện-Nhẫn","hồi bản nguyên","độ chúng sinh","thiên duyên","từ bi","cố hương"]
 ---

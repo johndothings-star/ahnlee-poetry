@@ -3,7 +3,7 @@ title: "TRỌN THỀ XƯA"
 date: "2016-05-20"
 excerpt: "Từ chỗ lãng quên lời thệ nguyện giữa đường xa, một lần nhớ lại duyên xưa để giữ vững niềm tin, vượt gió mưa và hướng về cố hương."
 featured: false
-path: "neo-tâm"
+path: "neo-tam"
 secondary_path: "neo-que"
 themes: ["thệ nguyện","kiên định","thiên duyên","từ bi","cố hương"]
 ---

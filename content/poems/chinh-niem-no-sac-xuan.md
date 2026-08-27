@@ -3,7 +3,7 @@ title: "CHÍNH NIỆM NỞ SẮC XUÂN"
 date: "2015-08-14"
 excerpt: "Giữa thời mạt kiếp, chính niệm dẫn đường, người tu hướng tâm vào trong, kiên định đề thăng để hoàn thành sứ mệnh cứu độ, đón sắc xuân trở lại."
 featured: false
-path: "neo-tâm"
+path: "neo-tam"
 secondary_path: ""
 themes: ["chính niệm","chúng sinh","Đại Pháp","tu luyện","đề thăng","mạt kiếp"]
 ---
