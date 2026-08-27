@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-doi"
 themes: ["nỗi nhớ","xa cách","mây gió","cánh chim","bạn hữu"]
+image: "/assets/poems/nho/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NHỚ!"
 ---
 
 Tôi hỏi mây sao cứ mãi hững hờ
