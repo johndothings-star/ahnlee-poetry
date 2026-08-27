@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["mẹ","vườn","gia đình","tuổi con"]
+image: "/assets/poems/goc-vuon/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GÓC VƯỜN"
 ---
 
 Bình yên một góc xanh tươi
