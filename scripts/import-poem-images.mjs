@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -9,24 +10,34 @@ const assetsDirectory = path.join(root, "src", "assets", "poems");
 const sourceDirectory = path.resolve(process.argv[2] || "D:\\GitHub\\anh-tho");
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
-// Chỉ những sai khác tên đã xác nhận rõ ràng mới được ánh xạ thủ công.
-const manualAliases = new Map([
-  ["cao-son-co-moc", "co-moc-cao-son"],
-  ["du-xuan-ha-noi", "du-xuan-ha-hoi"],
-  ["phuc-duyen-sen-chan-thien-nhan", "phuc-duyen-sen-chan-thien-nhan"],
-]);
-
 function parseSourceName(fileName) {
   const extension = path.extname(fileName).toLowerCase();
   if (!supportedExtensions.has(extension)) return null;
   const stem = path.basename(fileName, path.extname(fileName)).toLowerCase();
-  const match = stem.match(/^(.*)-(?:image(\d+)?|iamge)$/);
+  const match = stem.match(/^(.*)-image(\d+)?$/);
   if (!match) return null;
   return {
     base: match[1],
     number: match[2] ? Number(match[2]) : null,
     extension,
   };
+}
+
+async function fileHash(file) {
+  return createHash("sha256").update(await readFile(file)).digest("hex");
+}
+
+async function collectAssetHashes(directory) {
+  const hashes = new Set();
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      for (const hash of await collectAssetHashes(target)) hashes.add(hash);
+    } else if (entry.isFile() && supportedExtensions.has(path.extname(entry.name).toLowerCase())) {
+      hashes.add(await fileHash(target));
+    }
+  }
+  return hashes;
 }
 
 function replaceImageFrontmatter(source, { image, imageAlt, gallery }) {
@@ -57,7 +68,7 @@ for (const file of poemFiles) {
   const source = await readFile(path.join(poemsDirectory, file), "utf8");
   const slug = file.replace(/\.md$/, "");
   const { metadata } = parseFrontmatter(source, file);
-  poems.set(slug, { file, source, title: metadata.title });
+  poems.set(slug, { file, source, metadata, title: metadata.title });
 }
 
 const sourceFiles = (await readdir(sourceDirectory, { withFileTypes: true }))
@@ -67,30 +78,37 @@ const sourceFiles = (await readdir(sourceDirectory, { withFileTypes: true }))
 
 const groups = new Map();
 const unmatched = [];
-const manualMappings = new Map();
+let alreadyImported = 0;
+const importedHashes = await collectAssetHashes(assetsDirectory);
 
 for (const file of sourceFiles) {
   const parsed = parseSourceName(file);
   if (!parsed) {
+    const extension = path.extname(file).toLowerCase();
+    if (supportedExtensions.has(extension) && importedHashes.has(await fileHash(path.join(sourceDirectory, file)))) {
+      alreadyImported += 1;
+      continue;
+    }
     unmatched.push(file);
     continue;
   }
 
-  let slug = poems.has(parsed.base) ? parsed.base : manualAliases.get(parsed.base);
-  if (!slug || !poems.has(slug)) {
+  const slug = parsed.base;
+  if (!poems.has(slug)) {
+    if (importedHashes.has(await fileHash(path.join(sourceDirectory, file)))) {
+      alreadyImported += 1;
+      continue;
+    }
     unmatched.push(file);
     continue;
-  }
-  if (slug !== parsed.base || file.toLowerCase().includes("-iamge")) {
-    manualMappings.set(parsed.base, slug);
   }
   const entries = groups.get(slug) || [];
   entries.push({ file, ...parsed });
   groups.set(slug, entries);
 }
 
-let importedImages = 0;
-let poemsWithMultipleImages = 0;
+let newImages = 0;
+let updatedPoems = 0;
 
 for (const [slug, entries] of groups) {
   entries.sort((first, second) => {
@@ -99,38 +117,76 @@ for (const [slug, entries] of groups) {
     return first.number - second.number || first.file.localeCompare(second.file, "vi");
   });
 
-  const [main, ...secondary] = entries;
   const targetDirectory = path.join(assetsDirectory, slug);
   await mkdir(targetDirectory, { recursive: true });
 
-  const mainName = `cover${main.extension}`;
-  await copyFile(path.join(sourceDirectory, main.file), path.join(targetDirectory, mainName));
-  const gallery = [];
-  for (let index = 0; index < secondary.length; index += 1) {
-    const item = secondary[index];
-    const targetName = `${String(index + 1).padStart(2, "0")}${item.extension}`;
-    await copyFile(path.join(sourceDirectory, item.file), path.join(targetDirectory, targetName));
-    gallery.push(`/assets/poems/${slug}/${targetName}`);
+  const poem = poems.get(slug);
+  let image = poem.metadata.image || "";
+  const gallery = [...(poem.metadata.gallery || [])];
+  const knownHashes = new Set();
+  const existingNames = new Set();
+  let nextGalleryIndex = 1;
+
+  for (const entry of await readdir(targetDirectory, { withFileTypes: true })) {
+    if (!entry.isFile()) continue;
+    existingNames.add(entry.name.toLowerCase());
+    const numbered = path.basename(entry.name, path.extname(entry.name)).match(/^(\d+)$/);
+    if (numbered) nextGalleryIndex = Math.max(nextGalleryIndex, Number(numbered[1]) + 1);
+    knownHashes.add(await fileHash(path.join(targetDirectory, entry.name)));
   }
 
-  const poem = poems.get(slug);
-  const updated = replaceImageFrontmatter(poem.source, {
-    image: `/assets/poems/${slug}/${mainName}`,
-    imageAlt: `Ảnh trải nghiệm gắn với bài thơ ${poem.title}`,
-    gallery,
-  });
-  await writeFile(path.join(poemsDirectory, poem.file), updated, "utf8");
-  importedImages += entries.length;
-  if (entries.length > 1) poemsWithMultipleImages += 1;
+  let addedForPoem = 0;
+  for (const item of entries) {
+    const source = path.join(sourceDirectory, item.file);
+    const hash = await fileHash(source);
+    if (knownHashes.has(hash)) {
+      alreadyImported += 1;
+      continue;
+    }
+
+    let targetName;
+    if (!image) {
+      targetName = `cover${item.extension}`;
+      if (existingNames.has(targetName.toLowerCase())) {
+        unmatched.push(`${item.file} (trùng tên đích nhưng khác nội dung)`);
+        continue;
+      }
+      image = `/assets/poems/${slug}/${targetName}`;
+    } else {
+      while ([...existingNames].some((name) => new RegExp(`^${String(nextGalleryIndex).padStart(2, "0")}\\.`).test(name))) {
+        nextGalleryIndex += 1;
+      }
+      targetName = `${String(nextGalleryIndex).padStart(2, "0")}${item.extension}`;
+      nextGalleryIndex += 1;
+      gallery.push(`/assets/poems/${slug}/${targetName}`);
+    }
+
+    await copyFile(source, path.join(targetDirectory, targetName));
+    existingNames.add(targetName.toLowerCase());
+    knownHashes.add(hash);
+    newImages += 1;
+    addedForPoem += 1;
+  }
+
+  if (addedForPoem) {
+    const updated = replaceImageFrontmatter(poem.source, {
+      image,
+      imageAlt: poem.metadata.image_alt || `Ảnh trải nghiệm gắn với bài thơ ${poem.title}`,
+      gallery,
+    });
+    if (updated !== poem.source) {
+      await writeFile(path.join(poemsDirectory, poem.file), updated, "utf8");
+      updatedPoems += 1;
+    }
+  }
 }
 
-console.log(`Đã nhập ${importedImages} ảnh cho ${groups.size} bài thơ.`);
-console.log(`Có ${poemsWithMultipleImages} bài dùng nhiều ảnh.`);
-if (manualMappings.size) {
-  console.log("Ánh xạ thủ công đã dùng:");
-  for (const [source, target] of manualMappings) console.log(`- ${source} -> ${target}`);
-}
+console.log(`Ảnh mới được thêm: ${newImages}`);
+console.log(`Bài thơ được cập nhật: ${updatedPoems}`);
+console.log(`Ảnh đã có, được bỏ qua: ${alreadyImported}`);
 if (unmatched.length) {
-  console.log("Ảnh chưa ghép vì tên chưa đủ chắc chắn:");
+  console.log("Ảnh không match, không được nhập:");
   for (const file of unmatched) console.log(`- ${file}`);
+} else {
+  console.log("Ảnh không match: 0");
 }
