@@ -1,12 +1,15 @@
 import { access, cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, renderPoemFigure } from "./content.mjs";
+import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, parseGuestPoemFrontmatter, renderPoemFigure } from "./content.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const output = path.join(root, "dist");
+const output = path.resolve(process.env.BUILD_OUTPUT_DIRECTORY || path.join(root, "dist"));
 const poemsDirectory = path.join(root, "content", "poems");
 const poemAssetsDirectory = path.join(root, "src", "assets", "poems");
+const guestPoemsDirectory = path.resolve(process.env.GUEST_POEMS_DIRECTORY || path.join(root, "content", "guest-poems"));
+const guestPoemAssetsDirectory = path.resolve(process.env.GUEST_POEM_ASSETS_DIRECTORY || path.join(root, "src", "assets", "guest-poems"));
+const guestPoemsConfigPath = path.join(root, "content", "guest-poems.config.json");
 const basePath = normalizeBasePath(process.env.BASE_PATH || "");
 const siteOrigin = "https://johndothings-star.github.io";
 
@@ -86,6 +89,23 @@ async function validatePoemImages(metadata, fileName) {
   return { image_dimensions: imageDimensions, gallery_dimensions: galleryDimensions };
 }
 
+async function validateGuestPoemImage(imageValue, fileName) {
+  if (!imageValue) return null;
+  const image = imageValue.replaceAll("\\", "/");
+  const prefix = "/assets/guest-poems/";
+  if (!image.startsWith(prefix)) {
+    throw new Error(`${fileName}: image thơ khách phải nằm trong ${prefix}.`);
+  }
+
+  const relativeImage = image.slice(prefix.length);
+  const source = path.resolve(guestPoemAssetsDirectory, relativeImage);
+  const safeRoot = `${path.resolve(guestPoemAssetsDirectory)}${path.sep}`;
+  if (!source.startsWith(safeRoot) || !await pathExists(source)) {
+    throw new Error(`${fileName}: không tìm thấy ảnh ${image}.`);
+  }
+  return imageDimensions(await readFile(source));
+}
+
 async function readPoems() {
   const files = (await readdir(poemsDirectory)).filter((file) => file.endsWith(".md"));
   const poems = await Promise.all(files.map(async (file) => {
@@ -102,6 +122,40 @@ async function readPoems() {
     };
   }));
   return poems.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+async function readGuestPoems() {
+  if (!await pathExists(guestPoemsDirectory)) return [];
+  const files = (await readdir(guestPoemsDirectory)).filter((file) => file.endsWith(".md"));
+  const poems = await Promise.all(files.map(async (file) => {
+    const source = await readFile(path.join(guestPoemsDirectory, file), "utf8");
+    const { metadata, body } = parseGuestPoemFrontmatter(source, file);
+    return {
+      ...metadata,
+      body,
+      slug: file.replace(/\.md$/, ""),
+      image_dimensions: await validateGuestPoemImage(metadata.image, file),
+    };
+  }));
+  return poems.sort((first, second) =>
+    (second.date || "").localeCompare(first.date || "") || first.title.localeCompare(second.title, "vi"));
+}
+
+async function readGuestPoemsConfig() {
+  if (!await pathExists(guestPoemsConfigPath)) return { submissionUrl: "" };
+  const config = JSON.parse(await readFile(guestPoemsConfigPath, "utf8"));
+  const submissionUrl = typeof config.submissionUrl === "string" ? config.submissionUrl.trim() : "";
+  if (!submissionUrl) return { submissionUrl: "" };
+  let protocol;
+  try {
+    protocol = new URL(submissionUrl).protocol;
+  } catch {
+    throw new Error("guest-poems.config.json: submissionUrl không phải URL hợp lệ.");
+  }
+  if (!["https:", "http:", "mailto:"].includes(protocol)) {
+    throw new Error("guest-poems.config.json: submissionUrl chỉ hỗ trợ https, http hoặc mailto.");
+  }
+  return { submissionUrl };
 }
 
 function formatDate(date) {
@@ -147,8 +201,24 @@ function poemCard(poem) {
   </article>`;
 }
 
-function layout({ title, description, active = "", type = "website", publishedTime = "", canonicalPath = "", scripts = [], content }) {
-  const pageTitle = title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`;
+function guestPoemItem(poem) {
+  return `<article class="guest-item">
+    <div class="guest-item__meta">
+      <span>${escapeHtml(poem.author)}</span>
+      ${poem.date ? `<time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>` : ""}
+    </div>
+    <h2><a href="${url(`/khach-tho/${poem.slug}/`)}">${escapeHtml(poem.title)}</a></h2>
+    ${poem.excerpt ? `<p>${escapeHtml(poem.excerpt)}</p>` : ""}
+  </article>`;
+}
+
+function renderGuestNote(label, value) {
+  if (!value) return "";
+  return `<p><span>${label}</span>${escapeHtml(value).replaceAll("\n", "<br>")}</p>`;
+}
+
+function layout({ title, description, documentTitle = "", active = "", type = "website", publishedTime = "", canonicalPath = "", scripts = [], content }) {
+  const pageTitle = documentTitle || (title === "Nguyên Anh" ? "Nguyên Anh — Thơ" : `${title} — Nguyên Anh`);
   const socialImage = `${siteOrigin}${url("/assets/og-preview.png")}`;
   const canonicalUrl = canonicalPath ? `${siteOrigin}${url(canonicalPath)}` : "";
   return `<!doctype html>
@@ -191,6 +261,7 @@ function layout({ title, description, active = "", type = "website", publishedTi
         <a href="${url("/")}"${active === "home" ? ' aria-current="page"' : ""}>Trang chủ</a>
         <a href="${url("/tho/")}"${active === "poems" ? ' aria-current="page"' : ""}>Thơ</a>
         <a href="${url("/neo/")}"${active === "journey" ? ' aria-current="page"' : ""}>Các Nẻo</a>
+        <a href="${url("/khach-tho/")}"${active === "guests" ? ' aria-current="page"' : ""}>Khách thơ</a>
         <a href="${url("/gioi-thieu/")}"${active === "about" ? ' aria-current="page"' : ""}>Giới thiệu</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Chuyển giao diện sáng hoặc tối">
@@ -234,8 +305,13 @@ async function build() {
   if (await pathExists(poemAssetsDirectory)) {
     await cp(poemAssetsDirectory, path.join(output, "assets", "poems"), { recursive: true });
   }
+  if (await pathExists(guestPoemAssetsDirectory)) {
+    await cp(guestPoemAssetsDirectory, path.join(output, "assets", "guest-poems"), { recursive: true });
+  }
 
   const poems = await readPoems();
+  const guestPoems = await readGuestPoems();
+  const guestPoemsConfig = await readGuestPoemsConfig();
   const featured = poems.filter((poem) => poem.featured).slice(0, 3);
   const selected = featured.length ? featured : poems.slice(0, 3);
   const years = [...new Set(poems.map((poem) => poem.date.slice(0, 4)))].sort((a, b) => b.localeCompare(a));
@@ -311,6 +387,69 @@ async function build() {
     </section>`,
   });
   await writePage("/tho/", poemsPage);
+
+  const submissionAction = guestPoemsConfig.submissionUrl
+    ? `<a class="primary-link" href="${escapeHtml(guestPoemsConfig.submissionUrl)}">Gửi một dấu chân thơ <span aria-hidden="true">→</span></a>`
+    : `<span class="guest-submit__unavailable" aria-disabled="true">Gửi một dấu chân thơ <span aria-hidden="true">→</span></span>
+      <p class="guest-submit__status">Kênh gửi thơ đang được chuẩn bị.</p>`;
+  const guestPoemsPage = layout({
+    title: "Dấu Chân Khách Thơ",
+    description: "Nơi khách ghé Chân Trần, để lại đôi vần thơ và một dấu chân riêng.",
+    active: "guests",
+    canonicalPath: "/khach-tho/",
+    content: `<header class="page-heading guest-heading shell">
+      <p class="eyebrow">Phòng khách thơ</p>
+      <h1>Dấu Chân Khách Thơ</h1>
+      <p>Nơi khách ghé Chân Trần, để lại đôi vần thơ và một dấu chân riêng.</p>
+    </header>
+    <section class="guest-room shell" aria-label="Những bài thơ của khách">
+      <p class="guest-room__intro">Chân Trần Muôn Nẻo là ngôi nhà ký ức thơ Chân Trần - Nguyên Anh. Dấu Chân Khách Thơ là một góc nhỏ dành cho bạn hữu ghé qua, để lại một bài thơ, một chút lòng và một dấu chân riêng.</p>
+      ${guestPoems.length
+        ? `<div class="guest-list">${guestPoems.map(guestPoemItem).join("")}</div>`
+        : `<p class="guest-empty">Phòng khách còn yên.<br>Khi có một dấu chân thơ ghé lại, nơi này sẽ bắt đầu có chuyện để kể.</p>`}
+    </section>
+    <section class="guest-submit shell" aria-labelledby="guest-submit-heading">
+      <p class="eyebrow">Ghé lại đôi vần</p>
+      <h2 id="guest-submit-heading">Gửi một dấu chân thơ</h2>
+      <p>Nếu có một bài thơ muốn gửi lại phòng khách, bạn có thể gửi để chủ nhà đọc và chọn đăng.</p>
+      <div class="guest-submit__action">${submissionAction}</div>
+      <ul>
+        <li>Bài thơ là tác phẩm bạn có quyền gửi, kèm tên hoặc bút danh rõ ràng.</li>
+        <li>Gửi bài không đồng nghĩa bài sẽ tự động được đăng; chủ website sẽ chọn những bài phù hợp.</li>
+        <li>Nội dung thơ sẽ không được tự ý sửa khi chưa có sự đồng ý của tác giả.</li>
+      </ul>
+    </section>`,
+  });
+  await writePage("/khach-tho/", guestPoemsPage);
+
+  for (const poem of guestPoems) {
+    const description = poem.excerpt || `Bài thơ “${poem.title}” của ${poem.author} tại Dấu Chân Khách Thơ.`;
+    const notes = [
+      renderGuestNote("Đôi lời tác giả", poem.author_note),
+      renderGuestNote("Ghi chú nguồn", poem.source_note),
+    ].filter(Boolean).join("");
+    const guestPoemPage = layout({
+      title: poem.title,
+      documentTitle: `${poem.title} — ${poem.author}`,
+      description,
+      active: "guests",
+      type: "article",
+      publishedTime: poem.date || "",
+      canonicalPath: `/khach-tho/${poem.slug}/`,
+      content: `<article class="poem-reader guest-poem-reader shell">
+        <header class="poem-reader__header">
+          <a class="back-link" href="${url("/khach-tho/")}"><span aria-hidden="true">←</span> Dấu Chân Khách Thơ</a>
+          <h1>${escapeHtml(poem.title)}</h1>
+          <p class="guest-poem-byline"><span>Tác giả</span><strong>${escapeHtml(poem.author)}</strong>${poem.date ? `<span aria-hidden="true">·</span><time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>` : ""}</p>
+        </header>
+        <div class="poem-body">${renderPoemBody(poem.body)}</div>
+        ${renderPoemFigure(poem, { resolveUrl: url, escape: escapeHtml })}
+        ${notes ? `<aside class="guest-poem-notes" aria-label="Ghi chú về bài thơ">${notes}</aside>` : ""}
+        <footer class="guest-poem-return"><a class="text-link" href="${url("/khach-tho/")}"><span aria-hidden="true">←</span> Trở lại phòng khách thơ</a></footer>
+      </article>`,
+    });
+    await writePage(`/khach-tho/${poem.slug}/`, guestPoemPage);
+  }
 
   const poemsByPath = new Map(PATHS.map((poemPath) => [poemPath.slug, poems.filter((poem) => poem.path === poemPath.slug)]));
   const pathsPage = layout({
@@ -500,7 +639,7 @@ async function build() {
   await writeFile(path.join(output, "404.html"), notFoundPage);
   await writeFile(path.join(output, ".nojekyll"), "");
 
-  console.log(`Đã tạo website tĩnh từ ${poems.length} bài thơ và ${PATHS.length} Nẻo.`);
+  console.log(`Đã tạo website tĩnh từ ${poems.length} bài thơ, ${PATHS.length} Nẻo và ${guestPoems.length} bài khách thơ.`);
 }
 
 await build();

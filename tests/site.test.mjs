@@ -1,17 +1,22 @@
 import assert from "node:assert/strict";
-import { readFile, readdir, stat } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { mkdir, mkdtemp, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 import { chooseRandomIndex, normalizeSearch, poemMatches } from "../src/archive.js";
 import { countFootprintsByPath, normalizeFootprints } from "../src/footprints.js";
-import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, renderPoemFigure } from "../scripts/content.mjs";
+import { PATHS, PATH_BY_SLUG, chooseNextFootstep, parseFrontmatter, parseGuestPoemFrontmatter, renderPoemFigure } from "../scripts/content.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "dist");
 const poemsDirectory = path.join(root, "content", "poems");
+const guestPoemsDirectory = path.join(root, "content", "guest-poems");
 const basePath = (process.env.BASE_PATH || "").replace(/^\/+|\/+$/g, "");
 const prefix = basePath ? `/${basePath}` : "";
+const execFileAsync = promisify(execFile);
 
 function escapeHtml(value = "") {
   return String(value)
@@ -30,18 +35,27 @@ async function poemRecords() {
   }));
 }
 
+async function guestPoemRecords() {
+  const files = (await readdir(guestPoemsDirectory)).filter((file) => file.endsWith(".md"));
+  return Promise.all(files.map(async (file) => {
+    const { metadata } = parseGuestPoemFrontmatter(await readFile(path.join(guestPoemsDirectory, file), "utf8"), file);
+    return { ...metadata, slug: file.replace(/\.md$/, "") };
+  }));
+}
+
 async function page(route) {
   return readFile(path.join(output, route, "index.html"), "utf8");
 }
 
 test("tạo các trang chính và giữ nguyên công cụ khám phá thơ", async () => {
-  const [home, poems, about, paths, timeline, footprints] = await Promise.all([
+  const [home, poems, about, paths, timeline, footprints, guests] = await Promise.all([
     page(""),
     page("tho"),
     page("gioi-thieu"),
     page("neo"),
     page("dong-thoi-gian"),
     page("dau-chan-cua-toi"),
+    page("khach-tho"),
   ]);
   assert.match(home, /<section class="featured shell"/);
   assert.match(home, /<section class="journey-glimpse shell"/);
@@ -55,6 +69,9 @@ test("tạo các trang chính và giữ nguyên công cụ khám phá thơ", asy
   assert.match(timeline, /<section class="timeline shell"/);
   assert.match(footprints, /data-footprints-page/);
   assert.match(footprints, /assets\/footprints\.js/);
+  assert.match(guests, /<section class="guest-room shell"/);
+  assert.match(guests, /<section class="guest-submit shell"/);
+  assert.match(home, new RegExp(`href="${prefix}/khach-tho/"`));
 });
 
 test("frontmatter và renderer hỗ trợ bài không ảnh, một ảnh hoặc nhiều ảnh", () => {
@@ -81,6 +98,100 @@ test("frontmatter và renderer hỗ trợ bài không ảnh, một ảnh hoặc 
   assert.throws(() => parseFrontmatter(`---\n${common}\nimage: "/assets/poems/thieu-alt.jpg"\n---\nThơ`, "missing-alt.md"), /image_alt/);
   assert.throws(() => parseFrontmatter(`---\n${common}\ngallery: ["/assets/poems/01.jpg"]\n---\nThơ`, "gallery-without-cover.md"), /image chính/);
   assert.throws(() => parseFrontmatter(`---\ntitle: "Sai Nẻo"\ndate: "2026-08-26"\nexcerpt: "Sai."\npath: "neo-khong-co"\nthemes: ["thử"]\n---\nThơ`, "invalid-path.md"), /path .* không hợp lệ/);
+});
+
+test("frontmatter thơ khách độc lập với sáu Nẻo và hỗ trợ metadata tùy chọn", async () => {
+  const fixture = await readFile(path.join(root, "tests", "fixtures", "guest-poem.md"), "utf8");
+  const parsed = parseGuestPoemFrontmatter(fixture, "guest-poem.md");
+  assert.equal(parsed.metadata.title, "Dấu chân thử");
+  assert.equal(parsed.metadata.author, "Khách thử");
+  assert.equal(parsed.metadata.image_alt, "Một dấu chân trên lối nhỏ");
+  assert.match(parsed.body, /Một dòng thơ ghé lại/);
+
+  const minimal = parseGuestPoemFrontmatter(`---\ntitle: "Bài không ảnh"\nauthor: "Một người ghé"\n---\nMột dòng thơ.`, "minimal.md");
+  assert.equal(minimal.metadata.date, undefined);
+  assert.equal(minimal.metadata.excerpt, undefined);
+  assert.equal(minimal.metadata.image, undefined);
+  assert.throws(() => parseGuestPoemFrontmatter(`---\ntitle: "Thiếu tên"\n---\nMột dòng thơ.`, "missing-author.md"), /author/);
+  assert.throws(() => parseGuestPoemFrontmatter(`---\ntitle: "Lạc Nẻo"\nauthor: "Khách"\npath: "neo-que"\n---\nMột dòng thơ.`, "with-path.md"), /không dùng trường path/);
+  assert.throws(() => parseGuestPoemFrontmatter(`---\ntitle: "Thiếu alt"\nauthor: "Khách"\nimage: "\/assets\/guest-poems\/anh.jpg"\n---\nMột dòng thơ.`, "missing-image-alt.md"), /image_alt/);
+});
+
+test("trang Dấu Chân Khách Thơ tự hiển thị danh sách hoặc trạng thái yên", async () => {
+  const records = await guestPoemRecords();
+  const html = await page("khach-tho");
+  assert.ok(html.includes(`href="${prefix}/khach-tho/" aria-current="page"`));
+
+  if (!records.length) {
+    assert.match(html, /Phòng khách còn yên\./);
+    assert.match(html, /class="guest-submit__unavailable" aria-disabled="true"/);
+    assert.doesNotMatch(html, /<div class="guest-list">/);
+    return;
+  }
+
+  assert.equal((html.match(/<article class="guest-item">/g) || []).length, records.length);
+  assert.doesNotMatch(html, /Phòng khách còn yên\./);
+  for (const poem of records) {
+    assert.ok(html.includes(`href="${prefix}/khach-tho/${poem.slug}/"`), `thiếu bài khách ${poem.slug}`);
+    const detail = await page(path.join("khach-tho", poem.slug));
+    assert.ok(detail.includes(escapeHtml(poem.author)), `${poem.slug}: thiếu tác giả`);
+    assert.doesNotMatch(detail, /nguyen-anh-seal|data-footprint-poem|poem-paths|footstep-next/);
+  }
+});
+
+test("build thử bài khách có ảnh và không ảnh mà không nhập vào tuyển tập Nguyên Anh", async () => {
+  const temporaryRoot = await mkdtemp(path.join(tmpdir(), "ahnlee-guest-poems-"));
+  const temporaryContent = path.join(temporaryRoot, "content");
+  const temporaryAssets = path.join(temporaryRoot, "assets");
+  const temporaryOutput = path.join(temporaryRoot, "dist");
+
+  try {
+    const fixture = await readFile(path.join(root, "tests", "fixtures", "guest-poem.md"), "utf8");
+    const withoutImage = fixture
+      .replace('title: "Dấu chân thử"', 'title: "Dấu chân không ảnh"')
+      .replace('author: "Khách thử"', 'author: "Người ghé qua"')
+      .replace(/^image:.*\r?\nimage_alt:.*\r?\n/m, "");
+    await mkdir(path.join(temporaryAssets, "dau-chan-thu"), { recursive: true });
+    await mkdir(temporaryContent, { recursive: true });
+    await writeFile(path.join(temporaryContent, "dau-chan-thu.md"), fixture);
+    await writeFile(path.join(temporaryContent, "dau-chan-khong-anh.md"), withoutImage);
+    await writeFile(
+      path.join(temporaryAssets, "dau-chan-thu", "cover.png"),
+      Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=", "base64"),
+    );
+
+    await execFileAsync(process.execPath, [path.join(root, "scripts", "build.mjs")], {
+      cwd: root,
+      env: {
+        ...process.env,
+        BASE_PATH: "/ahnlee-poetry",
+        BUILD_OUTPUT_DIRECTORY: temporaryOutput,
+        GUEST_POEMS_DIRECTORY: temporaryContent,
+        GUEST_POEM_ASSETS_DIRECTORY: temporaryAssets,
+      },
+      maxBuffer: 1024 * 1024,
+    });
+
+    const guestIndex = await readFile(path.join(temporaryOutput, "khach-tho", "index.html"), "utf8");
+    const withImage = await readFile(path.join(temporaryOutput, "khach-tho", "dau-chan-thu", "index.html"), "utf8");
+    const withoutImagePage = await readFile(path.join(temporaryOutput, "khach-tho", "dau-chan-khong-anh", "index.html"), "utf8");
+    assert.equal((guestIndex.match(/<article class="guest-item">/g) || []).length, 2);
+    assert.doesNotMatch(guestIndex, /Phòng khách còn yên\./);
+    assert.ok(withImage.includes("<title>Dấu chân thử — Khách thử</title>"));
+    assert.ok(withImage.includes('src="/ahnlee-poetry/assets/guest-poems/dau-chan-thu/cover.png"'));
+    assert.ok(withImage.includes('alt="Một dấu chân trên lối nhỏ"'));
+    assert.match(withImage, /width="1" height="1"/);
+    assert.doesNotMatch(withImage, /nguyen-anh-seal|data-footprint-poem|poem-paths|footstep-next/);
+    assert.doesNotMatch(withoutImagePage, /<section class="poem-images"/);
+    assert.equal((await stat(path.join(temporaryOutput, "assets", "guest-poems", "dau-chan-thu", "cover.png"))).isFile(), true);
+
+    for (const route of ["index.html", path.join("tho", "index.html"), path.join("neo", "index.html"), path.join("dong-thoi-gian", "index.html"), path.join("dau-chan-cua-toi", "index.html")]) {
+      const mainPage = await readFile(path.join(temporaryOutput, route), "utf8");
+      assert.doesNotMatch(mainPage, /khach-tho\/dau-chan-(?:thu|khong-anh)\//, `${route}: bài khách lọt vào dữ liệu Nguyên Anh`);
+    }
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
 });
 
 test("tạo metadata, Nẻo, ảnh tùy chọn và dấu chân từ mọi file Markdown hiện có", async () => {
@@ -273,8 +384,10 @@ test("lọc tên không phân biệt dấu, lọc năm và chọn ngẫu nhiên 
 
 test("mọi trang dùng theme và asset đúng base path GitHub Pages", async () => {
   const records = await poemRecords();
-  const pages = [await page(""), await page("neo"), await page("dong-thoi-gian"), await page("dau-chan-cua-toi")];
+  const guestRecords = await guestPoemRecords();
+  const pages = [await page(""), await page("neo"), await page("dong-thoi-gian"), await page("dau-chan-cua-toi"), await page("khach-tho")];
   if (records[0]) pages.push(await page(path.join("tho", records[0].slug)));
+  if (guestRecords[0]) pages.push(await page(path.join("khach-tho", guestRecords[0].slug)));
   for (const html of pages) {
     assert.match(html, /class="theme-toggle"/);
     assert.ok(html.includes(`href="${prefix}/assets/styles.css"`));

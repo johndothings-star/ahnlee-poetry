@@ -509,6 +509,131 @@ nav a[aria-current="page"]::after {
 .archive-empty[hidden] { display: none; }
 
 
+/* GUEST POEMS
+   A quiet reading room, kept separate from Nguyên Anh's archive. */
+
+.guest-heading {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.guest-heading > p:last-child { max-width: 600px; }
+
+.guest-room {
+  max-width: 760px;
+  padding-bottom: 52px;
+}
+
+.guest-room__intro {
+  max-width: 650px;
+  margin: 0 0 30px;
+  color: var(--muted);
+  font: 400 1rem/1.68 var(--serif);
+}
+
+.guest-list {
+  border-top: 1px solid var(--line);
+}
+
+.guest-item {
+  padding-block: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.guest-item__meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font: 650 .68rem/1.45 var(--sans);
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.guest-item__meta span { color: var(--accent); }
+
+.guest-item h2 {
+  margin: 0 0 5px;
+  font: 500 clamp(1.3rem, 1.8vw, 1.55rem)/1.28 var(--serif);
+  letter-spacing: -.012em;
+}
+
+.guest-item h2 a {
+  text-decoration: none;
+  transition: color .15s ease;
+}
+
+.guest-item h2 a:hover { color: var(--accent); }
+
+.guest-item > p {
+  max-width: 650px;
+  margin: 0;
+  color: var(--muted);
+  font: 400 .96rem/1.52 var(--serif);
+}
+
+.guest-empty {
+  margin: 0;
+  padding-block: 25px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 400 1.08rem/1.65 var(--serif);
+}
+
+.guest-submit {
+  max-width: 760px;
+  padding-block: 34px 74px;
+  border-top: 1px solid var(--line);
+}
+
+.guest-submit h2 {
+  margin: 0 0 8px;
+  font: 500 clamp(1.5rem, 2.4vw, 1.9rem)/1.25 var(--serif);
+  letter-spacing: -.015em;
+}
+
+.guest-submit > p:not(.eyebrow) {
+  max-width: 610px;
+  margin: 0;
+  color: var(--muted);
+  font: 400 .98rem/1.6 var(--serif);
+}
+
+.guest-submit__action { margin-top: 18px; }
+
+.guest-submit__unavailable {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+
+.guest-submit__action .guest-submit__status {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.guest-submit ul {
+  max-width: 650px;
+  margin: 25px 0 0;
+  padding: 18px 0 0 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 400 .88rem/1.58 var(--serif);
+}
+
+.guest-submit li + li { margin-top: 5px; }
+
+
 /* SIX PATHS */
 
 .journey-heading,
@@ -857,6 +982,32 @@ nav a[aria-current="page"]::after {
   text-decoration: none;
 }
 
+.guest-poem-byline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 9px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.guest-poem-byline > span:first-child {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+.guest-poem-byline strong {
+  color: var(--ink);
+  font: 500 1rem/1.45 var(--serif);
+}
+
+.guest-poem-byline time {
+  font-size: .88rem;
+  font-weight: 400;
+}
+
 .poem-images {
   max-width: 620px;
   margin-top: 34px;
@@ -1004,6 +1155,35 @@ nav a[aria-current="page"]::after {
 }
 
 .footstep-crossroad:hover { color: var(--accent); }
+
+.guest-poem-notes {
+  max-width: 620px;
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.guest-poem-notes p {
+  margin: 0 0 12px;
+  font: 400 .9rem/1.58 var(--serif);
+}
+
+.guest-poem-notes span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--accent);
+  font: 700 .65rem/1.4 var(--sans);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.guest-poem-return {
+  max-width: 620px;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
 
 
 /* ABOUT
@@ -1356,6 +1536,31 @@ nav a[aria-current="page"]::after {
     font-size: .84rem;
   }
 
+  .guest-room {
+    padding-bottom: 44px;
+  }
+
+  .guest-room__intro {
+    margin-bottom: 24px;
+    font-size: .96rem;
+  }
+
+  .guest-item {
+    padding-block: 16px;
+  }
+
+  .guest-item h2 {
+    font-size: 1.28rem;
+  }
+
+  .guest-submit {
+    padding-block: 30px 58px;
+  }
+
+  .guest-submit ul {
+    font-size: .86rem;
+  }
+
   .poem-reader {
     width: min(100% - 30px, 620px);
     padding-block: 34px 58px;
@@ -1385,6 +1590,14 @@ nav a[aria-current="page"]::after {
 
   .poem-paths {
     font-size: .64rem;
+  }
+
+  .guest-poem-byline {
+    gap: 3px 7px;
+  }
+
+  .guest-poem-byline strong {
+    font-size: .96rem;
   }
 
   .poem-images {
@@ -1430,6 +1643,11 @@ nav a[aria-current="page"]::after {
   .footstep-crossroad {
     min-height: 40px;
     margin-top: 12px;
+  }
+
+  .guest-poem-notes,
+  .guest-poem-return {
+    margin-top: 24px;
   }
 
   .about {

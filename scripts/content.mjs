@@ -62,7 +62,11 @@ function parseInlineList(value, fileName, key) {
   }
 }
 
-export function parseFrontmatter(source, fileName = "Bài thơ") {
+export function parseFrontmatter(source, fileName = "Bài thơ", options = {}) {
+  const {
+    requiredFields = ["title", "date", "excerpt"],
+    validateJourney = true,
+  } = options;
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) throw new Error(`${fileName}: thiếu frontmatter.`);
 
@@ -89,18 +93,20 @@ export function parseFrontmatter(source, fileName = "Bài thơ") {
     }
   }
 
-  for (const key of ["title", "date", "excerpt"]) {
+  for (const key of requiredFields) {
     if (!metadata[key]) throw new Error(`${fileName}: thiếu trường ${key}.`);
   }
 
-  if (metadata.path && !PATH_BY_SLUG.has(metadata.path)) {
-    throw new Error(`${fileName}: path “${metadata.path}” không hợp lệ.`);
-  }
-  if (metadata.secondary_path && !PATH_BY_SLUG.has(metadata.secondary_path)) {
-    throw new Error(`${fileName}: secondary_path “${metadata.secondary_path}” không hợp lệ.`);
-  }
-  if (metadata.themes !== undefined && (!Array.isArray(metadata.themes) || metadata.themes.length === 0)) {
-    throw new Error(`${fileName}: themes phải có ít nhất một chủ đề.`);
+  if (validateJourney) {
+    if (metadata.path && !PATH_BY_SLUG.has(metadata.path)) {
+      throw new Error(`${fileName}: path “${metadata.path}” không hợp lệ.`);
+    }
+    if (metadata.secondary_path && !PATH_BY_SLUG.has(metadata.secondary_path)) {
+      throw new Error(`${fileName}: secondary_path “${metadata.secondary_path}” không hợp lệ.`);
+    }
+    if (metadata.themes !== undefined && (!Array.isArray(metadata.themes) || metadata.themes.length === 0)) {
+      throw new Error(`${fileName}: themes phải có ít nhất một chủ đề.`);
+    }
   }
   if (metadata.image && !metadata.image_alt) {
     throw new Error(`${fileName}: có image thì phải có image_alt.`);
@@ -113,6 +119,21 @@ export function parseFrontmatter(source, fileName = "Bài thơ") {
   }
 
   return { metadata, body: match[2].trim() };
+}
+
+export function parseGuestPoemFrontmatter(source, fileName = "Bài thơ khách") {
+  const parsed = parseFrontmatter(source, fileName, {
+    requiredFields: ["title", "author"],
+    validateJourney: false,
+  });
+
+  for (const key of ["path", "secondary_path", "themes", "gallery"]) {
+    if (parsed.metadata[key] !== undefined) {
+      throw new Error(`${fileName}: thơ khách không dùng trường ${key}.`);
+    }
+  }
+  if (!parsed.body) throw new Error(`${fileName}: nội dung bài thơ đang trống.`);
+  return parsed;
 }
 
 export function chooseNextFootstep(poem, poems) {

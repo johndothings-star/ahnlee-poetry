@@ -56,6 +56,28 @@ Script chỉ copy những tên khớp chắc chắn, tự tạo `cover`/gallery 
 - `/dong-thoi-gian/`: thơ nhóm theo năm cùng nhãn Nẻo.
 - `/dau-chan-cua-toi/`: bản đồ đọc riêng trên từng trình duyệt; có thể xóa bất kỳ lúc nào.
 
+## Thêm một bài thơ khách
+
+Tạo file `content/guest-poems/ten-bai.md` với frontmatter sau. Thơ khách được build riêng tại `/khach-tho/` và không đi vào sáu Nẻo hay thống kê thơ Nguyên Anh.
+
+```md
+---
+title: "Tên bài thơ"
+author: "Tên hoặc bút danh"
+date: "2026-08-27"
+excerpt: "Một đoạn dẫn ngắn nếu có"
+author_note: ""
+source_note: ""
+image: ""
+image_alt: ""
+---
+Nội dung bài thơ
+```
+
+`date`, `excerpt`, các ghi chú và ảnh đều có thể bỏ. Nếu có ảnh, đặt file trong `src/assets/guest-poems/`, khai báo đường dẫn dạng `/assets/guest-poems/ten-thu-muc/anh.jpg` và bắt buộc thêm `image_alt`.
+
+Để bật nút gửi thơ, điền email dạng `mailto:...` hoặc URL Google Form vào `submissionUrl` trong `content/guest-poems.config.json`.
+
 Để xem trên máy, chạy `npm run dev`. Trước khi đăng, chạy `npm run build` và `npm test`.
 
 ## Deploy

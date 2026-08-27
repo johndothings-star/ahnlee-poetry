@@ -4,7 +4,7 @@ date: "1998-01-01"
 excerpt: "Một đêm quê rất vắng, nơi sương, trăng, tiếng ếch và tiếng cuốc cùng khơi dậy nỗi lòng khó gọi thành tên."
 featured: false
 path: "neo-tinh"
-secondary_path: "neo-phieu-du"
+secondary_path: "neo-que"
 themes: ["cô đơn","đêm","thiên nhiên","tiếng lòng"]
 ---
 
