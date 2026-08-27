@@ -76,7 +76,7 @@ Nội dung bài thơ
 
 `date`, `excerpt`, các ghi chú và ảnh đều có thể bỏ. Nếu có ảnh, đặt file trong `src/assets/guest-poems/`, khai báo đường dẫn dạng `/assets/guest-poems/ten-thu-muc/anh.jpg` và bắt buộc thêm `image_alt`.
 
-Để bật nút gửi thơ, điền email dạng `mailto:...` hoặc URL Google Form vào `submissionUrl` trong `content/guest-poems.config.json`.
+Để bật nút gửi thơ, điền URL Google Form vào `guestSubmissionUrl` trong `content/guest-poems.config.json`. Nút sẽ mở biểu mẫu trong tab mới; `mailto:` không được dùng cho hành động gửi thơ chính.
 
 Để xem trên máy, chạy `npm run dev`. Trước khi đăng, chạy `npm run build` và `npm test`.
 

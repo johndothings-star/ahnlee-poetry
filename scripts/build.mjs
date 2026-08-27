@@ -9,7 +9,7 @@ const poemsDirectory = path.join(root, "content", "poems");
 const poemAssetsDirectory = path.join(root, "src", "assets", "poems");
 const guestPoemsDirectory = path.resolve(process.env.GUEST_POEMS_DIRECTORY || path.join(root, "content", "guest-poems"));
 const guestPoemAssetsDirectory = path.resolve(process.env.GUEST_POEM_ASSETS_DIRECTORY || path.join(root, "src", "assets", "guest-poems"));
-const guestPoemsConfigPath = path.join(root, "content", "guest-poems.config.json");
+const guestPoemsConfigPath = path.resolve(process.env.GUEST_POEMS_CONFIG_PATH || path.join(root, "content", "guest-poems.config.json"));
 const basePath = normalizeBasePath(process.env.BASE_PATH || "");
 const siteOrigin = "https://johndothings-star.github.io";
 
@@ -142,20 +142,22 @@ async function readGuestPoems() {
 }
 
 async function readGuestPoemsConfig() {
-  if (!await pathExists(guestPoemsConfigPath)) return { submissionUrl: "" };
+  if (!await pathExists(guestPoemsConfigPath)) return { guestSubmissionUrl: "" };
   const config = JSON.parse(await readFile(guestPoemsConfigPath, "utf8"));
-  const submissionUrl = typeof config.submissionUrl === "string" ? config.submissionUrl.trim() : "";
-  if (!submissionUrl) return { submissionUrl: "" };
-  let protocol;
+  const guestSubmissionUrl = typeof config.guestSubmissionUrl === "string" ? config.guestSubmissionUrl.trim() : "";
+  if (!guestSubmissionUrl) return { guestSubmissionUrl: "" };
+  let target;
   try {
-    protocol = new URL(submissionUrl).protocol;
+    target = new URL(guestSubmissionUrl);
   } catch {
-    throw new Error("guest-poems.config.json: submissionUrl không phải URL hợp lệ.");
+    throw new Error("guest-poems.config.json: guestSubmissionUrl không phải URL Google Form hợp lệ.");
   }
-  if (!["https:", "http:", "mailto:"].includes(protocol)) {
-    throw new Error("guest-poems.config.json: submissionUrl chỉ hỗ trợ https, http hoặc mailto.");
+  const isGoogleForm = target.protocol === "https:"
+    && (target.hostname === "forms.gle" || (target.hostname === "docs.google.com" && target.pathname.startsWith("/forms/")));
+  if (!isGoogleForm) {
+    throw new Error("guest-poems.config.json: guestSubmissionUrl phải là URL Google Form dùng https.");
   }
-  return { submissionUrl };
+  return { guestSubmissionUrl };
 }
 
 function formatDate(date) {
@@ -388,8 +390,8 @@ async function build() {
   });
   await writePage("/tho/", poemsPage);
 
-  const submissionAction = guestPoemsConfig.submissionUrl
-    ? `<a class="primary-link" href="${escapeHtml(guestPoemsConfig.submissionUrl)}">Gửi một dấu chân thơ <span aria-hidden="true">→</span></a>`
+  const submissionAction = guestPoemsConfig.guestSubmissionUrl
+    ? `<a class="primary-link" href="${escapeHtml(guestPoemsConfig.guestSubmissionUrl)}" target="_blank" rel="noopener noreferrer">Gửi một dấu chân thơ <span aria-hidden="true">→</span></a>`
     : `<span class="guest-submit__unavailable" aria-disabled="true">Gửi một dấu chân thơ <span aria-hidden="true">→</span></span>
       <p class="guest-submit__status">Kênh gửi thơ đang được chuẩn bị.</p>`;
   const guestPoemsPage = layout({

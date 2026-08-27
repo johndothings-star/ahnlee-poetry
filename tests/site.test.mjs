@@ -131,7 +131,7 @@ test("frontmatter thơ khách độc lập với sáu Nẻo và hỗ trợ metad
 test("trang Dấu Chân Khách Thơ tự hiển thị danh sách hoặc trạng thái yên", async () => {
   const records = await guestPoemRecords();
   const config = JSON.parse(await readFile(guestPoemsConfigPath, "utf8"));
-  const submissionUrl = typeof config.submissionUrl === "string" ? config.submissionUrl.trim() : "";
+  const guestSubmissionUrl = typeof config.guestSubmissionUrl === "string" ? config.guestSubmissionUrl.trim() : "";
   const html = await page("khach-tho");
   assert.ok(html.includes(`href="${prefix}/khach-tho/" aria-current="page"`));
 
@@ -150,14 +150,18 @@ test("trang Dấu Chân Khách Thơ tự hiển thị danh sách hoặc trạng 
   }
 
   const unavailableTag = openingTagWithClass(html, "guest-submit__unavailable");
-  if (submissionUrl) {
-    const submissionLink = (html.match(/<a\b[^>]*>/gi) || []).find((tag) => htmlAttribute(tag, "href") === submissionUrl);
-    assert.ok(submissionLink, "thiếu link gửi thơ theo submissionUrl đã cấu hình");
-    assert.equal(unavailableTag, null, "đã có submissionUrl nhưng vẫn hiển thị trạng thái unavailable");
+  if (guestSubmissionUrl) {
+    const submissionLink = (html.match(/<a\b[^>]*>/gi) || []).find((tag) => htmlAttribute(tag, "href") === guestSubmissionUrl);
+    assert.ok(submissionLink, "thiếu link gửi thơ theo guestSubmissionUrl đã cấu hình");
+    assert.equal(htmlAttribute(submissionLink, "target"), "_blank");
+    assert.deepEqual((htmlAttribute(submissionLink, "rel") || "").split(/\s+/).sort(), ["noopener", "noreferrer"]);
+    assert.doesNotMatch(submissionLink, /mailto:/i);
+    assert.equal(unavailableTag, null, "đã có guestSubmissionUrl nhưng vẫn hiển thị trạng thái unavailable");
   } else {
-    assert.ok(unavailableTag, "chưa có submissionUrl nhưng thiếu trạng thái unavailable");
+    assert.ok(unavailableTag, "chưa có guestSubmissionUrl nhưng thiếu trạng thái unavailable");
     assert.equal(htmlAttribute(unavailableTag, "aria-disabled"), "true");
     assert.equal(htmlAttribute(unavailableTag, "href"), null, "trạng thái unavailable không được có link giả");
+    assert.doesNotMatch(html, /mailto:/i);
   }
 });
 
@@ -166,6 +170,8 @@ test("build thử bài khách có ảnh và không ảnh mà không nhập vào 
   const temporaryContent = path.join(temporaryRoot, "content");
   const temporaryAssets = path.join(temporaryRoot, "assets");
   const temporaryOutput = path.join(temporaryRoot, "dist");
+  const temporaryConfig = path.join(temporaryRoot, "guest-poems.config.json");
+  const googleFormUrl = "https://docs.google.com/forms/d/e/example/viewform";
 
   try {
     const fixture = await readFile(path.join(root, "tests", "fixtures", "guest-poem.md"), "utf8");
@@ -177,20 +183,23 @@ test("build thử bài khách có ảnh và không ảnh mà không nhập vào 
     await mkdir(temporaryContent, { recursive: true });
     await writeFile(path.join(temporaryContent, "dau-chan-thu.md"), fixture);
     await writeFile(path.join(temporaryContent, "dau-chan-khong-anh.md"), withoutImage);
+    await writeFile(temporaryConfig, JSON.stringify({ guestSubmissionUrl: googleFormUrl }));
     await writeFile(
       path.join(temporaryAssets, "dau-chan-thu", "cover.png"),
       Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=", "base64"),
     );
 
+    const buildEnvironment = {
+      ...process.env,
+      BASE_PATH: "/ahnlee-poetry",
+      BUILD_OUTPUT_DIRECTORY: temporaryOutput,
+      GUEST_POEMS_DIRECTORY: temporaryContent,
+      GUEST_POEM_ASSETS_DIRECTORY: temporaryAssets,
+      GUEST_POEMS_CONFIG_PATH: temporaryConfig,
+    };
     await execFileAsync(process.execPath, [path.join(root, "scripts", "build.mjs")], {
       cwd: root,
-      env: {
-        ...process.env,
-        BASE_PATH: "/ahnlee-poetry",
-        BUILD_OUTPUT_DIRECTORY: temporaryOutput,
-        GUEST_POEMS_DIRECTORY: temporaryContent,
-        GUEST_POEM_ASSETS_DIRECTORY: temporaryAssets,
-      },
+      env: buildEnvironment,
       maxBuffer: 1024 * 1024,
     });
 
@@ -199,6 +208,11 @@ test("build thử bài khách có ảnh và không ảnh mà không nhập vào 
     const withoutImagePage = await readFile(path.join(temporaryOutput, "khach-tho", "dau-chan-khong-anh", "index.html"), "utf8");
     assert.equal((guestIndex.match(/<article class="guest-item">/g) || []).length, 2);
     assert.doesNotMatch(guestIndex, /Phòng khách còn yên\./);
+    const submissionLink = (guestIndex.match(/<a\b[^>]*>/gi) || []).find((tag) => htmlAttribute(tag, "href") === googleFormUrl);
+    assert.ok(submissionLink, "build thử thiếu link Google Form");
+    assert.equal(htmlAttribute(submissionLink, "target"), "_blank");
+    assert.deepEqual((htmlAttribute(submissionLink, "rel") || "").split(/\s+/).sort(), ["noopener", "noreferrer"]);
+    assert.doesNotMatch(guestIndex, /mailto:/i);
     assert.ok(withImage.includes("<title>Dấu chân thử — Khách thử</title>"));
     assert.ok(withImage.includes('src="/ahnlee-poetry/assets/guest-poems/dau-chan-thu/cover.png"'));
     assert.ok(withImage.includes('alt="Một dấu chân trên lối nhỏ"'));
@@ -211,6 +225,19 @@ test("build thử bài khách có ảnh và không ảnh mà không nhập vào 
       const mainPage = await readFile(path.join(temporaryOutput, route), "utf8");
       assert.doesNotMatch(mainPage, /khach-tho\/dau-chan-(?:thu|khong-anh)\//, `${route}: bài khách lọt vào dữ liệu Nguyên Anh`);
     }
+
+    await writeFile(temporaryConfig, JSON.stringify({ guestSubmissionUrl: "mailto:khach@example.com" }));
+    await assert.rejects(
+      execFileAsync(process.execPath, [path.join(root, "scripts", "build.mjs")], {
+        cwd: root,
+        env: buildEnvironment,
+        maxBuffer: 1024 * 1024,
+      }),
+      (error) => {
+        assert.match(error.stderr, /guestSubmissionUrl phải là URL Google Form dùng https/);
+        return true;
+      },
+    );
   } finally {
     await rm(temporaryRoot, { recursive: true, force: true });
   }
