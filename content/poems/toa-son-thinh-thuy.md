@@ -1,7 +1,7 @@
 ---
 title: "TỌA SƠN THÍNH THỦY"
 date: "2018-03-28"
-excerpt: "Hai mươi năm đủ để người đổi khác, nhưng có những nghĩa tình thầy bạn vẫn nguyên vẹn khi ta trở về."
+excerpt: "Một chút tĩnh lặng để nghe tiếng thì thầm của thiên nhiên."
 featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
