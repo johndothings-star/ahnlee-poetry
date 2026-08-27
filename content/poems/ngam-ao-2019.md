@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["ao cá","nắng","cây","thư thái"]
+image: "/assets/poems/ngam-ao-2019/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NGẮM AO"
 ---
 
 Ao cá biến hình bán nguyệt

@@ -6,6 +6,9 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-que"
 themes: ["núi cao","mây","gió","suối","thôn nữ","miền sơn cước","cảnh sắc"]
+image: "/assets/poems/cao-son/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CAO SƠN"
+gallery: ["/assets/poems/cao-son/01.jpg"]
 ---
 
 Non cao phủ bóng mây vờn

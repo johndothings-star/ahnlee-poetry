@@ -6,6 +6,9 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["Huế","cây cổ","duyên xưa","gặp gỡ"]
+image: "/assets/poems/sa-ke/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ SA KÊ"
+gallery: ["/assets/poems/sa-ke/01.jpg"]
 ---
 
 Ẩn mình nơi chốn thâm u
