@@ -5,6 +5,8 @@ excerpt: "Từ trên núi Nhạn nhìn xuống, thành phố bỗng thu nhỏ gi
 featured: false
 path: "neo-phieu-du"
 themes: ["núi Nhạn","Tuy Hòa","thành phố","góc nhìn"]
+image: "/assets/poems/len-nui-nhan/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ LÊN NÚI NHẠN"
 ---
 
 Lên núi gió thổi vi vu

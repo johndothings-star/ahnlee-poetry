@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["tha phương","cố hương","tỉnh mộng","thảnh thơi"]
+image: "/assets/poems/gan-huong-xua/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GẦN HƯƠNG XƯA"
 ---
 
 Nhân sinh một thoáng mơ màng

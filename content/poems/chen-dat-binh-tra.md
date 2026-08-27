@@ -6,6 +6,8 @@ featured: false
 path: "neo-thanh-nhan"
 secondary_path: "neo-doi"
 themes: ["trà","giản dị","sang-hèn","giá trị thật"]
+image: "/assets/poems/chen-dat-binh-tra/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHÉN ĐẤT - BÌNH TRÀ"
 ---
 
 Tinh mơ kể chuyện chén trà

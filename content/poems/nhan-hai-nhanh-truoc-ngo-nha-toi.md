@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["gia đình","ký ức","chiến tranh","chữ hiếu"]
+image: "/assets/poems/nhan-hai-nhanh-truoc-ngo-nha-toi/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NHÃN HAI NHÀNH TRƯỚC NGÕ NHÀ TÔI"
 ---
 
 Nghe ba kể: năm ba mười hai tuổi

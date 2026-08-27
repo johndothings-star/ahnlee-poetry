@@ -6,6 +6,8 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["gian khó","đố kỵ","tôi luyện","sửa mình"]
+image: "/assets/poems/mo-than-quang-vang/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ MỎ THAN QUẶNG VÀNG"
 ---
 
 Quặng vàng lẫn giữa mỏ than

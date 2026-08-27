@@ -6,6 +6,9 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["đá","tưởng tượng","luân hồi","chờ thời"]
+image: "/assets/poems/hinh-cua-da/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HÌNH CỦA ĐÁ"
+gallery: ["/assets/poems/hinh-cua-da/01.jpg","/assets/poems/hinh-cua-da/02.jpg"]
 ---
 
 Đá nằm im chẳng nói cười

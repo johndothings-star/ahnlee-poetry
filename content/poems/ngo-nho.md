@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["ngõ nhà","bình minh","hoa cỏ","yên ả"]
+image: "/assets/poems/ngo-nho/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NGÕ NHỎ!"
 ---
 
 Ngõ nhỏ nhà tôi chẳng xôn xao

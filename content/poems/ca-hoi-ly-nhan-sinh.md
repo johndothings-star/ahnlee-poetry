@@ -6,6 +6,8 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["nhân sinh","nguồn cội","trở về","nghị lực"]
+image: "/assets/poems/ca-hoi-ly-nhan-sinh/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CÁ HỒI, LÝ NHÂN SINH!"
 ---
 
 Nơi đầu nguồn con suối

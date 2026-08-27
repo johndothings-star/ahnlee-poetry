@@ -1,11 +1,13 @@
 ---
 title: "TẠI SAO!?"
 date: "2010-01-01"
-excerpt: "Từ góc nhìn một đứa trẻ, những câu hỏi 'Tại sao?' lặp lại trước cảnh chia lìa và bạo lực trở nên day dứt hơn mọi lời giải thích."
+excerpt: "Từ góc nhìn một đứa trẻ, những câu hỏi 'Tại sao?' lặp lại trước cảnh chia lìa và bạo lực trở nên day dứt hơn mọi lời giải thích. Cảm hứng từ bức ảnh cùng tên trong bộ tranh triển lãm nghệ thuật Chân Thiện Nhẫn."
 featured: false
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["bức hại","Pháp Luân Công","công lý","trẻ em"]
+image: "/assets/poems/tai-sao/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ TẠI SAO!?"
 ---
 
 Trong đôi mắt thơ dại

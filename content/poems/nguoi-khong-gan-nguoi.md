@@ -6,6 +6,8 @@ featured: true
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["quan hệ con người","đạo đức","tỉnh thức","Chân-Thiện-Nhẫn"]
+image: "/assets/poems/nguoi-khong-gan-nguoi/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NGƯỜI KHÔNG GẦN NGƯỜI!?"
 ---
 
 Bình thời người sát bên người
