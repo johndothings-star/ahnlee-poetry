@@ -949,6 +949,7 @@ nav a[aria-current="page"]::after {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
+  width: 100%;
   gap: 28px;
   margin-top: 18px;
   padding-top: 18px;
@@ -957,6 +958,7 @@ nav a[aria-current="page"]::after {
 
 .footstep-next__item {
   display: grid;
+  justify-self: start;
   gap: 3px;
   width: fit-content;
   color: var(--ink);
