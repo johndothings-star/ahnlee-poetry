@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-tam"
 themes: ["huynh muội","thệ ước","đồng hành","quê"]
+image: "/assets/poems/nhan-muoi/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NHẮN MUỘI!"
 ---
 
 Có một thời nhí nhố

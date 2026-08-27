@@ -6,6 +6,8 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["công danh","nhân sinh","tự xét","bình yên"]
+image: "/assets/poems/lang-le-nhin-xem/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ LẶNG LẼ NHÌN XEM!"
 ---
 
 Lặng lẽ nhìn xem thấy điều gì

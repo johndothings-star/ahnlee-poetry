@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-doi"
 themes: ["nhà giáo","học trò","ước mơ","cống hiến"]
+image: "/assets/poems/thap-sang-uoc-mo-xanh/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ THẮP SÁNG ƯỚC MƠ XANH"
 ---
 
 Tuổi học trò ôm ấp những ước mơ

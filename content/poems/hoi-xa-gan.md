@@ -6,6 +6,9 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tam"
 themes: ["thiên nhiên","khiêm nhường","con người","Thần"]
+image: "/assets/poems/hoi-xa-gan/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HỎI XA GẦN"
+gallery: ["/assets/poems/hoi-xa-gan/01.jpg","/assets/poems/hoi-xa-gan/02.jpg","/assets/poems/hoi-xa-gan/03.jpg"]
 ---
 
 Mưa tuôn ào ạt, nước thêm dâng

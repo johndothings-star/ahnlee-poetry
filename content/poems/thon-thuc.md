@@ -1,6 +1,6 @@
 ---
 title: "THỔN THỨC"
-date: "2003-01-01"
+date: "2003-05-01"
 excerpt: "Một tình cảm lặng lẽ đi qua những rung động đầu đời, cõi mộng và thực tại, để cuối cùng vẫn còn nguyên tiếng thổn thức."
 featured: false
 path: "neo-tinh"

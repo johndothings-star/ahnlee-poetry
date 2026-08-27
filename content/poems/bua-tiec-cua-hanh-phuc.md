@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-tam"
 themes: ["cộng đồng","tu luyện","tri ân","niềm vui"]
+image: "/assets/poems/bua-tiec-cua-hanh-phuc/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ BỮA TIỆC CỦA HẠNH PHÚC"
 ---
 
 Bánh xèo, bánh đúc, mắm tôm

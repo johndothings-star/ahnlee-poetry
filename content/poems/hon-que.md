@@ -1,5 +1,5 @@
 ---
-title: "HỒN QUÊ"
+title: "NÉT QUÊ XƯA"
 date: "2011-03-01"
 excerpt: "Con đường, bờ đê, sáo diều và trò trẻ nhỏ trở về trong ký ức, như những mảnh hồn quê đang dần phai giữa thời gian."
 featured: false

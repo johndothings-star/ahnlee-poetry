@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: ""
 themes: ["chính niệm","chúng sinh","Đại Pháp","tu luyện","đề thăng","mạt kiếp"]
+image: "/assets/poems/chinh-niem-no-sac-xuan/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHÍNH NIỆM NỞ SẮC XUÂN"
 ---
 
 Chúng sinh vô lượng tầng thứ cao

@@ -6,6 +6,8 @@ featured: false
 path: "neo-thanh-nhan"
 secondary_path: "neo-phieu-du"
 themes: ["mai vàng","mùa xuân","dạo xuân","phiêu du","vui sống"]
+image: "/assets/poems/hoi-xuan/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HỎI XUÂN"
 ---
 
 Mai vàng rực rỡ nở đầy sân
