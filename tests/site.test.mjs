@@ -14,6 +14,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "dist");
 const poemsDirectory = path.join(root, "content", "poems");
 const guestPoemsDirectory = path.join(root, "content", "guest-poems");
+const guestPoemsConfigPath = path.join(root, "content", "guest-poems.config.json");
 const basePath = (process.env.BASE_PATH || "").replace(/^\/+|\/+$/g, "");
 const prefix = basePath ? `/${basePath}` : "";
 const execFileAsync = promisify(execFile);
@@ -25,6 +26,16 @@ function escapeHtml(value = "") {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function htmlAttribute(openingTag, name) {
+  const match = openingTag?.match(new RegExp(`\\b${name}=(["'])(.*?)\\1`, "i"));
+  return match?.[2] ?? null;
+}
+
+function openingTagWithClass(html, className) {
+  return (html.match(/<[a-z][^>]*>/gi) || []).find((tag) =>
+    (htmlAttribute(tag, "class") || "").split(/\s+/).includes(className)) || null;
 }
 
 async function poemRecords() {
@@ -119,23 +130,34 @@ test("frontmatter thơ khách độc lập với sáu Nẻo và hỗ trợ metad
 
 test("trang Dấu Chân Khách Thơ tự hiển thị danh sách hoặc trạng thái yên", async () => {
   const records = await guestPoemRecords();
+  const config = JSON.parse(await readFile(guestPoemsConfigPath, "utf8"));
+  const submissionUrl = typeof config.submissionUrl === "string" ? config.submissionUrl.trim() : "";
   const html = await page("khach-tho");
   assert.ok(html.includes(`href="${prefix}/khach-tho/" aria-current="page"`));
 
   if (!records.length) {
     assert.match(html, /Phòng khách còn yên\./);
-    assert.match(html, /class="guest-submit__unavailable" aria-disabled="true"/);
     assert.doesNotMatch(html, /<div class="guest-list">/);
-    return;
+  } else {
+    assert.equal((html.match(/<article class="guest-item">/g) || []).length, records.length);
+    assert.doesNotMatch(html, /Phòng khách còn yên\./);
+    for (const poem of records) {
+      assert.ok(html.includes(`href="${prefix}/khach-tho/${poem.slug}/"`), `thiếu bài khách ${poem.slug}`);
+      const detail = await page(path.join("khach-tho", poem.slug));
+      assert.ok(detail.includes(escapeHtml(poem.author)), `${poem.slug}: thiếu tác giả`);
+      assert.doesNotMatch(detail, /nguyen-anh-seal|data-footprint-poem|poem-paths|footstep-next/);
+    }
   }
 
-  assert.equal((html.match(/<article class="guest-item">/g) || []).length, records.length);
-  assert.doesNotMatch(html, /Phòng khách còn yên\./);
-  for (const poem of records) {
-    assert.ok(html.includes(`href="${prefix}/khach-tho/${poem.slug}/"`), `thiếu bài khách ${poem.slug}`);
-    const detail = await page(path.join("khach-tho", poem.slug));
-    assert.ok(detail.includes(escapeHtml(poem.author)), `${poem.slug}: thiếu tác giả`);
-    assert.doesNotMatch(detail, /nguyen-anh-seal|data-footprint-poem|poem-paths|footstep-next/);
+  const unavailableTag = openingTagWithClass(html, "guest-submit__unavailable");
+  if (submissionUrl) {
+    const submissionLink = (html.match(/<a\b[^>]*>/gi) || []).find((tag) => htmlAttribute(tag, "href") === submissionUrl);
+    assert.ok(submissionLink, "thiếu link gửi thơ theo submissionUrl đã cấu hình");
+    assert.equal(unavailableTag, null, "đã có submissionUrl nhưng vẫn hiển thị trạng thái unavailable");
+  } else {
+    assert.ok(unavailableTag, "chưa có submissionUrl nhưng thiếu trạng thái unavailable");
+    assert.equal(htmlAttribute(unavailableTag, "aria-disabled"), "true");
+    assert.equal(htmlAttribute(unavailableTag, "href"), null, "trạng thái unavailable không được có link giả");
   }
 });
 
