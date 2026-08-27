@@ -314,6 +314,7 @@ async function build() {
   const poems = await readPoems();
   const guestPoems = await readGuestPoems();
   const guestPoemsConfig = await readGuestPoemsConfig();
+  const poemCount = poems.length;
   const featured = poems.filter((poem) => poem.featured).slice(0, 3);
   const selected = featured.length ? featured : poems.slice(0, 3);
   const years = [...new Set(poems.map((poem) => poem.date.slice(0, 4)))].sort((a, b) => b.localeCompare(a));
@@ -372,9 +373,9 @@ async function build() {
             ${years.map((year) => `<option value="${escapeHtml(year)}">${escapeHtml(year)}</option>`).join("")}
           </select>
         </label>
-        <button class="random-poem" id="random-poem" type="button"${poems.length ? "" : " disabled"}>Một bài ngẫu nhiên <span aria-hidden="true">→</span></button>
+        <button class="random-poem" id="random-poem" type="button"${poemCount ? "" : " disabled"}>Một bài ngẫu nhiên <span aria-hidden="true">→</span></button>
       </div>
-      <p class="archive-summary" id="archive-summary" aria-live="polite">${poems.length} bài thơ</p>
+      <p class="archive-summary" id="archive-summary" aria-live="polite">${poemCount} bài thơ</p>
       <div class="archive-list" id="poem-list">
         ${poems.map((poem, index) => `<article class="archive-item" data-poem-item data-title="${escapeHtml(poem.title)}" data-year="${escapeHtml(poem.date.slice(0, 4))}" data-url="${url(`/tho/${poem.slug}/`)}">
           <span class="archive-item__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
@@ -385,7 +386,7 @@ async function build() {
           <time datetime="${escapeHtml(poem.date)}">${escapeHtml(formatDate(poem.date))}</time>
         </article>`).join("")}
       </div>
-      <p class="archive-empty" id="archive-empty"${poems.length ? " hidden" : ""}>Không tìm thấy bài thơ phù hợp. Thử một từ khóa khác hoặc xem tất cả các năm nhé.</p>
+      <p class="archive-empty" id="archive-empty"${poemCount ? " hidden" : ""}>Không tìm thấy bài thơ phù hợp. Thử một từ khóa khác hoặc xem tất cả các năm nhé.</p>
     </section>`,
   });
   await writePage("/tho/", poemsPage);
@@ -641,7 +642,7 @@ async function build() {
   await writeFile(path.join(output, "404.html"), notFoundPage);
   await writeFile(path.join(output, ".nojekyll"), "");
 
-  console.log(`Đã tạo website tĩnh từ ${poems.length} bài thơ, ${PATHS.length} Nẻo và ${guestPoems.length} bài khách thơ.`);
+  console.log(`Đã tạo website tĩnh từ ${poemCount} bài thơ, ${PATHS.length} Nẻo và ${guestPoems.length} bài khách thơ.`);
 }
 
 await build();

@@ -85,6 +85,16 @@ test("tạo các trang chính và giữ nguyên công cụ khám phá thơ", asy
   assert.match(home, new RegExp(`href="${prefix}/khach-tho/"`));
 });
 
+test("tổng số thơ Nguyên Anh được tính động từ mọi Markdown hợp lệ", async () => {
+  const records = await poemRecords();
+  const archive = await page("tho");
+  const summary = archive.match(/id="archive-summary"[^>]*>(\d+) bài thơ<\/p>/);
+
+  assert.ok(summary, "trang Thơ thiếu bộ đếm tổng số bài");
+  assert.equal(Number(summary[1]), records.length, "bộ đếm không khớp toàn bộ thơ Nguyên Anh hợp lệ");
+  assert.equal((archive.match(/data-poem-item(?:\s|>)/g) || []).length, records.length, "danh sách và bộ đếm dùng hai nguồn dữ liệu khác nhau");
+});
+
 test("frontmatter và renderer hỗ trợ bài không ảnh, một ảnh hoặc nhiều ảnh", () => {
   const common = `title: "Bài kiểm tra"\ndate: "2026-08-26"\nexcerpt: "Kiểm tra cấu trúc."\npath: "neo-que"\nsecondary_path: "neo-tam"\nthemes:\n  - "quê hương"\n  - "ký ức"`;
   const withImage = parseFrontmatter(`---\n${common}\nimage: "/assets/poems/bai-kiem-tra/cover.jpg"\nimage_alt: "Một khoảnh khắc thật"\ngallery:\n  - "/assets/poems/bai-kiem-tra/01.jpg"\n  - "/assets/poems/bai-kiem-tra/02.jpg"\n---\nMột câu thơ`, "with-image.md");
