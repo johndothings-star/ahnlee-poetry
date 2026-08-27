@@ -4,7 +4,7 @@ date: "2019-06-24"
 excerpt: "Từ trái ớt nhỏ cứ hướng lên trời, bài thơ mở ra một liên tưởng về lời nguyện cũ và hướng đi của đời người."
 featured: false
 path: "neo-tam"
-secondary_path: "neo-que"
+secondary_path: "neo-doi"
 themes: ["ước nguyện","quê cũ","chỉ thiên","trở về"]
 image: "/assets/poems/chi-thien/cover.jpg"
 image_alt: "Ảnh trải nghiệm gắn với bài thơ CHỈ THIÊN"

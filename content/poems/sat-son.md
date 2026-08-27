@@ -3,8 +3,8 @@ title: "SẮT SON"
 date: "2024-02-01"
 excerpt: "Đường còn dài nhưng bước chân không mỏi; điều đáng giữ nhất là một tấm lòng trước sau không đổi."
 featured: false
-path: "neo-tam"
-secondary_path: "neo-phieu-du"
+path: "neo-phieu-du"
+secondary_path: "neo-tam"
 themes: ["kiên định","hành trình","muôn nẻo","sắt son"]
 ---
 

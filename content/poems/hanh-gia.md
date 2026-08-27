@@ -3,8 +3,8 @@ title: "HÀNH GIẢ"
 date: "2023-08-19"
 excerpt: "Đường quanh co, núi cao nước chảy, nhưng người hành giả vẫn chọn một tâm thế thanh nhàn giữa cõi thị phi."
 featured: false
-path: "neo-tam"
-secondary_path: "neo-phieu-du"
+path: "neo-phieu-du"
+secondary_path: "neo-thanh-nhan"
 themes: ["hành giả","đường đi","thị phi","thanh nhàn"]
 image: "/assets/poems/hanh-gia/cover.jpg"
 image_alt: "Ảnh trải nghiệm gắn với bài thơ HÀNH GIẢ"

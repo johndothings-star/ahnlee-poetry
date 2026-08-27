@@ -3,8 +3,8 @@ title: "GIỌT NƯỚC"
 date: "2011-08-01"
 excerpt: "Từ lòng đất ra suối, xuống biển rồi hóa hơi trở về, giọt nước mang theo một vòng đời đầy yêu thương và nhớ nguồn."
 featured: false
-path: "neo-tam"
-secondary_path: "neo-doi"
+path: "neo-doi"
+secondary_path: "neo-tam"
 themes: ["nguồn cội","hành trình","dâng hiến","trở về"]
 ---
 

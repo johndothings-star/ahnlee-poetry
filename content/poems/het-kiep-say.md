@@ -4,7 +4,7 @@ date: "2018-03-07"
 excerpt: "Một ngày chợt tỉnh khỏi giấc mê dài, nhớ lại lời nguyện ban sơ và tiếp tục bước về phía cố hương."
 featured: false
 path: "neo-tam"
-secondary_path: "neo-phieu-du"
+secondary_path: "neo-doi"
 themes: ["tỉnh ngộ","thệ ước","cố hương","trở về"]
 ---
 
