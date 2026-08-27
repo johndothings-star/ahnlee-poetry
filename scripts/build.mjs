@@ -421,14 +421,21 @@ async function build() {
   await writePage("/dau-chan-cua-toi/", footprintsPage);
 
   for (const poem of poems) {
-    const footstep = chooseNextFootstep(poem, poems);
-    const nextPoem = footstep?.candidate;
-    const nextPath = nextPoem ? PATH_BY_SLUG.get(nextPoem.path) : null;
-    const footstepNavigation = nextPoem ? `<nav class="footstep-next" aria-label="Bài thơ gợi ý tiếp theo">
-          <p class="footstep-next__label">Bước tiếp</p>
-          <a data-next-footstep href="${url(`/tho/${nextPoem.slug}/`)}">${escapeHtml(nextPoem.title)} <span aria-hidden="true">→</span></a>
-          <p class="footstep-next__note">Theo dấu chân này${nextPath ? ` · ${escapeHtml(nextPath.name)}` : ""}</p>
+    const footsteps = chooseNextFootstep(poem, poems);
+    const previousPoem = footsteps?.previous;
+    const nextPoem = footsteps?.candidate;
+    const secondaryPath = PATH_BY_SLUG.get(poem.secondary_path);
+    const footstepNavigation = previousPoem && nextPoem ? `<nav class="footstep-next" aria-label="Bước trước và Bước tiếp trong Nẻo chính">
+          <a class="footstep-next__item" data-previous-footstep href="${url(`/tho/${previousPoem.slug}/`)}">
+            <span class="footstep-next__label"><span aria-hidden="true">←</span> Bước trước</span>
+            <span class="footstep-next__title">${escapeHtml(previousPoem.title)}</span>
+          </a>
+          <a class="footstep-next__item footstep-next__item--next" data-next-footstep href="${url(`/tho/${nextPoem.slug}/`)}">
+            <span class="footstep-next__label">Bước tiếp <span aria-hidden="true">→</span></span>
+            <span class="footstep-next__title">${escapeHtml(nextPoem.title)}</span>
+          </a>
         </nav>` : "";
+    const secondaryNavigation = secondaryPath ? `<a class="footstep-crossroad" href="${pathUrl(secondaryPath.slug)}">Dấu chân còn có: ${escapeHtml(secondaryPath.name)} <span aria-hidden="true">→</span></a>` : "";
     const poemPage = layout({
       title: poem.title,
       description: poem.excerpt,
@@ -451,6 +458,7 @@ async function build() {
         <footer class="poem-ending">
           <button class="poem-share" type="button" data-share-poem data-share-title="${escapeHtml(`${poem.title} — Nguyên Anh`)}" aria-live="polite">Gửi bài thơ ni cho ai đó <span aria-hidden="true">→</span></button>
           ${footstepNavigation}
+          ${secondaryNavigation}
         </footer>
       </article>`,
     });

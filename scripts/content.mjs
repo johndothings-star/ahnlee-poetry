@@ -122,7 +122,10 @@ export function chooseNextFootstep(poem, poems) {
 
   const currentIndex = pathPoems.findIndex((candidate) => candidate.slug === poem.slug);
   if (currentIndex < 0) return null;
-  return { candidate: pathPoems[(currentIndex + 1) % pathPoems.length] };
+  return {
+    previous: pathPoems[(currentIndex - 1 + pathPoems.length) % pathPoems.length],
+    candidate: pathPoems[(currentIndex + 1) % pathPoems.length],
+  };
 }
 
 export function renderPoemFigure(poem, { resolveUrl, escape }) {
