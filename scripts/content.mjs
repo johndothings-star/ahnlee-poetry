@@ -115,27 +115,14 @@ export function parseFrontmatter(source, fileName = "Bài thơ") {
   return { metadata, body: match[2].trim() };
 }
 
-function sharedThemeCount(first, second) {
-  const themes = new Set(first.themes || []);
-  return (second.themes || []).filter((theme) => themes.has(theme)).length;
-}
-
 export function chooseNextFootstep(poem, poems) {
-  const candidates = poems.filter((candidate) => candidate.slug !== poem.slug);
-  if (!candidates.length) return null;
+  if (!poem.path) return null;
+  const pathPoems = poems.filter((candidate) => candidate.path === poem.path);
+  if (pathPoems.length < 2) return null;
 
-  return candidates
-    .map((candidate, index) => {
-      const sharedThemes = sharedThemeCount(poem, candidate);
-      let score = 0;
-      if (candidate.path === poem.path && sharedThemes) score += 100;
-      if (poem.secondary_path && candidate.path === poem.secondary_path) score += 60;
-      if (candidate.path === poem.path) score += 30;
-      score += sharedThemes * 10;
-      if (candidate.secondary_path === poem.path) score += 5;
-      return { candidate, score, sharedThemes, index };
-    })
-    .sort((first, second) => second.score - first.score || first.index - second.index || first.candidate.slug.localeCompare(second.candidate.slug, "vi"))[0];
+  const currentIndex = pathPoems.findIndex((candidate) => candidate.slug === poem.slug);
+  if (currentIndex < 0) return null;
+  return { candidate: pathPoems[(currentIndex + 1) % pathPoems.length] };
 }
 
 export function renderPoemFigure(poem, { resolveUrl, escape }) {

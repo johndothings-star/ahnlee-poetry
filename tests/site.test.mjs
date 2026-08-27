@@ -153,24 +153,58 @@ test("sáu trang Nẻo giữ đúng thứ tự, lời tựa và tự đếm bài
   }
 });
 
-test("dòng thời gian chứa mọi bài và Bước tiếp luôn hợp lệ, deterministic", async () => {
+test("dòng thời gian chứa mọi bài", async () => {
   const records = await poemRecords();
   const timeline = await page("dong-thoi-gian");
   assert.equal((timeline.match(/<li>\s*<time datetime=/g) || []).length, records.length);
   for (const poem of records) assert.ok(timeline.includes(`href="${prefix}/tho/${poem.slug}/"`), `timeline thiếu ${poem.slug}`);
+});
 
-  if (records.length > 1) {
-    for (const poem of records) {
-      const html = await page(path.join("tho", poem.slug));
+test("Bước tiếp đi tuần tự trong cùng Nẻo chính và vòng từ cuối về đầu", async () => {
+  const records = await poemRecords();
+  const renderedNext = new Map();
+
+  for (const poemPath of PATHS) {
+    const pathPage = await page(path.join("neo", poemPath.route));
+    const orderedSlugs = [...pathPage.matchAll(new RegExp(`href="${prefix}/tho/([^/]+)/"`, "g"))].map((match) => match[1]);
+    const pathRecords = records.filter((poem) => poem.path === poemPath.slug);
+    assert.equal(orderedSlugs.length, pathRecords.length, `${poemPath.name}: không đọc được đúng thứ tự trang Nẻo`);
+
+    for (let index = 0; index < orderedSlugs.length; index += 1) {
+      const slug = orderedSlugs[index];
+      const html = await page(path.join("tho", slug));
       const match = html.match(/data-next-footstep href="([^"]+)"/);
-      assert.ok(match, `${poem.slug}: thiếu Bước tiếp`);
-      assert.notEqual(match[1], `${prefix}/tho/${poem.slug}/`, `${poem.slug}: Bước tiếp trỏ về chính nó`);
+
+      if (orderedSlugs.length < 2) {
+        assert.equal(match, null, `${slug}: Nẻo chỉ có một bài thì không được trỏ về chính nó`);
+        continue;
+      }
+
+      const expected = orderedSlugs[(index + 1) % orderedSlugs.length];
+      assert.ok(match, `${slug}: thiếu Bước tiếp`);
+      assert.equal(match[1], `${prefix}/tho/${expected}/`, `${slug}: Bước tiếp không theo thứ tự trang ${poemPath.name}`);
+      assert.notEqual(expected, slug, `${slug}: Bước tiếp trỏ về chính nó`);
+      assert.equal(records.find((poem) => poem.slug === expected)?.path, poemPath.slug, `${slug}: Bước tiếp sang sai Nẻo chính`);
+      renderedNext.set(slug, expected);
     }
-    const first = chooseNextFootstep(records[0], records);
-    const repeated = chooseNextFootstep(records[0], records);
-    assert.equal(first.candidate.slug, repeated.candidate.slug);
-    assert.notEqual(first.candidate.slug, records[0].slug);
   }
+
+  assert.ok(renderedNext.has("trung-thu"), "thiếu kiểm tra bài TRUNG THU");
+  assert.ok(renderedNext.has("chom-thu"), "thiếu kiểm tra bài CHỚM THU");
+  assert.equal(renderedNext.get("trung-thu") === "chom-thu" && renderedNext.get("chom-thu") === "trung-thu", false, "TRUNG THU và CHỚM THU vẫn tạo vòng lặp 2 bài");
+});
+
+test("hàm Bước tiếp chỉ dùng path và giữ nguyên thứ tự đầu vào", () => {
+  const poems = [
+    { slug: "dau", path: "neo-que", secondary_path: "neo-tinh", themes: ["giống nhau"] },
+    { slug: "khac-neo", path: "neo-tinh", secondary_path: "neo-que", themes: ["giống nhau"] },
+    { slug: "giua", path: "neo-que", secondary_path: "neo-tam", themes: [] },
+    { slug: "cuoi", path: "neo-que", secondary_path: "neo-phieu-du", themes: ["giống nhau"] },
+  ];
+  assert.equal(chooseNextFootstep(poems[0], poems).candidate.slug, "giua");
+  assert.equal(chooseNextFootstep(poems[2], poems).candidate.slug, "cuoi");
+  assert.equal(chooseNextFootstep(poems[3], poems).candidate.slug, "dau");
+  assert.equal(chooseNextFootstep(poems[1], poems), null);
 });
 
 test("Dấu chân của tôi đếm bài duy nhất theo Nẻo và không phụ thuộc nội dung mẫu", () => {
