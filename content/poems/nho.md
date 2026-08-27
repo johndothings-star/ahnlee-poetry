@@ -6,7 +6,7 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-doi"
 themes: ["nỗi nhớ","xa cách","mây gió","cánh chim","bạn hữu"]
-
+---
 
 Tôi hỏi mây sao cứ mãi hững hờ
 Không bay lượn, không ghép hình sông núi?
