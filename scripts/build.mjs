@@ -432,7 +432,7 @@ async function build() {
       <div class="guest-submit__action">${submissionAction}</div>
       <ul>
         <li>Bài thơ là tác phẩm bạn có quyền gửi, kèm tên hoặc bút danh rõ ràng.</li>
-        <li>Gửi bài không đồng nghĩa bài sẽ tự động được đăng; chủ website sẽ chọn những bài phù hợp.</li>
+        <li>Gửi bài không đồng nghĩa bài sẽ tự động được đăng; chủ nhà sẽ chọn những bài phù hợp.</li>
         <li>Nội dung thơ sẽ không được tự ý sửa khi chưa có sự đồng ý của tác giả.</li>
       </ul>
     </section>`,
