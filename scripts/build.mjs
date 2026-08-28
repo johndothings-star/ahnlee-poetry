@@ -433,7 +433,7 @@ async function build() {
       <ul>
         <li>Bài thơ là tác phẩm bạn có quyền gửi, kèm tên hoặc bút danh rõ ràng.</li>
         <li>Gửi bài không đồng nghĩa bài sẽ tự động được đăng; chủ nhà sẽ chọn những bài phù hợp.</li>
-        <li>Nội dung thơ sẽ không được tự ý sửa khi chưa có sự đồng ý của tác giả.</li>
+        <li>Thơ của khách được giữ nguyên theo bản gửi, trừ khi tác giả có yêu cầu chỉnh sửa.</li>
       </ul>
     </section>`,
   });
