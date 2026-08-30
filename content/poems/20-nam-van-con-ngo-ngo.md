@@ -8,7 +8,7 @@ secondary_path: "neo-que"
 themes: ["học trò","tình đầu","hội khóa","vui đùa"]
 image: "/assets/poems/20-nam-van-con-ngo-ngo/cover.jpg"
 image_alt: "Ảnh trải nghiệm gắn với bài thơ 20 NĂM VẪN CÒN NGƠ NGƠ!"
-gallery: ["/assets/poems/20-nam-van-con-ngo-ngo/01.jpg","/assets/poems/20-nam-van-con-ngo-ngo/01.jpg","/assets/poems/20-nam-van-con-ngo-ngo/02.jpg"]
+gallery: ["/assets/poems/20-nam-van-con-ngo-ngo/01.jpg"]
 ---
 
 Hai mươi năm một chặng đường
