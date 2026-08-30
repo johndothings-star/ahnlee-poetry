@@ -1,13 +1,13 @@
 ---
-title: "HAI MƯƠI NĂM VẪN CÒN NGƠ!"
+title: "20 NĂM VẪN CÒN NGƠ NGƠ!"
 date: "2018-07-16"
 excerpt: "Hai mươi năm sau ngày rời trường, chỉ một cuộc gặp cũng đủ khiến những trái tim từng ngơ ngác lại vui như thuở cũ."
 featured: false
 path: "neo-tinh"
 secondary_path: "neo-que"
 themes: ["học trò","tình đầu","hội khóa","vui đùa"]
-image: "/assets/poems/hai-muoi-nam-van-con-ngo/cover.jpg"
-image_alt: "Ảnh trải nghiệm gắn với bài thơ HAI MƯƠI NĂM VẪN CÒN NGƠ!"
+image: "/assets/poems/20-nam-van-con-ngo-ngo/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ 20 NĂM VẪN CÒN NGƠ NGƠ!"
 gallery: ["/assets/poems/hai-muoi-nam-van-con-ngo/01.jpg"]
 ---
 
