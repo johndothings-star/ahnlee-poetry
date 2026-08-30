@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["mái nhà","cha mẹ","cơ hàn","ký ức"]
+image: "/assets/poems/dau-vet-thoi-gian/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ DẤU VẾT THỜI GIAN!"
 ---
 
 Nhà tôi in dấu thời gian
