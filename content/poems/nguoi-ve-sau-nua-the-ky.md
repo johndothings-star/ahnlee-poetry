@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["gia đình","người lính","chiến tranh","ký ức","cội nguồn","trở về","tưởng niệm"]
+image: "/assets/poems/nguoi-ve-sau-nua-the-ky/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NGƯỜI VỀ SAU NỬA THẾ KỶ!"
 ---
 
 Nửa đời mưa gió bay qua

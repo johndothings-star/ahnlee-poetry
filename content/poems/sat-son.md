@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["kiên định","hành trình","muôn nẻo","sắt son"]
+image: "/assets/poems/sat-son/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ SẮT SON"
 ---
 
 Những bước chân không mỏi

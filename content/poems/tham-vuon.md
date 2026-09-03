@@ -6,6 +6,9 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["vườn","hoa","thôn quê","thanh tao"]
+image: "/assets/poems/tham-vuon/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ THĂM VƯỜN"
+gallery: ["/assets/poems/tham-vuon/01.jpg"]
 ---
 
 Ra vườn thăm trái bí non

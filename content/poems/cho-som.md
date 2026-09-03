@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["mẹ","chợ quê","sương sớm","ký ức"]
+image: "/assets/poems/cho-som/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHỢ SỚM"
 ---
 
 Màn đêm buông rèm đi ngủ sớm

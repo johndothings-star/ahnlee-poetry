@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["mái nhà","bình yên","hoa","giấc mơ"]
+image: "/assets/poems/mo-hien-nha-hoa-no/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ MƠ HIÊN NHÀ HOA NỞ!?"
 ---
 
 Tôi đứng yên mà Trái Đất cứ quay

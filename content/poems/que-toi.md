@@ -6,6 +6,8 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-phieu-du"
 themes: ["quê hương","núi sông","tuổi thơ","tha phương"]
+image: "/assets/poems/que-toi/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ QUÊ TÔI"
 ---
 
 Quê tôi một mảnh yên bình

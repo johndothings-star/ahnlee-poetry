@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-que"
 themes: ["bạn học","tri kỷ","giọng quê","hội ngộ"]
+image: "/assets/poems/ban-va-toi/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ BẠN VÀ TÔI"
 ---
 
 Bạn và tôi cùng chung tuổi học trò

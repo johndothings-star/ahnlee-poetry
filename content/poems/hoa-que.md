@@ -6,6 +6,9 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["hoa quê","thôn quê","thanh tao","bình dị"]
+image: "/assets/poems/hoa-que/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ HOA QUÊ!"
+gallery: ["/assets/poems/hoa-que/01.jpg"]
 ---
 
 Sáng ra vườn ngắm hoa quê

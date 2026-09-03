@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-thanh-nhan"
 themes: ["mùa thu","mây gió","phiêu du","thiên nhiên"]
+image: "/assets/poems/chom-thu/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHỚM THU"
 ---
 
 Tháng tám về đón cái nắng đầu thu

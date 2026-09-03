@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["chúng sinh","buông tâm","trăng","hồng trần"]
+image: "/assets/poems/ngam-trang/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NGẮM TRĂNG!"
 ---
 
 Hồng trần cuồn cuộn chảy

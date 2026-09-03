@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-tam"
 themes: ["chúc xuân","tri ân","hữu duyên","hoa sen"]
+image: "/assets/poems/chuc-xuan/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ CHÚC XUÂN"
 ---
 
 Họa chữ họa lời họa cảnh xuân

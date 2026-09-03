@@ -6,6 +6,9 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-thanh-nhan"
 themes: ["vườn","hoa","thư thái","thôn quê"]
+image: "/assets/poems/vuon-que/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ VƯỜN QUÊ"
+gallery: ["/assets/poems/vuon-que/01.jpg","/assets/poems/vuon-que/02.jpg","/assets/poems/vuon-que/03.jpg"]
 ---
 
 Vườn nhà dù nắng vẫn đầy hoa

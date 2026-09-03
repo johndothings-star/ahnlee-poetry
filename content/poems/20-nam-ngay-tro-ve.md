@@ -6,6 +6,8 @@ featured: false
 path: "neo-tinh"
 secondary_path: "neo-que"
 themes: ["hội khóa","thầy trò","bạn bè","ký ức"]
+image: "/assets/poems/20-nam-ngay-tro-ve/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ 20 NĂM - NGÀY TRỞ VỀ"
 ---
 
 Hai mươi năm, một chặng đường

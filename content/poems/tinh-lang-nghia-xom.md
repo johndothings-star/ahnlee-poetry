@@ -6,6 +6,9 @@ featured: false
 path: "neo-que"
 secondary_path: "neo-tinh"
 themes: ["xóm làng","sẻ chia","cộng đồng","nghĩa tình"]
+image: "/assets/poems/tinh-lang-nghia-xom/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ TÌNH LÀNG NGHĨA XÓM"
+gallery: ["/assets/poems/tinh-lang-nghia-xom/01.jpg"]
 ---
 
 Quê tôi thắm nghĩa xóm làng

@@ -6,6 +6,8 @@ featured: false
 path: "neo-phieu-du"
 secondary_path: "neo-tam"
 themes: ["sơn cước","thiên nhiên","chân trần","tỉnh mộng"]
+image: "/assets/poems/du-mien-son-cuoc/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ DU MIỀN SƠN CƯỚC"
 ---
 
 Sương mờ ôm đỉnh núi
