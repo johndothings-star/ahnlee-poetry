@@ -6,6 +6,8 @@ featured: false
 path: "neo-thanh-nhan"
 secondary_path: "neo-tam"
 themes: ["ngoan đồng","vui sống","buông ưu phiền","trẻ thơ"]
+image: "/assets/poems/gia-dau-net-tre/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GIÀ ĐẦU NẾT TRẺ"
 ---
 
 Ngoan đồng, ngoan đồng, lão ngoan đồng

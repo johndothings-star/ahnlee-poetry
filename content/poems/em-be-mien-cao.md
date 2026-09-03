@@ -6,6 +6,8 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tinh"
 themes: ["trẻ em","miền cao","khó khăn","cảm thương"]
+image: "/assets/poems/em-be-mien-cao/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ EM BÉ MIỀN CAO"
 ---
 
 Giữa núi rừng yên ả

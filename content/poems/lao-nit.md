@@ -5,6 +5,8 @@ excerpt: "Lớn tuổi không đồng nghĩa phải thôi ngô nghê; đôi khi 
 featured: false
 path: "neo-thanh-nhan"
 themes: ["trẻ nít","tự trào","ngô nghê","tuổi tác"]
+image: "/assets/poems/lao-nit/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ LÃO NÍT"
 ---
 
 Người ta lớn tuổi, trưởng thành

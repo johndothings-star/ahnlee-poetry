@@ -6,6 +6,9 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-tinh"
 themes: ["cái tôi","khen chê","duyên","ẩn dụ trái cây"]
+image: "/assets/poems/sau-rieng/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ SẦU... RIÊNG!"
+gallery: ["/assets/poems/sau-rieng/01.jpg"]
 ---
 
 Sầu riêng mang nỗi sầu riêng

@@ -6,6 +6,8 @@ featured: false
 path: "neo-thanh-nhan"
 secondary_path: "neo-tinh"
 themes: ["xe đạp","kỷ niệm","thân thuộc","gặp lại"]
+image: "/assets/poems/gap-lai-xe-dap/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GẶP LẠI XE ĐẠP"
 ---
 
 Xe đạp ơi... đã gặp lại em rồi

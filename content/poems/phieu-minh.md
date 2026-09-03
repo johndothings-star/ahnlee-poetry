@@ -6,6 +6,8 @@ featured: false
 path: "neo-tam"
 secondary_path: "neo-phieu-du"
 themes: ["phiêu bồng","mê lạc","thời gian","trở về","tỉnh thức","sơn thủy","minh quang"]
+image: "/assets/poems/phieu-minh/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ PHIÊU MINH"
 ---
 
 Thả hồn - một chút phiêu bồng,

@@ -5,6 +5,8 @@ excerpt: "Một câu thơ châm biếm ngắn về quyền lực, tiền bạc v
 featured: false
 path: "neo-doi"
 themes: ["châm biếm","quyền lực","việc làm","lòng người"]
+image: "/assets/poems/nhan-nguoi-cam-dau-thien-ha/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ NHẮN NGƯỜI “CẦM ĐẦU THIÊN HẠ“"
 ---
 
 Hỡi những ai đang "cầm đầu thiên hạ"

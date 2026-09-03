@@ -6,6 +6,8 @@ featured: false
 path: "neo-doi"
 secondary_path: "neo-que"
 themes: ["hạt giống","thế hệ sau","tiếp nối","trách nhiệm"]
+image: "/assets/poems/giu-hat/cover.jpg"
+image_alt: "Ảnh trải nghiệm gắn với bài thơ GIỮ HẠT!"
 ---
 
 Ai ơi ăn một trái cây
